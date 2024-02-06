@@ -36,7 +36,11 @@
         </ul>
       </div>
     </div>
+
+
   </div>
+
+
 </template>
 
 <script setup lang="ts"></script>
@@ -51,6 +55,8 @@
   height: 40rem;
   /* max-width: 30rem; */
 }
+
+
 
 .sidebar .box {
   height: 40rem;
