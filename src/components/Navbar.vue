@@ -68,6 +68,8 @@ h3 {
 
 .header .logo p {
   font-size: 1.3rem;
+  letter-spacing: 1px;
+  padding-left: 4px;
 }
 .right__nav {
   display: flex;
