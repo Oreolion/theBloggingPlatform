@@ -1,7 +1,7 @@
 <template>
   <div class="side-box">
     <div class="box">
-      <h1>category</h1>
+      <h1>Discover More Interests</h1>
       <div class="aside-content">
         <ul>
           <li><a href="#">Travel</a> <span>42</span></li>

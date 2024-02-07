@@ -29,13 +29,32 @@
         </label>
       </div>
       <ul class="navlist">
-        <li>Our Story</li>
-        <li>Write</li>
-        <li>Sign In</li>
-        <li><button>Get Started</button></li>
+        <li>
+          <router-link to="/">Home</router-link>
+        </li>
+        <li><router-link to="/login">Write</router-link></li>
+        <li><router-link to="/login">Sign in</router-link></li>
+        <li>
+          <router-link to="/signup"><button>Get Started</button></router-link>
+        </li>
       </ul>
     </nav>
-  </header>
+    <!-- Mobile Nav -->
+    <nav class="mobile__nav">
+      <ul class="navlist">
+
+        <li>
+          <router-link to="/">Home</router-link>
+        </li>
+        <li><router-link to="/login">Write</router-link></li>
+        <li><router-link to="/login">Sign in</router-link></li>
+        <li>
+          <router-link to="/signup"><button>Get Started</button></router-link>
+        </li>
+      </ul>
+    </nav>
+    
+</header>
 </template>
 
 <script setup lang="ts"></script>
@@ -47,7 +66,7 @@
   left: 0;
   right: 0;
   background: #bbb;
-  box-shadow: var(--box-shadow);
+  /* box-shadow: var(--box-shadow); */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -78,6 +97,10 @@ h3 {
   justify-content: center;
 }
 
+.mobile__nav {
+  display: none;
+}
+
 .nav__icons {
   display: flex;
   gap: 2rem;
@@ -94,7 +117,7 @@ h3 {
 }
 
 .nav__icons .search svg {
-    display: flex;
+  display: flex;
   align-items: center;
   justify-content: center;
 }
@@ -106,6 +129,9 @@ h3 {
   justify-content: center;
 }
 
+.navlist li {
+  cursor: pointer;
+}
 .search-form {
   position: absolute;
   width: 46rem;
@@ -138,12 +164,9 @@ h3 {
     display: none;
   }
 
-
   .nav__icons .menu-bar svg {
-
-  display: flex;
-  order: 2;
-
-}
+    display: flex;
+    order: 2;
+  }
 }
 </style>

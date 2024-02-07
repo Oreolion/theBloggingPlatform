@@ -47,7 +47,7 @@ section {
   gap: 3rem;
   flex-flow: row;
   flex-wrap: wrap;
-  flex: 1 1 65%;
+  flex: 1 1 67%;
 }
 
 .inner-postcontainer {
@@ -58,10 +58,10 @@ section {
 
 .post-container .post {
   padding: 2rem;
-  border: var(--border);
   border-radius: 1rem;
   margin-bottom: 2rem;
   background-color: #ddd;
+  box-shadow: 2px 4px 2px rgba(250, 250, 220, 0.2);
   min-width: 32rem;
   display: flex;
   flex-wrap: wrap;
@@ -69,7 +69,7 @@ section {
 }
 
 .side-bar {
-  flex: 1 1 30%;
+  flex: 1 1 25%;
   display: flex;
   flex-direction: column;
 }

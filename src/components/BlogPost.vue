@@ -1,5 +1,5 @@
 <template>
-  <div class="post">
+  <article class="post">
     <div>
         <div class="image">
       <img
@@ -56,7 +56,7 @@
         </a>
       </div>
     </div>
-  </div>
+  </article>
 </template>
 
 <script setup lang="ts"></script>
