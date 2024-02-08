@@ -88,6 +88,15 @@ section {
   padding: 2rem;
 }
 
-@media (max-width: 766px) {
+@media (max-width: 640px) {
+  .post-container .post {
+    min-width: 27rem;
+  }
+}
+@media (max-width: 500px) {
+  .post-container .post {
+    min-width: 15rem;
+    width: 19rem;
+  }
 }
 </style>

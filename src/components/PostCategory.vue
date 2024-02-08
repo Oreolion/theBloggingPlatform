@@ -47,6 +47,8 @@
 
 <style scoped>
 .side-box {
+    /* position: fixed; */
+
   text-align: center;
   border-radius: 1rem;
   background-color: #fff;

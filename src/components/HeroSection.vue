@@ -10,9 +10,7 @@
       </div>
       <div class="right__herosection">
         <div class="imgbox">
-            <img :src="backgroundImage" alt="backgroundimage">
-
-
+          <img :src="backgroundImage" alt="backgroundimage" />
         </div>
       </div>
     </div>
@@ -20,13 +18,11 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from "vue";
 
-import {ref} from "vue"
-
-    const backgroundImage = ref("../src/assets/images/andrew-neel-cckf4TsHAuw-unsplash.jpg")
-
-
-
+const backgroundImage = ref(
+  "../src/assets/images/andrew-neel-cckf4TsHAuw-unsplash.jpg"
+);
 </script>
 
 <style scoped>
@@ -43,7 +39,7 @@ h1 {
 }
 
 .inner__herosection {
-    display: flex;
+  display: flex;
 }
 
 .left__herosection {
@@ -55,72 +51,136 @@ h1 {
 }
 
 .left__herosection h1 {
-    font-size: 3.5rem;
-    margin-bottom: 3rem;
-    letter-spacing: .5px;
-    font-weight: bold;
-    min-width: 49rem;
-
+  font-size: 3.5rem;
+  margin-bottom: 3rem;
+  letter-spacing: 0.5px;
+  font-weight: bold;
+  min-width: 49rem;
 }
 .left__herosection h3 {
-    font-size: 2.5rem;
-    margin-bottom: 4rem;
-    min-width: 47rem;
-    max-width: 47rem;
-
+  font-size: 2.5rem;
+  margin-bottom: 4rem;
+  min-width: 47rem;
+  max-width: 47rem;
 }
 
 .left__herosection .hero-btn {
-    width: 17rem;
-    height: 6rem;
-
+  width: 17rem;
+  height: 6rem;
 }
 .right__herosection {
-    width: 50%;
-
+  width: 50%;
 }
 
 .right__herosection .imgbox {
-    width: 100%;
-    height: 100%;
-    padding-top: 9rem;
-    
+  width: 100%;
+  height: 100%;
+  padding-top: 9rem;
 }
 
 .right__herosection .imgbox img {
-    display: block;
-    height: 100%;
-    width: 100%;
-    border-radius: 2rem;
+  display: block;
+  height: 100%;
+  width: 100%;
+  border-radius: 2rem;
 }
 
-@media (max-width: 677px) {
-    .inner__herosection {
+@media (max-width: 767px) {
+  .inner__herosection {
     display: flex;
     flex-direction: column;
-}
+    padding-bottom: 4rem;
+  }
 
-
-.left__herosection {
+  .left__herosection {
     margin: 0 6rem;
     text-align: center;
+    padding-bottom: 4rem;
+    padding-top: 14rem;
+    /* padding-left: 3rem; */
+  }
+
+  .left__herosection h1 {
+  font-size: 2.6rem;
+  min-width: 45rem;
+}
+.left__herosection h3 {
+  font-size: 2.3rem;
+  min-width: 47rem;
+  max-width: 47rem;
 }
 
 
-.left__herosection .hero-btn {
+  .left__herosection .hero-btn {
     width: 17rem;
     margin: 0 16rem;
-    
-}
+    height: 6rem;
 
-.right__herosection .imgbox {
+  }
+
+  .right__herosection .imgbox {
     width: 200%;
     height: 100%;
     padding-top: 4rem;
+  }
+}
+
+@media (max-width: 639px) {
+  .left__herosection {
+    margin: 0 3rem;
+    text-align: center;
+    padding-left: 4rem;
+    /* background: transparent; */
+  }
+
+  .left__herosection h1 {
+    min-width: 36rem;
+    font-size: 2.5rem;
+    margin-left: 3rem;
+  }
+
+  /* .left__herosection h1 {
     
+    min-width: 41rem;
+  } */
+  .left__herosection h3 {
+      /* max-width: 40rem; */
+    font-size: 2rem;
+    min-width: 38rem;
+
+  }
+
+  .left__herosection .hero-btn {
+    width: 17rem;
+    margin: 0 10rem;
+  }
 }
 
+@media (max-width: 480px) {
+  .left__herosection {
+    margin: 0 1rem;
+    text-align: center;    
+    padding-left: 0rem;
+
+  }
+
+  .left__herosection h1 {
+    min-width: 32rem;
+    font-size: 2rem;
+    margin-left: -3rem;
+  }
+  .left__herosection h3 {
+    min-width: 27rem;
+    font-size: 1.7rem;
+  }
+
+  .left__herosection .hero-btn {
+    width: 17rem;
+    margin: 0 4rem;
+  }
 }
 
-
+@media (min-width: 320px) and (max-width: 460px) {
+  
+}
 </style>

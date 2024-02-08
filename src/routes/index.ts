@@ -2,7 +2,6 @@ import { createRouter, createWebHashHistory } from "vue-router";
 import LandingPage from "../pages/LandingPage.vue";
 import Dashboard from "../layouts/dashboard.vue";
 import NotFound from "../pages/NotFound.vue";
-import LoginPageVue from "../pages/Login.vue";
 import SignupPageVue from "../pages/Signup.vue";
 import LoginVue from "../pages/Login.vue";
 

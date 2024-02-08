@@ -1,22 +1,21 @@
 <template>
   <article class="post">
     <div>
-        <div class="image">
-      <img
-        src="https://media.istockphoto.com/id/475680439/photo/mountain-biking-british-columbia.jpg?b=1&s=170667a&w=0&k=20&c=Yi_mh2gqEDh12juV7_SPi0PTTq2-Tic7Cc9CSWSl0Rg="
-        alt="/"
-      />
+      <div class="image">
+        <img
+          src="https://media.istockphoto.com/id/475680439/photo/mountain-biking-british-columbia.jpg?b=1&s=170667a&w=0&k=20&c=Yi_mh2gqEDh12juV7_SPi0PTTq2-Tic7Cc9CSWSl0Rg="
+          alt="/"
+        />
+      </div>
+      <p class="p1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+          <path
+            d="M256 0a256 256 0 1 1 0 512A256 256 0 1 1 256 0zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z"
+          /></svg
+        >1st may, 2023
+      </p>
     </div>
-    <p class="p1">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-        <path
-          d="M256 0a256 256 0 1 1 0 512A256 256 0 1 1 256 0zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z"
-        /></svg
-      >1st may, 2023
-    </p>
 
-    </div>
-   
     <div>
       <h2>blog the title here</h2>
       <p>
@@ -133,5 +132,25 @@ svg {
 }
 .post .reaction-box .right .icon {
   margin-right: 2rem;
+}
+
+@media (max-width: 500px) {
+  .post .image {
+    width: 25rem;
+    height: 20rem;
+    margin-bottom: 1rem;
+  }
+
+  .post .reaction-box .left {
+    margin-right: 3rem;
+  }
+
+  .post .reaction-box svg {
+    margin-right: 0.5rem;
+  }
+
+  .post .reaction-box .right .icon {
+    margin-right: 4rem;
+  }
 }
 </style>
