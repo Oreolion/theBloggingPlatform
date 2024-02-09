@@ -19,16 +19,16 @@
             <div class="name">
               <label for="firstname">
                 First name: <br />
-                <input type="text" />
+                <input v-model="firstname" type="text" />
               </label>
               <label for="lastname">
                 Last name: <br />
-                <input type="text" />
+                <input v-model="lastname" type="text" />
               </label>
             </div>
             <label for="select">
               You are joining as <br />
-              <select name="select-user" id="">
+              <select v-model="typeOfUser" name="select-user" id="">
                 <option>Writer</option>
                 <option>Reader</option>
               </select>
@@ -36,15 +36,15 @@
 
             <label for="email">
               Email address: <br />
-              <input type="email" />
+              <input v-model="email" type="email" />
             </label>
             <label for="password">
               Password: <br />
-              <input type="password" />
+              <input v-model="password" type="password" />
             </label>
             <label for="password">
               Confirm password: <br />
-              <input type="password" />
+              <input v-model="password" type="password" />
             </label>
             <div class="btn-box">
               <button>Create account</button>
@@ -58,7 +58,23 @@
   </section>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import {ref} from "vue"
+// import {
+//     createUserWithEmailAndPassword
+//   } from "firebase/auth";
+//   import { auth } from "../utils/firebase.ts";
+
+
+
+const email = ref("")
+const password = ref("")
+const firstname = ref("")
+const lastname = ref("")
+const typeOfUser = ref("")
+
+
+</script>
 
 <style scoped>
 .section {

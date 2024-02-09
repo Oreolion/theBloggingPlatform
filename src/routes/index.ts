@@ -11,7 +11,7 @@ const router = createRouter({
     {
       path: "/",
       //   redirect: "/share-feedback",
-      name: LandingPage,
+      name: "landing-page",
       component: LandingPage,
     },
    
@@ -20,7 +20,7 @@ const router = createRouter({
     {
         path: "/dashboard",
         //   redirect: "/Dashboard",
-        name: Dashboard,
+        name: "dash-board",
         component: Dashboard,
       },
     // {
