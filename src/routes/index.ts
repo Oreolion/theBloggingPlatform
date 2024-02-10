@@ -10,19 +10,22 @@ const router = createRouter({
   routes: [
     {
       path: "/",
-      //   redirect: "/share-feedback",
+      //   redirect: "/landing-page",
       name: "landing-page",
       component: LandingPage,
+      
     },
-   
+
     { path: "/login", name: "login-page", component: LoginVue },
-    { path: "/signup", name: "signup-page", component: SignupPageVue},
+    { path: "/signup", name: "signup-page", component: SignupPageVue },
     {
-        path: "/dashboard",
-        //   redirect: "/Dashboard",
-        name: "dash-board",
-        component: Dashboard,
-      },
+      path: "/dashboard",
+      //   redirect: "/Dashboard",
+      name: "dash-board",
+      component: Dashboard,
+      meta: { requiresAuth: true },
+
+    },
     // {
     //   path: '/about',
     //   name: 'about',
@@ -33,6 +36,29 @@ const router = createRouter({
     // }
     { path: "/:pathMatch(.*)*", name: "not-found", component: NotFound },
   ],
+});
+
+const isLoggedIn = () => !!localStorage.getItem("isLoggedIn");
+
+// global navigation guard
+router.beforeEach(async (to, from, next) => {
+
+  if (to.matched.some((item) => item.meta.requiresAuth)) {
+    if (!isLoggedIn()) {
+      next({ path: "/login" });
+    } else {
+      next();
+    }
+  } else if (isLoggedIn() && to.name === "login-page") {
+    next({ path: "/dashboard" });
+  }  else if (isLoggedIn() && to.name === "signup-page") {
+    next({ path: "/dashboard" });
+  }
+  else {
+    next();
+  }
+
+
 });
 
 export default router;

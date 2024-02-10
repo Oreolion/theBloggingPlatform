@@ -19,16 +19,16 @@
             <div class="name">
               <label for="firstname">
                 First name: <br />
-                <input v-model="firstname" type="text" />
+                <input v-model="user.firstname" type="text" />
               </label>
               <label for="lastname">
                 Last name: <br />
-                <input v-model="lastname" type="text" />
+                <input v-model="user.lastname" type="text" />
               </label>
             </div>
             <label for="select">
               You are joining as <br />
-              <select v-model="typeOfUser" name="select-user" id="">
+              <select v-model="user.typeOfUser" name="select-user" id="">
                 <option>Writer</option>
                 <option>Reader</option>
               </select>
@@ -36,18 +36,18 @@
 
             <label for="email">
               Email address: <br />
-              <input v-model="email" type="email" />
+              <input v-model="user.email" type="email" />
             </label>
             <label for="password">
               Password: <br />
-              <input v-model="password" type="password" />
+              <input v-model="user.password" type="password" />
             </label>
             <label for="password">
               Confirm password: <br />
-              <input v-model="password" type="password" />
+              <input v-model="user.password" type="password" />
             </label>
             <div class="btn-box">
-              <button>Create account</button>
+              <button @click="handleSignUp">Create account</button>
               <button>Sign up with google</button>
               <button>Sign up with LinkedIn</button>
             </div>
@@ -59,19 +59,41 @@
 </template>
 
 <script setup lang="ts">
-import {ref} from "vue"
-// import {
-//     createUserWithEmailAndPassword
-//   } from "firebase/auth";
-//   import { auth } from "../utils/firebase.ts";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../utils/firebase.ts";
+import { reactive } from "vue";
+import { useRouter } from "vue-router";
 
+const router = useRouter();
 
+const user = reactive({
+  email: "",
+  password: "",
+  firstname: "",
+  lastname: "",
+  typeOfUser: "",
+});
 
-const email = ref("")
-const password = ref("")
-const firstname = ref("")
-const lastname = ref("")
-const typeOfUser = ref("")
+// const password = ref("");
+
+const handleSignUp = async () => {
+  try {
+    const response = await createUserWithEmailAndPassword(
+      auth,
+      user.email,
+      user.password
+    );
+    console.log(response);
+    if (response.user) {
+        localStorage.setItem("isLoggedIn", "true");
+
+        router.push("/dashboard");
+
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 
 </script>
@@ -198,6 +220,5 @@ br {
 }
 
 @media (min-width: 320px) and (max-width: 460px) {
-    
 }
 </style>
