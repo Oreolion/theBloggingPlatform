@@ -38,20 +38,20 @@ const router = createRouter({
   ],
 });
 
-const isLoggedIn = () => !!localStorage.getItem("isLoggedIn");
 
 // global navigation guard
 router.beforeEach(async (to, from, next) => {
+    const isLoggedIn = !!localStorage.getItem("isLoggedIn");
 
   if (to.matched.some((item) => item.meta.requiresAuth)) {
-    if (!isLoggedIn()) {
+    if (!isLoggedIn) {
       next({ path: "/login" });
     } else {
       next();
     }
-  } else if (isLoggedIn() && to.name === "login-page") {
+  } else if (isLoggedIn && to.name === "login-page") {
     next({ path: "/dashboard" });
-  }  else if (isLoggedIn() && to.name === "signup-page") {
+  }  else if (isLoggedIn && to.name === "signup-page") {
     next({ path: "/dashboard" });
   }
   else {

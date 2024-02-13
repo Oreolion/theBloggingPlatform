@@ -1,20 +1,23 @@
 <template>
   <main>
     <article class="post">
-      <div>
-        <div class="image">
-          <img
-            src="https://media.istockphoto.com/id/475680439/photo/mountain-biking-british-columbia.jpg?b=1&s=170667a&w=0&k=20&c=Yi_mh2gqEDh12juV7_SPi0PTTq2-Tic7Cc9CSWSl0Rg="
-            alt="/"
-          />
+      <div class="user__profile">
+        <div class="user__image">
+          <!-- <img src="" alt="" /> -->
         </div>
-        <p class="p1">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-            <path
-              d="M256 0a256 256 0 1 1 0 512A256 256 0 1 1 256 0zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z"
-            /></svg
-          >1st may, 2023
-        </p>
+        <div class="user__info">
+          <h3 class="username">Grace Ikpang</h3>
+          <div>
+            <p class="userrole">Product Designer</p>
+            <p class="p1">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                <path
+                  d="M256 0a256 256 0 1 1 0 512A256 256 0 1 1 256 0zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z"
+                /></svg
+              >1st may, 2023
+            </p>
+          </div>
+        </div>
       </div>
 
       <div>
@@ -25,6 +28,12 @@
         </p>
         <p>Lorem ipsum or numquam veniam recusandae veritatis cumque!</p>
       </div>
+      <div class="image">
+        <img
+          src="https://media.istockphoto.com/id/475680439/photo/mountain-biking-british-columbia.jpg?b=1&s=170667a&w=0&k=20&c=Yi_mh2gqEDh12juV7_SPi0PTTq2-Tic7Cc9CSWSl0Rg="
+          alt="/"
+        />
+      </div>
 
       <div class="reaction-box">
         <div class="left">
@@ -34,7 +43,7 @@
                 d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"
               />
             </svg>
-            <span>by admin</span>
+            <span>2980 views</span>
           </a>
         </div>
         <div class="right">
@@ -67,15 +76,40 @@
   flex: 1 1 30rem;
   background: transparent rgba(250, 250, 220, 0.2);
   box-shadow: 6px 4px 4px rgba(250, 250, 220, 0.2);
-  height: 43rem;
+  height: 53rem;
   min-width: 28rem;
   border-radius: 1rem;
   padding: 2rem;
   line-height: 1;
 }
+
+.user__profile {
+  display: flex;
+  gap: 2rem;
+}
+
+.user__image {
+  width: 7rem;
+  height: 7rem;
+  border-radius: 50%;
+  background-color: #000;
+}
+
+.user__info div {
+  display: flex;
+  gap: 2rem;
+}
+
+.username {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  margin-top: 1rem;
+}
+
 .post .image {
-  width: 35rem;
-  height: 20rem;
+  width: 90%;
+  height: 24rem;
   margin-bottom: 1rem;
 }
 
@@ -87,8 +121,8 @@
 }
 
 .post h2 {
-  font-size: 2rem;
-  font-weight: 500;
+  font-size: 2.3rem;
+  font-weight: bold;
   color: var(--green);
   margin-bottom: 1rem;
 }
@@ -96,11 +130,13 @@
 .post p {
   font-size: 1.6rem;
   margin-bottom: 2rem;
-  color: #666;
+  letter-spacing: 0.5px;
+  color: aliceblue;
+  max-width: 90%;
 }
 
 .post .p1 {
-  color: var(--light);
+  color: aliceblue;
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -116,7 +152,7 @@
 }
 
 .post .reaction-box a {
-  color: #666;
+  color: aliceblue;
   font-size: 1.5rem;
   display: flex;
   align-items: center;
@@ -148,14 +184,36 @@ svg {
 
 @media (max-width: 768px) {
   .post {
-    height: 49rem;
-    min-width: 28rem;
+    height: 67rem;
+    min-width: 29rem;
+  }
+
+  .user__profile {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .user__info div {
+    gap: 0.5rem;
+  }
+
+  .username {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+
+  .post .image {
+    margin-bottom: 0.5rem;
   }
 }
 
 @media (max-width: 500px) {
+  .post {
+    padding-left: 0;
+  }
   .post .image {
-    width: 25rem;
+    width: 24rem;
     height: 20rem;
     margin-bottom: 1rem;
   }
@@ -171,5 +229,11 @@ svg {
   .post .reaction-box .right .icon {
     margin-right: 4rem;
   }
+}
+
+@media (max-width: 320px) {
+    .post p {
+        font-size: 1.3rem;
+    }
 }
 </style>

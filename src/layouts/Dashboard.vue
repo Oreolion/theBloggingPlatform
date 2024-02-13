@@ -10,40 +10,87 @@
         <div class="user__info"></div>
       </div>
       <ul class="dashboard__navlists">
+        <h5>Overview</h5>
         <li>
           <div class="link" @click="">
             <!-- <IoMdHome size="{20}" /> -->
-            <p>Dashboard</p>
+            <p>Feed</p>
           </div>
         </li>
         <li>
           <Link class="link" @click="">
             <!-- <IoAddSharp size="{20}" /> -->
-            <p>Deposit</p>
+            <p>Bookmarks</p>
           </Link>
         </li>
         <li>
           <div class="link">
             <!-- <AiOutlineMinus size="{20}" /> -->
-            <p>Withdraw</p>
+            <p>Team Blog</p>
           </div>
         </li>
         <li>
           <div class="link" @click="">
             <!-- <LuHistory size="{20}" /> -->
-            <p>Deposit Transactions</p>
+            <p>Drafts</p>
           </div>
         </li>
         <li>
           <div class="link" @click="">
             <!-- <LuHistory size="{20}" /> -->
-            <p>Withdraw Transactions</p>
+            <p>Analytics</p>
+          </div>
+        </li>
+        <h5>Trending Tags</h5>
+        <li>
+          <div class="link" @click="">
+            <!-- <IoMdHome size="{20}" /> -->
+            <p>Programming</p>
+          </div>
+        </li>
+        <li>
+          <Link class="link" @click="">
+            <!-- <IoAddSharp size="{20}" /> -->
+            <p>Data Science</p>
+          </Link>
+        </li>
+        <li>
+          <div class="link">
+            <!-- <AiOutlineMinus size="{20}" /> -->
+            <p>Metaphysics</p>
+          </div>
+        </li>
+        <li>
+          <div class="link" @click="">
+            <!-- <LuHistory size="{20}" /> -->
+            <p>Machine Learning</p>
+          </div>
+        </li>
+        <li>
+          <div class="link" @click="">
+            <!-- <LuHistory size="{20}" /> -->
+            <p>Politics</p>
+          </div>
+        </li>
+        <li>
+          <div class="link" @click="">
+            <!-- <LuHistory size="{20}" /> -->
+            <p>See all</p>
+          </div>
+        </li>
+
+        <h5>Personal</h5>
+
+        <li>
+          <div class="link" @Click="">
+            <!-- <MdOutlineSettings size="{20}" /> -->
+            <p>Account</p>
           </div>
         </li>
         <li>
           <div class="link" @Click="">
             <!-- <MdOutlineSettings size="{20}" /> -->
-            <p>Account Settings</p>
+            <p>Notifications</p>
           </div>
         </li>
         <li @click="handleLogout">
@@ -65,45 +112,92 @@
         <div class="user__info"></div>
       </div>
       <ul class="dashboard__navlists">
+        <h5>Overview</h5>
         <li>
           <div class="link" @click="">
             <!-- <IoMdHome size="{20}" /> -->
-            <p>Dashboard</p>
+            <p>Feed</p>
           </div>
         </li>
         <li>
           <Link class="link" @click="">
             <!-- <IoAddSharp size="{20}" /> -->
-            <p>Deposit</p>
+            <p>Bookmarks</p>
           </Link>
         </li>
         <li>
           <div class="link">
             <!-- <AiOutlineMinus size="{20}" /> -->
-            <p>Withdraw</p>
+            <p>Team Blog</p>
           </div>
         </li>
         <li>
           <div class="link" @click="">
             <!-- <LuHistory size="{20}" /> -->
-            <p>Deposit Transactions</p>
+            <p>Drafts</p>
           </div>
         </li>
         <li>
           <div class="link" @click="">
             <!-- <LuHistory size="{20}" /> -->
-            <p>Withdraw Transactions</p>
+            <p>Analytics</p>
+          </div>
+        </li>
+        <h5>Trending Tags</h5>
+        <li>
+          <div class="link" @click="">
+            <!-- <IoMdHome size="{20}" /> -->
+            <p>Programming</p>
+          </div>
+        </li>
+        <li>
+          <Link class="link" @click="">
+            <!-- <IoAddSharp size="{20}" /> -->
+            <p>Data Science</p>
+          </Link>
+        </li>
+        <li>
+          <div class="link">
+            <!-- <AiOutlineMinus size="{20}" /> -->
+            <p>Metaphysics</p>
+          </div>
+        </li>
+        <li>
+          <div class="link" @click="">
+            <!-- <LuHistory size="{20}" /> -->
+            <p>Machine Learning</p>
+          </div>
+        </li>
+        <li>
+          <div class="link" @click="">
+            <!-- <LuHistory size="{20}" /> -->
+            <p>Politics</p>
+          </div>
+        </li>
+        <li>
+          <div class="link" @click="">
+            <!-- <LuHistory size="{20}" /> -->
+            <p>See all</p>
+          </div>
+        </li>
+
+        <h5>Personal</h5>
+
+        <li>
+          <div class="link" @Click="">
+            <!-- <MdOutlineSettings size="{20}" /> -->
+            <p>Account</p>
           </div>
         </li>
         <li>
           <div class="link" @Click="">
             <!-- <MdOutlineSettings size="{20}" /> -->
-            <p>Account Settings</p>
+            <p>Notifications</p>
           </div>
         </li>
         <li @click="handleLogout">
           <div class="link">
-            <!-- <BiLogOut size="{20}" />\ -->
+            <!-- <BiLogOut size="{20}" /> -->
             <p>Logout</p>
           </div>
         </li>
@@ -111,6 +205,10 @@
     </nav>
     <main class="innerdashboard__container">
       <header class="header">
+        <div class="logo link">
+          <h3>THE RA BLOG</h3>
+          <p>The Read Along Blog</p>
+        </div>
         <nav class="right__nav">
           <div class="nav__icons">
             <div v-if="!toggle" @click="toggleMenu" class="menu-bar">
@@ -155,13 +253,12 @@
           <input type="search" placeholder="search and Read Along..." />
         </div>
         <div class="img__box">
-          <img src="" alt="" />
+          <!-- <img src="" alt="" /> -->
         </div>
       </header>
       <DashboardFeeds></DashboardFeeds>
     </main>
   </section>
-
 </template>
 
 <script setup lang="ts">
@@ -223,7 +320,7 @@ h3 {
 }
 
 .logo {
-  margin: 2rem 0 3rem;
+  margin: 2rem 0 -2rem;
 }
 
 .logo p {
@@ -250,8 +347,20 @@ h3 {
   display: flex;
   gap: 2rem;
   margin-bottom: 1rem;
+  margin-left: 2rem;
   white-space: nowrap;
   cursor: pointer;
+  font-weight: bold;
+}
+
+.dashboard__navlists li:last-child {
+  color: red;
+  font-weight: bold;
+}
+
+.dashboard__navlists h5 {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
   font-weight: bold;
 }
 
@@ -277,6 +386,10 @@ h3 {
   align-items: center;
   padding: 1.2rem 7%;
   height: 9rem;
+}
+
+.innerdashboard__container .header .logo {
+  display: none;
 }
 
 .header .user {
@@ -350,6 +463,8 @@ h3 {
   z-index: 111;
   color: #fff;
   cursor: pointer;
+  gap: 1rem;
+  /* align-items: center; */
 }
 
 .nav__icons .notification-icon {
@@ -357,8 +472,6 @@ h3 {
   color: red;
   height: 3rem;
   width: 3rem;
-
-  /* z-index: 111; */
 }
 .icons .menu-icon,
 .icons .close-icon {
@@ -367,13 +480,6 @@ h3 {
 
 .mobile-header {
   display: none;
-}
-
-.nav__icons {
-  display: flex;
-  gap: 2rem;
-  align-items: center;
-  justify-content: center;
 }
 
 .nav__icons .menu-bar svg {
@@ -440,6 +546,25 @@ svg {
 }
 
 @media (max-width: 767px) {
+  .innerdashboard__container .header .logo {
+    margin-bottom: 1rem;
+    color: #e67e22;
+    max-width: 18rem;
+    font-weight: bold;
+  }
+
+  .innerdashboard__container .header h3 {
+    line-height: 1;
+    letter-spacing: 0.2;
+    font-size: 2rem;
+  }
+
+  .innerdashboard__container .header .logo p {
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    padding-left: 4px;
+  }
+
   .nav__icons .menu-bar svg {
     display: flex;
   }
@@ -461,14 +586,34 @@ svg {
   }
 
   .search-form {
-    width: 36rem;
+    width: 30rem;
     margin-right: 4rem;
+  }
+
+  .header .img__box {
+    height: 5rem;
+    width: 5rem;
   }
 }
 
 @media (max-width: 640px) {
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 1.2rem 2%;
+  }
+  .dashboard__nav {
+    width: 17rem;
+  }
+
   .search-form {
-    width: 30rem;
+    display: none;
+  }
+
+  .header .nav__icons {
+    right: 22%;
+    gap: 1rem;
   }
 }
 </style>
