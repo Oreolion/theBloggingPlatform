@@ -551,6 +551,7 @@ svg {
     color: #e67e22;
     max-width: 18rem;
     font-weight: bold;
+    display: block;
   }
 
   .innerdashboard__container .header h3 {

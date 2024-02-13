@@ -53,6 +53,9 @@ router.beforeEach(async (to, from, next) => {
     next({ path: "/dashboard" });
   }  else if (isLoggedIn && to.name === "signup-page") {
     next({ path: "/dashboard" });
+  } else if (isLoggedIn && to.name === "landing-page") {
+    next({ path: "/dashboard" });
+
   }
   else {
     next();
