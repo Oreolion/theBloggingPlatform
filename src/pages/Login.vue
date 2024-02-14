@@ -11,8 +11,13 @@
       <div class="signup__form">
         <form action="">
           <div class="navigatepagebtn-box">
-            <button>REGISTER</button>
-            <button>LOGIN</button>
+            <button>
+              <router-link to="/signup">REGISTER</router-link>
+              
+            </button>
+            <button>
+              <router-link to="/login">LOGIN</router-link>
+            </button>
           </div>
           <h1 class="form__header">Welcome Back</h1>
           <div class="inner__form">
