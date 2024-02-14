@@ -36,16 +36,26 @@
 
             <label for="email">
               Email address: <br />
-              <input v-model="user.email" type="email" />
+              <input type="email" v-model="v$.email.$model" />
+              <small v-if="v$.password.$errors.length">{{
+                v$.email.$errors[0].$message
+              }}</small>
             </label>
             <label for="password">
               Password: <br />
-              <input v-model="user.password" type="password" />
+              <input type="password" v-model="v$.password.$model" />
+              <small v-if="v$.password.$errors.length">{{
+                v$.password.$errors[0].$message
+              }}</small>
             </label>
             <label for="password">
-              Confirm password: <br />
-              <input v-model="user.password" type="password" />
+              Password: <br />
+              <input type="password" v-model="v$.confirmPassword.$model" />
+              <small v-if="v$.confirmPassword.$errors.length">{{
+                v$.confirmPassword.$errors[0].$message
+              }}</small>
             </label>
+
             <div class="btn-box">
               <button @click="handleSignUp">Create account</button>
               <button>Sign up with google</button>
@@ -61,18 +71,30 @@
 <script setup lang="ts">
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../utils/firebase.ts";
+// import { toast } from 'vue3-toastify';
+import { useVuelidate } from "@vuelidate/core";
+import { required, email, minLength } from "@vuelidate/validators";
 import { reactive } from "vue";
 import { useRouter } from "vue-router";
+
+const userRules = {
+  email: { required, email },
+  password: { required, minLength: minLength(8) },
+  confirmPassword: { required, minLength: minLength(8) },
+};
 
 const router = useRouter();
 
 const user = reactive({
   email: "",
   password: "",
+  confirmPassword: "",
   firstname: "",
   lastname: "",
   typeOfUser: "",
 });
+
+const v$ = useVuelidate(userRules, user);
 
 // const password = ref("");
 
@@ -85,17 +107,14 @@ const handleSignUp = async () => {
     );
     console.log(response);
     if (response.user) {
-        localStorage.setItem("isLoggedIn", "true");
+      localStorage.setItem("isLoggedIn", "true");
 
-        router.push("/dashboard");
-
+      router.push("/dashboard");
     }
   } catch (error) {
     console.log(error);
   }
 };
-
-
 </script>
 
 <style scoped>
@@ -201,6 +220,9 @@ br {
   padding: 0 1rem;
 }
 
+small {
+  color: red;
+}
 .btn-box {
   display: flex;
   flex-direction: column;

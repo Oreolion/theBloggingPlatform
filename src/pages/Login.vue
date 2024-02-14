@@ -18,11 +18,17 @@
           <div class="inner__form">
             <label for="email">
               Email address: <br />
-              <input type="email" v-model="user.email" />
+              <input type="email" v-model="v$.email.$model" />
+              <small v-if="v$.password.$errors.length">{{
+                v$.email.$errors[0].$message
+              }}</small>
             </label>
             <label for="password">
               Password: <br />
-              <input type="password" v-model="user.password" />
+              <input type="password" v-model="v$.password.$model" />
+              <small v-if="v$.password.$errors.length">{{
+                v$.password.$errors[0].$message
+              }}</small>
             </label>
 
             <div class="btn-box">
@@ -40,16 +46,28 @@
 <script setup lang="ts">
 import { reactive } from "vue";
 import { useRouter } from "vue-router";
-import {auth} from "../utils/firebase";
-import {  signInWithEmailAndPassword } from "firebase/auth";
+import { toast } from "vue3-toastify";
+import { useVuelidate } from "@vuelidate/core";
+import { required, email, minLength } from "@vuelidate/validators";
+import { auth } from "../utils/firebase";
+import { signInWithEmailAndPassword } from "firebase/auth";
 const user = reactive({
   email: "",
   password: "",
 });
 
+const userRules = {
+  email: { required, email },
+  password: { required, minLength: minLength(8) },
+};
+
+const v$ = useVuelidate(userRules, user);
+
 const router = useRouter();
 
 const handleLogin = async () => {
+  const isValid = await v$.value.$validate();
+  if (!isValid) return;
   try {
     const response = await signInWithEmailAndPassword(
       auth,
@@ -58,12 +76,13 @@ const handleLogin = async () => {
     );
     console.log(response);
     if (response.user) {
-        localStorage.setItem("isLoggedIn", "true");
+      localStorage.setItem("isLoggedIn", "true");
 
       router.push("/dashboard");
     }
-  } catch (error) {
+  } catch (error: any) {
     console.log(error);
+    toast.error(error.message);
   }
 };
 </script>
@@ -159,6 +178,10 @@ br {
   height: 4rem;
   width: 100%;
   padding: 0 1rem;
+}
+
+small {
+  color: red;
 }
 
 .btn-box {

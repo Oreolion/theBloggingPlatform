@@ -33,7 +33,9 @@ import NewsFeedPostVue from "./NewsFeedPost.vue";
   font-weight: bold;
   font-size: 1.4rem;
   padding: 2rem 4rem;
-  border: 2px solid #e67e22;
+  border-radius: 2rem;
+  background: rgba(225, 255, 255, 0.2);
+
   color: aliceblue;
   min-width: 33rem;
 }
@@ -59,9 +61,10 @@ import NewsFeedPostVue from "./NewsFeedPost.vue";
 .dashboardfeeds__nav {
   display: flex;
   justify-content: space-between;
-  padding: 1rem;
-  border: 1px solid #e67e22;
-  border-radius: 3px;
+  padding: 1rem 2rem;
+  border-top-left-radius: 3rem;
+  border-bottom-right-radius: 3rem;
+  background: rgba(225, 225, 225, 0.2);
 }
 
 .dashboardfeeds__nav h3 {
