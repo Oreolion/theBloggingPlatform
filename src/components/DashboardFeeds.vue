@@ -35,7 +35,6 @@ import NewsFeedPostVue from "./NewsFeedPost.vue";
   padding: 2rem 4rem;
   border-radius: 2rem;
   background: rgba(225, 255, 255, 0.2);
-
   color: aliceblue;
   min-width: 33rem;
 }
@@ -74,7 +73,7 @@ import NewsFeedPostVue from "./NewsFeedPost.vue";
 .post__box {
   display: flex;
   flex-direction: column;
-  gap: 4rem;
+  gap: 6rem;
 }
 
 @media (max-width: 767px) {

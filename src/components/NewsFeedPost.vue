@@ -75,7 +75,7 @@
 .post {
   flex: 1 1 30rem;
   background: transparent rgba(250, 250, 220, 0.2);
-  box-shadow: 6px 4px 4px rgba(250, 250, 220, 0.2);
+  box-shadow: 4px 4px 4px 4px rgba(250, 250, 220, 0.2);
   height: 53rem;
   min-width: 28rem;
   border-radius: 1rem;

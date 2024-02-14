@@ -12,7 +12,7 @@
         <form action="">
           <div class="navigatepagebtn-box">
             <button>
-              <router-link  to="/signup">REGISTER</router-link>
+              <router-link to="/signup">REGISTER</router-link>
               >
             </button>
             <button>
@@ -76,16 +76,20 @@
 <script setup lang="ts">
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../utils/firebase.ts";
-// import { toast } from 'vue3-toastify';
+import { toast } from 'vue3-toastify';
 import { useVuelidate } from "@vuelidate/core";
-import { required, email, minLength } from "@vuelidate/validators";
-import { reactive } from "vue";
+import { required, email, minLength, sameAs } from "@vuelidate/validators";
+import { reactive, computed } from "vue";
 import { useRouter } from "vue-router";
 
 const userRules = {
   email: { required, email },
   password: { required, minLength: minLength(8) },
-  confirmPassword: { required, minLength: minLength(8) },
+  confirmPassword: {
+    required,
+    minLength: minLength(8),
+    sameAs: sameAs(computed(() => user.password)),
+  },
 };
 
 const router = useRouter();
@@ -104,6 +108,8 @@ const v$ = useVuelidate(userRules, user);
 // const password = ref("");
 
 const handleSignUp = async () => {
+  const isValid = await v$.value.$validate();
+  if (!isValid) return;
   try {
     const response = await createUserWithEmailAndPassword(
       auth,
@@ -116,8 +122,9 @@ const handleSignUp = async () => {
 
       router.push("/dashboard");
     }
-  } catch (error) {
+  } catch (error: any) {
     console.log(error);
+    toast.error(error.message)
   }
 };
 </script>

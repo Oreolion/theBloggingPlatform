@@ -6,9 +6,10 @@
         <p>The Read Along Blog</p>
       </div>
       <div class="user">
-        <FaUserTie size="{40}" />
+        <!-- <FaUserTie size="{40}" /> -->
         <div class="user__info"></div>
       </div>
+
       <ul class="dashboard__navlists">
         <h5>Overview</h5>
         <li>
@@ -18,10 +19,10 @@
           </div>
         </li>
         <li>
-          <Link class="link" @click="">
+          <div class="link" @click="">
             <!-- <IoAddSharp size="{20}" /> -->
             <p>Bookmarks</p>
-          </Link>
+          </div>
         </li>
         <li>
           <div class="link">
@@ -36,10 +37,10 @@
           </div>
         </li>
         <li>
-          <div class="link" @click="">
+          <router-link class="link" to="/dashboard/postanalytics">
             <!-- <LuHistory size="{20}" /> -->
-            <p>Analytics</p>
-          </div>
+            Analytics
+          </router-link>
         </li>
         <h5>Trending Tags</h5>
         <li>
@@ -49,10 +50,10 @@
           </div>
         </li>
         <li>
-          <Link class="link" @click="">
+          <div class="link" @click="">
             <!-- <IoAddSharp size="{20}" /> -->
             <p>Data Science</p>
-          </Link>
+          </div>
         </li>
         <li>
           <div class="link">
@@ -82,10 +83,10 @@
         <h5>Personal</h5>
 
         <li>
-          <div class="link" @Click="">
-            <!-- <MdOutlineSettings size="{20}" /> -->
-            <p>Account</p>
-          </div>
+          <router-link class="link" to="/dashboard/accountprofile">
+            <!-- <LuHistory size="{20}" /> -->
+            Account
+          </router-link>
         </li>
         <li>
           <div class="link" @Click="">
@@ -120,10 +121,10 @@
           </div>
         </li>
         <li>
-          <Link class="link" @click="">
+          <div class="link" @click="">
             <!-- <IoAddSharp size="{20}" /> -->
             <p>Bookmarks</p>
-          </Link>
+          </div>
         </li>
         <li>
           <div class="link">
@@ -138,10 +139,10 @@
           </div>
         </li>
         <li>
-          <div class="link" @click="">
+          <router-link class="link" to="/dashboard/postanalytics">
             <!-- <LuHistory size="{20}" /> -->
-            <p>Analytics</p>
-          </div>
+            Analytics
+          </router-link>
         </li>
         <h5>Trending Tags</h5>
         <li>
@@ -151,10 +152,10 @@
           </div>
         </li>
         <li>
-          <Link class="link" @click="">
+          <div class="link" @click="">
             <!-- <IoAddSharp size="{20}" /> -->
             <p>Data Science</p>
-          </Link>
+          </div>
         </li>
         <li>
           <div class="link">
@@ -183,11 +184,12 @@
 
         <h5>Personal</h5>
 
+       
         <li>
-          <div class="link" @Click="">
-            <!-- <MdOutlineSettings size="{20}" /> -->
-            <p>Account</p>
-          </div>
+          <router-link class="link" to="/dashboard/accountprofile">
+            <!-- <LuHistory size="{20}" /> -->
+            Account
+          </router-link>
         </li>
         <li>
           <div class="link" @Click="">
