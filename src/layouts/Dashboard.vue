@@ -1,107 +1,6 @@
 <template>
   <section class="dashboard__container">
-    <nav class="dashboard__nav">
-      <div class="logo link">
-        <h3>THE RA BLOG</h3>
-        <p>The Read Along Blog</p>
-      </div>
-      <div class="user">
-        <!-- <FaUserTie size="{40}" /> -->
-        <div class="user__info"></div>
-      </div>
-
-      <ul class="dashboard__navlists">
-        <h5>Overview</h5>
-        <li>
-          <div class="link" @click="">
-            <!-- <IoMdHome size="{20}" /> -->
-            <p>Feed</p>
-          </div>
-        </li>
-        <li>
-          <div class="link" @click="">
-            <!-- <IoAddSharp size="{20}" /> -->
-            <p>Bookmarks</p>
-          </div>
-        </li>
-        <li>
-          <div class="link">
-            <!-- <AiOutlineMinus size="{20}" /> -->
-            <p>Team Blog</p>
-          </div>
-        </li>
-        <li>
-          <div class="link" @click="">
-            <!-- <LuHistory size="{20}" /> -->
-            <p>Drafts</p>
-          </div>
-        </li>
-        <li>
-          <router-link class="link" to="/dashboard/postanalytics">
-            <!-- <LuHistory size="{20}" /> -->
-            Analytics
-          </router-link>
-        </li>
-        <h5>Trending Tags</h5>
-        <li>
-          <div class="link" @click="">
-            <!-- <IoMdHome size="{20}" /> -->
-            <p>Programming</p>
-          </div>
-        </li>
-        <li>
-          <div class="link" @click="">
-            <!-- <IoAddSharp size="{20}" /> -->
-            <p>Data Science</p>
-          </div>
-        </li>
-        <li>
-          <div class="link">
-            <!-- <AiOutlineMinus size="{20}" /> -->
-            <p>Metaphysics</p>
-          </div>
-        </li>
-        <li>
-          <div class="link" @click="">
-            <!-- <LuHistory size="{20}" /> -->
-            <p>Machine Learning</p>
-          </div>
-        </li>
-        <li>
-          <div class="link" @click="">
-            <!-- <LuHistory size="{20}" /> -->
-            <p>Politics</p>
-          </div>
-        </li>
-        <li>
-          <div class="link" @click="">
-            <!-- <LuHistory size="{20}" /> -->
-            <p>See all</p>
-          </div>
-        </li>
-
-        <h5>Personal</h5>
-
-        <li>
-          <router-link class="link" to="/dashboard/accountprofile">
-            <!-- <LuHistory size="{20}" /> -->
-            Account
-          </router-link>
-        </li>
-        <li>
-          <div class="link" @Click="">
-            <!-- <MdOutlineSettings size="{20}" /> -->
-            <p>Notifications</p>
-          </div>
-        </li>
-        <li @click="handleLogout">
-          <div class="link">
-            <!-- <BiLogOut size="{20}" /> -->
-            <p>Logout</p>
-          </div>
-        </li>
-      </ul>
-    </nav>
+    <DashboardNav></DashboardNav>
     <!-- mobile dashboard navbar -->
     <nav class="dashboard__nav mobile" v-if="toggle">
       <div class="logo link">
@@ -184,7 +83,6 @@
 
         <h5>Personal</h5>
 
-       
         <li>
           <router-link class="link" to="/dashboard/accountprofile">
             <!-- <LuHistory size="{20}" /> -->
@@ -267,8 +165,9 @@
 import { getAuth, signOut } from "firebase/auth";
 import { useRouter } from "vue-router";
 import { ref } from "vue";
+import DashboardNav from "../components/DashboardNav.vue";
+
 import DashboardFeeds from "../components/DashboardFeeds.vue";
-//   console.log(user);
 
 const router = useRouter();
 
@@ -282,10 +181,13 @@ const handleLogout = async () => {
   }
 };
 
-let toggle = ref(false);
-let toggleMenu = () => {
+let toggle = ref<boolean>(false);
+
+function toggleMenu() {
   return (toggle.value = !toggle.value);
-};
+}
+
+
 </script>
 
 <style scoped>
