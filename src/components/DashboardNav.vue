@@ -12,10 +12,10 @@
     <ul class="dashboard__navlists">
       <h5>Overview</h5>
       <li>
-        <div class="link" @click="">
-          <!-- <IoMdHome size="{20}" /> -->
-          <p>Feed</p>
-        </div>
+        <router-link class="link" to="/dashboard">
+          <!-- <LuHistory size="{20}" /> -->
+          Feeds
+        </router-link>
       </li>
       <li>
         <div class="link" @click="">
@@ -101,7 +101,6 @@
       </li>
     </ul>
   </nav>
- 
 </template>
 
 <script setup lang="ts">
@@ -120,8 +119,6 @@ const handleLogout = async () => {
     console.log(error);
   }
 };
-
-
 </script>
 
 <style scoped>

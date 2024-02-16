@@ -1,194 +1,49 @@
 <template>
   <DashboardNav></DashboardNav>
-  <!-- mobile dashboard navbar -->
-  <nav class="dashboard__nav mobile" v-if="toggle">
-    <div class="logo link">
-      <h3>THE RA BLOG</h3>
-      <p>The Read Along Blog</p>
+  <HeaderAndNav></HeaderAndNav>
+  <div class="settings__section">
+    <div class="left__section">
+      <h2>PROFILE UPDATE</h2>
+      <div class="inner__box">
+        <div class="usericon__box">
+          <FaUserTie size="{60}" />
+        </div>
+        <form action="">
+          <label htmlFor="username">Username</label>
+          <input type="text" value="" />
+          <label htmlFor="firstname">Firstname</label>
+          <input type="text" value="" />
+          <label htmlFor="lastname">Lastname</label>
+          <input type="text" value="" />
+          <label htmlFor="country">Country</label>
+          <input type="text" value="" />
+          <label htmlFor="telephone">Telephone</label>
+          <input type="number" value="" />
+          <input class="upload" type="file" />
+          <button>Update Info</button>
+        </form>
+      </div>
     </div>
-    <div class="user">
-      <!-- <FaUserTie size="{40}" /> -->
-      <div class="user__info"></div>
+    <div class="right__section">
+      <div class="innerbox">
+        <div class="box1">
+          <h2>ACCOUNT SETTINGS</h2>
+          <button>Change Password</button>
+        </div>
+      </div>
     </div>
-    <ul class="dashboard__navlists">
-      <h5>Overview</h5>
-      <li>
-        <div class="link" @click="">
-          <!-- <IoMdHome size="{20}" /> -->
-          <p>Feed</p>
-        </div>
-      </li>
-      <li>
-        <div class="link" @click="">
-          <!-- <IoAddSharp size="{20}" /> -->
-          <p>Bookmarks</p>
-        </div>
-      </li>
-      <li>
-        <div class="link">
-          <!-- <AiOutlineMinus size="{20}" /> -->
-          <p>Team Blog</p>
-        </div>
-      </li>
-      <li>
-        <div class="link" @click="">
-          <!-- <LuHistory size="{20}" /> -->
-          <p>Drafts</p>
-        </div>
-      </li>
-      <li>
-        <router-link class="link" to="/dashboard/postanalytics">
-          <!-- <LuHistory size="{20}" /> -->
-          Analytics
-        </router-link>
-      </li>
-      <h5>Trending Tags</h5>
-      <li>
-        <div class="link" @click="">
-          <!-- <IoMdHome size="{20}" /> -->
-          <p>Programming</p>
-        </div>
-      </li>
-      <li>
-        <div class="link" @click="">
-          <!-- <IoAddSharp size="{20}" /> -->
-          <p>Data Science</p>
-        </div>
-      </li>
-      <li>
-        <div class="link">
-          <!-- <AiOutlineMinus size="{20}" /> -->
-          <p>Metaphysics</p>
-        </div>
-      </li>
-      <li>
-        <div class="link" @click="">
-          <!-- <LuHistory size="{20}" /> -->
-          <p>Machine Learning</p>
-        </div>
-      </li>
-      <li>
-        <div class="link" @click="">
-          <!-- <LuHistory size="{20}" /> -->
-          <p>Politics</p>
-        </div>
-      </li>
-      <li>
-        <div class="link" @click="">
-          <!-- <LuHistory size="{20}" /> -->
-          <p>See all</p>
-        </div>
-      </li>
-
-      <h5>Personal</h5>
-
-      <li>
-        <router-link class="link" to="/dashboard/accountprofile">
-          <!-- <LuHistory size="{20}" /> -->
-          Account
-        </router-link>
-      </li>
-      <li>
-        <div class="link" @Click="">
-          <!-- <MdOutlineSettings size="{20}" /> -->
-          <p>Notifications</p>
-        </div>
-      </li>
-      <li @click="handleLogout">
-        <div class="link">
-          <!-- <BiLogOut size="{20}" /> -->
-          <p>Logout</p>
-        </div>
-      </li>
-    </ul>
-  </nav>
-  <main class="innerdashboard__container">
-    <header class="header">
-      <div class="logo link">
-        <h3>THE RA BLOG</h3>
-        <p>The Read Along Blog</p>
-      </div>
-      <nav class="right__nav">
-        <div class="nav__icons">
-          <div v-if="!toggle" @click="toggleMenu" class="menu-bar">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-              <path
-                d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"
-              />
-            </svg>
-          </div>
-          <svg
-            class="close-btn"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 384 512"
-            @click="toggleMenu"
-            v-else="toggle"
-          >
-            <path
-              d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"
-            />
-          </svg>
-          <svg
-            class="notification-icon"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 448 512"
-          >
-            <path
-              d="M224 0c-17.7 0-32 14.3-32 32V51.2C119 66 64 130.6 64 208v18.8c0 47-17.3 92.4-48.5 127.6l-7.4 8.3c-8.4 9.4-10.4 22.9-5.3 34.4S19.4 416 32 416H416c12.6 0 24-7.4 29.2-18.9s3.1-25-5.3-34.4l-7.4-8.3C401.3 319.2 384 273.9 384 226.8V208c0-77.4-55-142-128-156.8V32c0-17.7-14.3-32-32-32zm45.3 493.3c12-12 18.7-28.3 18.7-45.3H224 160c0 17 6.7 33.3 18.7 45.3s28.3 18.7 45.3 18.7s33.3-6.7 45.3-18.7z"
-            />
-          </svg>
-        </div>
-      </nav>
-      <div class="search-form">
-        <label for="search">
-          <div class="search">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-              <path
-                d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"
-              />
-            </svg>
-          </div>
-        </label>
-        <input type="search" placeholder="search and Read Along..." />
-      </div>
-      <div class="img__box">
-        <!-- <img src="" alt="" /> -->
-      </div>
-    </header>
-    <h1>THIS IS THE ACCOUNT PROFILE </h1>
-  </main>
+  </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
-import { getAuth, signOut } from "firebase/auth";
-import { useRouter } from "vue-router";
 import DashboardNav from "../components/DashboardNav.vue";
-
-const router = useRouter();
-
-const handleLogout = async () => {
-  try {
-    await signOut(getAuth());
-    localStorage.clear();
-    router.push("/login");
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-let toggle = ref<boolean>(false);
-
-function toggleMenu() {
-  return (toggle.value = !toggle.value);
-}
+import HeaderAndNav from "../components/HeaderAndNav.vue";
 </script>
 
 <style scoped>
-
 h1 {
-    margin-top: 20rem;
-    color: red;
+  margin-top: 20rem;
+  color: red;
 }
 .logo {
   color: var(--black);
@@ -446,6 +301,116 @@ svg {
   z-index: 111;
 }
 
+/* account settings page */
+
+.settings__section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6rem;
+  color: #ccc;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-left: 10rem;
+  margin-bottom: 6rem;
+  margin-top: 14rem;
+}
+
+.settings__section .right__section {
+  display: flex;
+  flex-direction: column;
+  width: 34rem;
+  align-self: flex-start;
+  background: rgba(215, 215, 215, 0.2);
+}
+
+.settings__section .right__section .box1,
+.settings__section .right__section .box2 {
+  background-color: var(--background-primary);
+  padding: 2rem;
+  margin-bottom: 3rem;
+  height: 14rem;
+}
+
+.settings__section .right__section .box2 {
+  width: 30rem;
+  height: 24rem;
+  margin-left: 2rem;
+}
+.settings__section .right__section .box1 {
+  width: 35rem;
+}
+
+.settings__section .left__section {
+  display: flex;
+  flex-direction: column;
+  background: rgba(215, 215, 215, 0.2);
+  padding: 2rem;
+  width: 37rem;
+}
+
+.settings__section .left__section h2 {
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 2rem;
+}
+.settings__section .left__section .usericon__box {
+  margin-bottom: 2rem;
+  width: 10rem;
+  height: 10rem;
+  border: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.settings__section .left__section .inner__box form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.settings__section .left__section .inner__box form label {
+  font-size: 1.4rem;
+}
+.settings__section .left__section .inner__box form input {
+  height: 3rem;
+}
+
+.settings__section .left__section .inner__box form .upload {
+  margin: 1rem 0;
+  font-size: 1.5rem;
+}
+
+.settings__section .left__section .inner__box form button {
+  width: 15rem;
+}
+
+.settings__section .right__section h2 {
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 2rem;
+}
+
+.settings__section .right__section button {
+  width: 15rem;
+  margin-bottom: 2rem;
+}
+
+.settings__section .right__section .box2 .box {
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+.settings__section .right__section .box2 .box img {
+  width: 12rem;
+  margin-bottom: 2rem;
+}
+
+.settings__section .right__section .inner__box {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
 @media (max-width: 767px) {
   .innerdashboard__container .header .logo {
     margin-bottom: 1rem;
@@ -496,6 +461,14 @@ svg {
     height: 5rem;
     width: 5rem;
   }
+
+  .settings__section {
+    margin-left: 0;
+  }
+
+  .settings__section .right__section {
+    margin-left: -1rem;
+  }
 }
 
 @media (max-width: 640px) {
@@ -516,6 +489,14 @@ svg {
   .header .nav__icons {
     right: 22%;
     gap: 1rem;
+  }
+
+  .settings__section h2 {
+    text-align: center;
+  }
+
+  .settings__section .right__section {
+    width: 31rem;
   }
 }
 </style>

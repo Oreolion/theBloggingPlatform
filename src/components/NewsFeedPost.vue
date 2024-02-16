@@ -232,8 +232,8 @@ svg {
 }
 
 @media (max-width: 320px) {
-    .post p {
-        font-size: 1.3rem;
-    }
+  .post p {
+    font-size: 1.3rem;
+  }
 }
 </style>
