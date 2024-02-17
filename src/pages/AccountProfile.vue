@@ -4,23 +4,34 @@
   <div class="settings__section">
     <div class="left__section">
       <h2>PROFILE UPDATE</h2>
-      <div class="inner__box">
-        <div class="usericon__box">
-          <FaUserTie size="{60}" />
+      <div class="inner__box" v-if="!isLoading">
+        <div class="usericon__box" @click="fileInput?.click()">
+          <span class="" v-if="!profile.photoUrl">R.A</span>
+
+          <img :src="profile.photoUrl" alt="photo-url" class="" v-else />
+
+          <input
+            type="file"
+            class="hidden"
+            ref="fileInput"
+            @change="handleFileChange"
+          />
         </div>
         <form action="">
-          <label htmlFor="username">Username</label>
-          <input type="text" value="" />
+          <label htmlFor="email">email</label>
+          <input type="email" v-model="profile.email" />
+          <label htmlFor="displayName">Display Name</label>
+          <input type="text" v-model="profile.displayName" />
           <label htmlFor="firstname">Firstname</label>
-          <input type="text" value="" />
+          <input type="text" v-model="profile.firstname" />
           <label htmlFor="lastname">Lastname</label>
-          <input type="text" value="" />
+          <input type="text" v-model="profile.lastname" />
           <label htmlFor="country">Country</label>
-          <input type="text" value="" />
-          <label htmlFor="telephone">Telephone</label>
-          <input type="number" value="" />
-          <input class="upload" type="file" />
-          <button>Update Info</button>
+          <input type="text" v-model="profile.country" />
+
+          <button type="button" @click="handleProfileUpdate">
+            Update Info
+          </button>
         </form>
       </div>
     </div>
@@ -38,6 +49,59 @@
 <script setup lang="ts">
 import DashboardNav from "../components/DashboardNav.vue";
 import HeaderAndNav from "../components/HeaderAndNav.vue";
+import { reactive, ref } from "vue";
+import { onAuthStateChanged, updateProfile, type User } from "firebase/auth";
+import { auth } from "../utils/firebase";
+import useFileUpload from "../composables/fileUpload";
+
+const { uploadFile } = useFileUpload();
+
+const isLoading = ref(true);
+
+const fileInput = ref<HTMLInputElement | null>();
+
+const profile = reactive({
+  email: "",
+  username: "",
+  displayName: "",
+  firstname: "",
+  lastname: "",
+  photoUrl: "",
+  country: "",
+});
+
+const handleProfileUpdate = async () => {
+  try {
+    await updateProfile(auth.currentUser as User, {
+      displayName: profile.displayName,
+      photoURL: profile.photoUrl,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const handleFileChange = () => {
+  //   console.log((event.target as EventTarget).files);
+  if (fileInput.value?.files) {
+    uploadFile(fileInput.value?.files[0], {
+      onDownloadUrl: (downloadUrl) => {
+        console.log(downloadUrl);
+        profile.photoUrl = downloadUrl;
+      },
+    });
+  }
+};
+
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    console.log(user);
+    isLoading.value = false;
+    profile.email = user?.email ?? "";
+    profile.displayName = user?.displayName ?? "";
+    profile.photoUrl = user?.photoURL ?? "";
+  }
+});
 </script>
 
 <style scoped>
@@ -94,6 +158,10 @@ h3 {
 }
 
 .mobile {
+  display: none;
+}
+
+.hidden {
   display: none;
 }
 
@@ -361,6 +429,13 @@ svg {
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+}
+
+.usericon__box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .settings__section .left__section .inner__box form {
@@ -382,6 +457,7 @@ svg {
 }
 
 .settings__section .left__section .inner__box form button {
+  margin-top: 1rem;
   width: 15rem;
 }
 

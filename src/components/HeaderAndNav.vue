@@ -151,18 +151,27 @@
           <input type="search" placeholder="search and Read Along..." />
         </div>
         <div class="img__box">
-          <!-- <img src="" alt="" /> -->
+          <img :src="profile.photoURL" alt="" />
         </div>
       </header>
     </main>
   </template>
   
   <script setup lang="ts">
-  import { ref } from "vue";
-  import { getAuth, signOut } from "firebase/auth";
+  import { ref, reactive } from "vue";
+  import { getAuth, signOut, onAuthStateChanged } from "firebase/auth";
   import { useRouter } from "vue-router";
+  import { auth } from "../utils/firebase";
+
   
   const router = useRouter();
+
+  const isLoading = ref(true);
+
+  let profile = reactive({
+    photoURL: "",
+  })
+
   
   const handleLogout = async () => {
     try {
@@ -180,6 +189,13 @@
   function toggleMenu() {
     return (toggle.value = !toggle.value);
   }
+
+  onAuthStateChanged(auth, (user) => {
+  if (user) {
+    isLoading.value = false
+    profile.photoURL = user.photoURL ?? "";
+  }
+});
   
   
   </script>
@@ -439,6 +455,13 @@
     width: 7rem;
     border-radius: 50%;
     background-color: #000;
+  }
+
+  .img__box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
     z-index: 111;
   }
   
