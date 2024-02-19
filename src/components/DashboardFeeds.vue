@@ -35,10 +35,12 @@
           </div>
         </div>
 
-        <div>
+        <div class="postheader">
           <h2>{{ blogsData[0].name }}</h2>
           <p>{{ blogsData[0].preContent }}</p>
-          <a :href="blogsData[0].url">Click here to continue Reading this Article...</a>
+          <a :href="blogsData[0].url"
+            >Click here to continue Reading this Article...</a
+          >
         </div>
         <div class="image">
           <img
@@ -152,7 +154,6 @@ interface IRandomUserResponse {
   results: IRandomUser[];
 }
 
-
 let users: IRandomUser[] = reactive([]);
 
 const fetchRandomUsers = async () => {
@@ -163,7 +164,7 @@ const fetchRandomUsers = async () => {
 
     // Log and assign the extracted user data
     console.log(response.data.results);
-    return users = response.data.results;
+    return (users = response.data.results);
   } catch (error) {
     console.error(error);
   }
@@ -283,6 +284,7 @@ fetchRandomUsers();
   font-weight: bold;
   color: var(--green);
   margin-bottom: 1rem;
+  max-width: 90%;
 }
 
 .post p {
@@ -293,11 +295,11 @@ fetchRandomUsers();
   max-width: 90%;
 }
 
-.post .p1 {
-  color: aliceblue;
+.post a {
   display: flex;
   align-items: center;
   gap: 1rem;
+  margin-bottom: 1rem;
 }
 
 .post .reaction-box {
@@ -346,6 +348,30 @@ svg {
     margin-right: 2rem;
     padding: 1rem;
   }
+
+  .post {
+    height: 76rem;
+    min-width: 29rem;
+  }
+
+  .user__profile {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .user__info div {
+    gap: 0.5rem;
+  }
+
+  .username {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+
+  .post .image {
+    margin-bottom: 0.5rem;
+  }
 }
 
 @media (max-width: 640px) {
@@ -374,6 +400,27 @@ svg {
   button {
     width: 23rem;
   }
+
+  .post {
+    padding-left: 0;
+  }
+  .post .image {
+    width: 24rem;
+    height: 20rem;
+    margin-bottom: 1rem;
+  }
+
+  .post .reaction-box .left {
+    margin-right: 3rem;
+  }
+
+  .post .reaction-box svg {
+    margin-right: 0.5rem;
+  }
+
+  .post .reaction-box .right .icon {
+    margin-right: 4rem;
+  }
 }
 
 @media (max-width: 320px) {
@@ -386,6 +433,10 @@ svg {
     font-size: 1.3rem;
     letter-spacing: 1px;
     max-width: 20rem;
+  }
+
+  .post p {
+    font-size: 1.3rem;
   }
 }
 </style>
