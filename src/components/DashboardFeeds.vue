@@ -23,13 +23,13 @@
               {{ user.name.first + " " + user.name.last }}
             </h3>
             <div>
-              <p class="userrole">Product Designer</p>
+              <p class="userrole">{{ user.location.country + ", " + user.location.state }}</p>
               <p class="p1">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                   <path
                     d="M256 0a256 256 0 1 1 0 512A256 256 0 1 1 256 0zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z"
                   /></svg
-                >1st may, 2023
+                >{{ user.registered.date.slice(0,10) }}
               </p>
             </div>
           </div>
@@ -75,7 +75,7 @@
                   d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z"
                 />
               </svg>
-              <span>(29) </span>
+              <span>({{ user.registered.age }}) </span>
             </a>
           </div>
         </div>
@@ -194,6 +194,14 @@ fetchRandomUsers();
   margin-bottom: 2rem;
 }
 
+.leftbox {
+    background: rgba(256, 256, 256, 0.2);
+    padding: 1rem;
+    padding-right: 4rem;
+    border-radius: 1rem;
+
+}
+
 .leftbox h1 {
   font-size: 2.6rem;
   letter-spacing: 2px;
@@ -211,10 +219,15 @@ fetchRandomUsers();
   border-top-left-radius: 3rem;
   border-bottom-right-radius: 3rem;
   background: rgba(225, 225, 225, 0.2);
+  color:#e67e22 ;
 }
 
 .dashboardfeeds__nav h3 {
   font-weight: bold;
+  font-size: 2rem;
+  background: rgba(256, 256, 256, 0.2);
+  padding: .5rem;
+  border-radius: .5rem;
 }
 
 .post__box {
@@ -295,7 +308,7 @@ fetchRandomUsers();
   max-width: 90%;
 }
 
-.post a {
+.post a, .p1 {
   display: flex;
   align-items: center;
   gap: 1rem;
