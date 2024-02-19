@@ -1,6 +1,6 @@
 <template>
   <main>
-    <article class="post">
+    <article class="post" v-for="article in articles" :key="article.id">
       <div class="user__profile">
         <div class="user__image">
           <!-- <img src="" alt="" /> -->
@@ -21,12 +21,8 @@
       </div>
 
       <div>
-        <h2>blog the title here</h2>
-        <p>
-          Lorem ipsum dolor sit rporis itaque eligendi magnam? A modi sequi et
-          quae deleniti magnam ducimus, impedit tempora obcaecati. Enim.
-        </p>
-        <p>Lorem ipsum or numquam veniam recusandae veritatis cumque!</p>
+        <h2>{{ article.title }}</h2>
+        <p>{{ article.body.slice(0, 500).concat(`..........`) }}</p>
       </div>
       <div class="image">
         <img
@@ -69,18 +65,51 @@
   </main>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { reactive } from "vue";
+import axios from "axios";
+
+let articles = reactive([]);
+let article = reactive({});
+
+const fetchArticles = async () => {
+  const options = {
+    method: "GET",
+    url: "https://blogsapi.p.rapidapi.com/",
+    params: {
+      ordering: "-date_published",
+    },
+    headers: {
+      "X-RapidAPI-Key": "66230db531msh2adfc2d1f3ac10dp1c2030jsne3958ad9e2ef",
+      "X-RapidAPI-Host": "blogsapi.p.rapidapi.com",
+    },
+  };
+
+  try {
+    const response = await axios.request(options);
+
+    console.log(response.data);
+    articles = response.data.results;
+    console.log(articles);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+fetchArticles();
+</script>
 
 <style scoped>
 .post {
   flex: 1 1 30rem;
   background: transparent rgba(250, 250, 220, 0.2);
   box-shadow: 4px 4px 4px 4px rgba(250, 250, 220, 0.2);
-  height: 53rem;
+  height: 58rem;
   min-width: 28rem;
   border-radius: 1rem;
   padding: 2rem;
-  line-height: 1;
+  line-height: 1.1;
+  margin-bottom: 6rem;
 }
 
 .user__profile {
@@ -184,7 +213,7 @@ svg {
 
 @media (max-width: 768px) {
   .post {
-    height: 67rem;
+    height: 76rem;
     min-width: 29rem;
   }
 
