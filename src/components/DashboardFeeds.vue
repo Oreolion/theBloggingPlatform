@@ -13,7 +13,7 @@
       <h3>RECENT</h3>
     </div>
     <div class="post__box" v-if="users.length">
-      <article class="post" v-for="(user, index) in users" :key="index">
+      <article class="post" v-for="(user) in users" :key="user.id.value">
         <div class="user__profile">
           <div class="user__image">
             <img :src="user.picture.thumbnail" alt="picture" />
