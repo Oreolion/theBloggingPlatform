@@ -12,8 +12,8 @@
       <h3>FEATURED</h3>
       <h3>RECENT</h3>
     </div>
-    <div class="post__box" v-if="users.length">
-      <article class="post" v-for="(user) in users" :key="user.id.value">
+    <div class="post__box" v-if="users.length !== 0">
+      <article class="post" v-for="user in users" :key="user.id.value">
         <div class="user__profile">
           <div class="user__image">
             <img :src="user.picture.thumbnail" alt="picture" />
@@ -23,13 +23,15 @@
               {{ user.name.first + " " + user.name.last }}
             </h3>
             <div>
-              <p class="userrole">{{ user.location.country + ", " + user.location.state }}</p>
+              <p class="userrole">
+                {{ user.location.country + ", " + user.location.state }}
+              </p>
               <p class="p1">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                   <path
                     d="M256 0a256 256 0 1 1 0 512A256 256 0 1 1 256 0zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z"
                   /></svg
-                >{{ user.registered.date.slice(0,10) }}
+                >{{ user.registered.date.slice(0, 10) }}
               </p>
             </div>
           </div>
@@ -90,7 +92,7 @@
 <script setup lang="ts">
 import Loader from "../components/Loader.vue";
 import { blogsData } from "../stores/blogsData.ts";
-import { reactive } from "vue";
+import { reactive, onMounted } from "vue";
 import axios from "axios";
 
 export interface IRandomUser {
@@ -161,16 +163,17 @@ const fetchRandomUsers = async () => {
 
   try {
     const response = await axios.get<IRandomUserResponse>(endpoint);
-
-    // Log and assign the extracted user data
     console.log(response.data.results);
-    return (users = response.data.results);
+    users = response.data.results;
+    console.log(users);
   } catch (error) {
     console.error(error);
   }
 };
 
-fetchRandomUsers();
+onMounted(async () => {
+  await fetchRandomUsers();
+});
 </script>
 
 <style scoped>
@@ -195,11 +198,10 @@ fetchRandomUsers();
 }
 
 .leftbox {
-    background: rgba(256, 256, 256, 0.2);
-    padding: 1rem;
-    padding-right: 4rem;
-    border-radius: 1rem;
-
+  background: rgba(256, 256, 256, 0.2);
+  padding: 1rem;
+  padding-right: 4rem;
+  border-radius: 1rem;
 }
 
 .leftbox h1 {
@@ -219,15 +221,15 @@ fetchRandomUsers();
   border-top-left-radius: 3rem;
   border-bottom-right-radius: 3rem;
   background: rgba(225, 225, 225, 0.2);
-  color:#e67e22 ;
+  color: #e67e22;
 }
 
 .dashboardfeeds__nav h3 {
   font-weight: bold;
   font-size: 2rem;
   background: rgba(256, 256, 256, 0.2);
-  padding: .5rem;
-  border-radius: .5rem;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
 }
 
 .post__box {
@@ -308,7 +310,8 @@ fetchRandomUsers();
   max-width: 90%;
 }
 
-.post a, .p1 {
+.post a,
+.p1 {
   display: flex;
   align-items: center;
   gap: 1rem;
