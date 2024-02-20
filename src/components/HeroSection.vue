@@ -19,6 +19,7 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
+import "../assets/images/andrew-neel-cckf4TsHAuw-unsplash.jpg"
 
 const backgroundImage = ref(
   "../src/assets/images/andrew-neel-cckf4TsHAuw-unsplash.jpg"
