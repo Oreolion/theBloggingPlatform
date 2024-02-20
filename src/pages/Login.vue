@@ -13,7 +13,6 @@
           <div class="navigatepagebtn-box">
             <button>
               <router-link to="/signup">REGISTER</router-link>
-              
             </button>
             <button>
               <router-link to="/login">LOGIN</router-link>
@@ -24,9 +23,9 @@
             <label for="email">
               Email address: <br />
               <input type="email" v-model="v$.email.$model" />
-              <small v-if="v$.password.$errors.length">{{
-                v$.email.$errors[0].$message
-              }}</small>
+              <small v-if="v$.email.$errors.length > 0 && v$.email.$errors[0]">
+                {{ v$.email.$errors[0].$message }}
+              </small>
             </label>
             <label for="password">
               Password: <br />

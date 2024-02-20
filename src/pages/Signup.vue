@@ -42,9 +42,10 @@
             <label for="email">
               Email address: <br />
               <input type="email" v-model="v$.email.$model" />
-              <small v-if="v$.password.$errors.length">{{
-                v$.email.$errors[0].$message
-              }}</small>
+              
+              <small v-if="v$.email.$errors.length > 0 && v$.email.$errors[0]">
+                {{ v$.email.$errors[0].$message }}
+              </small>
             </label>
             <label for="password">
               Password: <br />
@@ -76,7 +77,7 @@
 <script setup lang="ts">
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../utils/firebase.ts";
-import { toast } from 'vue3-toastify';
+import { toast } from "vue3-toastify";
 import { useVuelidate } from "@vuelidate/core";
 import { required, email, minLength, sameAs } from "@vuelidate/validators";
 import { reactive, computed } from "vue";
@@ -124,7 +125,7 @@ const handleSignUp = async () => {
     }
   } catch (error: any) {
     console.log(error);
-    toast.error(error.message)
+    toast.error(error.message);
   }
 };
 </script>
