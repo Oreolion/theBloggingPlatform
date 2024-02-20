@@ -10,7 +10,7 @@
       </div>
       <div class="right__herosection">
         <div class="imgbox">
-          <img :src="backgroundImage" alt="backgroundimage" />
+          <img src="/src/assets/images/andrew-neel-cckf4TsHAuw-unsplash.jpg" alt="backgroundimage" />
         </div>
       </div>
     </div>
@@ -18,11 +18,11 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+// import { ref } from "vue";
 
-const backgroundImage = ref(
-  "/src/assets/images/andrew-neel-cckf4TsHAuw-unsplash.jpg"
-);
+// const backgroundImage = ref(
+//   "/src/assets/images/andrew-neel-cckf4TsHAuw-unsplash.jpg"
+// );
 </script>
 
 <style scoped>
@@ -83,6 +83,10 @@ h1 {
   height: 100%;
   width: 100%;
   border-radius: 2rem;
+  background: url("/src/assets/images/andrew-neel-cckf4TsHAuw-unsplash.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
 @media (max-width: 767px) {
