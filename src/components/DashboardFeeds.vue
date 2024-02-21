@@ -1,18 +1,19 @@
 <template>
   <section class="dashboard__feeds">
-    <div class="dashboardfeeds__header">
+    <!-- <div class="dashboardfeeds__header">
       <div class="leftbox">
         <h1>FEEDS</h1>
         <p>Explore different contents you will love</p>
       </div>
       <button>Post a content</button>
-    </div>
-    <div class="dashboardfeeds__nav">
+    </div> -->
+    <!-- <div class="dashboardfeeds__nav">
       <h3>FOR YOU</h3>
       <h3>FEATURED</h3>
       <h3>RECENT</h3>
-    </div>
-    <div class="post__box" v-if="users.length !== 0">
+    </div> -->
+    <BlogInputField></BlogInputField>
+    <!-- <div class="post__box" v-if="users.length !== 0">
       <article class="post" v-for="user in users" :key="user.id.value">
         <div class="user__profile">
           <div class="user__image">
@@ -85,13 +86,14 @@
     </div>
     <div v-else>
       <Loader></Loader>
-    </div>
+    </div> -->
   </section>
 </template>
 
 <script setup lang="ts">
-import Loader from "../components/Loader.vue";
-import { blogsData } from "../stores/blogsData.ts";
+// import Loader from "../components/Loader.vue";
+// import { blogsData } from "../stores/blogsData.ts";
+import BlogInputField from "../components/BlogInputField.vue";
 import { reactive, onMounted } from "vue";
 import axios from "axios";
 
@@ -172,7 +174,7 @@ const fetchRandomUsers = async () => {
 };
 
 onMounted(async () => {
-  await fetchRandomUsers();
+  return await fetchRandomUsers();
 });
 </script>
 
@@ -187,6 +189,7 @@ onMounted(async () => {
   background: rgba(225, 255, 255, 0.2);
   color: aliceblue;
   min-width: 33rem;
+  min-height: 45rem;
 }
 
 .dashboardfeeds__header {
