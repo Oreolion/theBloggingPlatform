@@ -103,6 +103,9 @@ onAuthStateChanged(auth, (user) => {
     profile.photoUrl = user?.photoURL ?? "";
   }
 });
+
+
+
 </script>
 
 <style scoped>

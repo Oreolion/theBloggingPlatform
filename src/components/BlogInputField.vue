@@ -2,9 +2,11 @@
   <article class="bloginput__box">
     <button
       type="button"
-      >
-      <!-- :class="{ 'cursor-not-allowed': !uploadImage ||  !inputContent }"
-      :disabled="!uploadImage || !inputContent" -->
+      class="btn"
+      :class="[!inputContent ? ' cursor-not-allowed' : '']"
+      :disabled="!inputContent"
+      @click="handleSubmit"
+    >
       Publish
     </button>
     <div class="inner__container">
@@ -22,7 +24,7 @@
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 384 512"
-          v-if="upload"
+          v-if="upload || uploadImage"
           @click="handleFileUpload"
         >
           <path
@@ -65,23 +67,30 @@
           @change="handleFileChange"
         />
       </div>
-      <div class="imgbox" v-else>
+      <div class="imgbox" v-else v-if="!upload">
         <img :src="photoImage" alt=".." />
       </div>
 
       <div class="inputbox" v-if="!upload">
-        <input type="text" placeholder="Title" v-model="postTitle" class="blog__title" />
+        <input
+          type="text"
+          placeholder="Title"
+          v-model="post.postTitle"
+          class="blog__title"
+        />
         <input
           type="text"
           placeholder="Write a Post....."
           class="blog__post"
           @click="handleInputcontent"
+          @change="handleInputcontent"
         />
       </div>
       <input
         v-if="photoImage"
         type="text"
         placeholder="Title"
+        v-model="post.postTitle"
         class="otherblog__posttitle"
       />
       <input
@@ -90,13 +99,14 @@
         placeholder="Write a Post....."
         class="otherblog__post"
         @click="handleInputcontent"
+        @change="handleInputcontent"
       />
     </div>
 
     <div class="blog__content" v-if="inputContent">
       <VMarkdownEditor
         style="background-color: transparent"
-        v-model="content"
+        v-model="post.content"
         locale="en"
         :upload-action="handleUpload"
         class="markdown"
@@ -106,22 +116,28 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, reactive } from "vue";
 import { VMarkdownEditor } from "vue3-markdown";
 import "vue3-markdown/dist/style.css";
-// import {  updateProfile} from "firebase/auth";
+import { collection, getDocs, setDoc, doc } from "firebase/firestore";
+import { db } from "../utils/firebase";
 import useFileUpload from "../composables/fileUpload";
 
 const { uploadFile } = useFileUpload();
 
 const fileInput = ref<HTMLInputElement | null>();
-
-let content = ref("");
-const postTitle = ref("");
-const upload = ref(false);
-const uploadImage = ref(false);
+// let content = ref("");
+// const postTitle = ref("");
+let upload = ref(false);
+let uploadImage = ref(false);
 const inputContent = ref(false);
 let photoImage = ref("");
+
+const post = reactive({
+  postTitle: "",
+  content: "",
+  photoImage: photoImage,
+});
 
 const handleFileUpload = () => {
   return (upload.value = !upload.value);
@@ -136,6 +152,8 @@ const handleUpload = (file: string) => {
 };
 
 const handleFileChange = () => {
+  // uploadImage.value = !uploadImage.value
+
   //   console.log((event.target as EventTarget).files);
   if (fileInput.value?.files) {
     uploadFile(fileInput.value?.files[0], {
@@ -145,6 +163,42 @@ const handleFileChange = () => {
       },
     });
   }
+};
+
+const createBlogPost = async (data: {
+  userId: string;
+  content: string;
+  postTitle: string;
+  photoImage: string;
+}) => {
+  try {
+    await setDoc(doc(db, "blogpost", data.userId), data);
+    console.log(db);
+    console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const handleSubmit = () => {
+  if (!post.postTitle || !post.photoImage || !post.content) {
+    alert("please fill all the fields");
+    return;
+  }
+  console.log("I am submitting...");
+
+  createBlogPost({
+    userId: post.postTitle,
+    postTitle: post.postTitle,
+    content: post.content,
+    photoImage: post.photoImage,
+  });
+
+  post.postTitle= ""
+  post.content= ""
+  post.photoImage= "" 
+
+
 };
 </script>
 
@@ -171,6 +225,10 @@ const handleFileChange = () => {
   align-self: flex-end;
   margin: 2rem;
   width: 16rem;
+}
+
+.cursor-not-allowed {
+  cursor: not-allowed;
 }
 
 .blog__title,
@@ -217,6 +275,7 @@ const handleFileChange = () => {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  color: #666;
 }
 
 .blog__title:first-child,
@@ -248,7 +307,6 @@ const handleFileChange = () => {
 .box {
   display: flex;
   padding-top: 4rem;
-
 }
 
 .icons__box svg,
