@@ -2,7 +2,15 @@ interface blogsData {
   url: string;
   name: string;
   preContent: string;
+//   posts: Posts []
 }
+
+ /* interface Posts {
+    userId: string;
+  content: string;
+  postTitle: string;
+  photoImage: string;
+} */
 
 
 export const blogsData = [

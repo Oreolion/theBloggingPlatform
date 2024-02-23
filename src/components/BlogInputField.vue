@@ -116,18 +116,19 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive } from "vue";
+import { ref, reactive, defineEmits } from "vue";
 import { VMarkdownEditor } from "vue3-markdown";
 import "vue3-markdown/dist/style.css";
-import { collection, getDocs, setDoc, doc } from "firebase/firestore";
+import {  setDoc, doc } from "firebase/firestore";
 import { db } from "../utils/firebase";
 import useFileUpload from "../composables/fileUpload";
+
+const emit = defineEmits(["addNewPost"])
 
 const { uploadFile } = useFileUpload();
 
 const fileInput = ref<HTMLInputElement | null>();
-// let content = ref("");
-// const postTitle = ref("");
+
 let upload = ref(false);
 let uploadImage = ref(false);
 const inputContent = ref(false);
@@ -138,6 +139,10 @@ const post = reactive({
   content: "",
   photoImage: photoImage,
 });
+
+const updatePost = () => {
+    emit("addNewPost", post.postTitle)
+}
 
 const handleFileUpload = () => {
   return (upload.value = !upload.value);
@@ -194,10 +199,12 @@ const handleSubmit = () => {
     photoImage: post.photoImage,
   });
 
+  
   post.postTitle= ""
   post.content= ""
   post.photoImage= "" 
-
+  
+  updatePost()
 
 };
 </script>

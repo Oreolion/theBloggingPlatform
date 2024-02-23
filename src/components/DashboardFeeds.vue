@@ -1,19 +1,22 @@
 <template>
   <section class="dashboard__feeds">
-    <!-- <div class="dashboardfeeds__header">
+    <div class="dashboardfeeds__header" v-if="!togglePostInput">
       <div class="leftbox">
         <h1>FEEDS</h1>
         <p>Explore different contents you will love</p>
       </div>
-      <button>Post a content</button>
-    </div> -->
-    <!-- <div class="dashboardfeeds__nav">
+      <button @click="handleTogglePostInput">Post a content</button>
+    </div>
+    <div class="dashboardfeeds__nav" v-if="!togglePostInput">
       <h3>FOR YOU</h3>
       <h3>FEATURED</h3>
       <h3>RECENT</h3>
-    </div> -->
-    <BlogInputField></BlogInputField>
-    <!-- <div class="post__box" v-if="users.length !== 0">
+    </div>
+    <BlogInputField
+      v-if="togglePostInput"
+      @addNewPost="handleUpdateBlogPosts"
+    ></BlogInputField>
+    <div class="post__box" v-if="users.length && !togglePostInput">
       <article class="post" v-for="user in users" :key="user.id.value">
         <div class="user__profile">
           <div class="user__image">
@@ -84,17 +87,20 @@
         </div>
       </article>
     </div>
-    <div v-else>
+    <div v-else v-if="!togglePostInput">
       <Loader></Loader>
-    </div> -->
+    </div>
   </section>
 </template>
 
 <script setup lang="ts">
-// import Loader from "../components/Loader.vue";
-// import { blogsData } from "../stores/blogsData.ts";
+import Loader from "../components/Loader.vue";
+import { blogsData } from "../stores/blogsData.ts";
 import BlogInputField from "../components/BlogInputField.vue";
-import { reactive, onMounted } from "vue";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../utils/firebase";
+
+import { ref, reactive, onMounted } from "vue";
 import axios from "axios";
 
 export interface IRandomUser {
@@ -158,7 +164,22 @@ interface IRandomUserResponse {
   results: IRandomUser[];
 }
 
+interface NewPost {
+  userId: string;
+  postTitle: number;
+  content: string;
+  photoImage: string;
+  doc: {
+    data: any[];
+  };
+}
+
 let users: IRandomUser[] = reactive([]);
+let togglePostInput = ref(false);
+
+const handleTogglePostInput = () => {
+  return (togglePostInput.value = !togglePostInput.value);
+};
 
 const fetchRandomUsers = async () => {
   const endpoint = "https://randomuser.me/api/?results=5";
@@ -167,9 +188,31 @@ const fetchRandomUsers = async () => {
     const response = await axios.get<IRandomUserResponse>(endpoint);
     console.log(response.data.results);
     users = response.data.results;
-    console.log(users);
   } catch (error) {
     console.error(error);
+  }
+};
+
+const handleUpdateBlogPosts = async () => {
+  try {
+    const posts: NewPost[] = [];
+
+    const querySnapshot = await getDocs(collection(db, "blogposts"));
+    console.log({ querySnapshot });
+    console.log(typeof querySnapshot );
+    querySnapshot.forEach((doc) => {
+      doc.data() // is never undefined for query doc snapshots
+      console.log(doc.id, " => ", doc.data());
+      // posts.push(doc.data());
+      console.log(posts);
+      console.log(blogsData);
+      // console.log("New post added:", postTitle);
+      // blogsData.push(posts)
+    });
+
+    //  return posts;
+  } catch (error) {
+    console.log(error);
   }
 };
 
