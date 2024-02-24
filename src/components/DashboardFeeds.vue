@@ -14,9 +14,79 @@
     </div>
     <BlogInputField
       v-if="togglePostInput"
+      :togglePostInput="togglePostInput"
       @addNewPost="handleUpdateBlogPosts"
     ></BlogInputField>
-    <div class="post__box" v-if="users.length && !togglePostInput">
+    <div class="post__box" v-if="users.length || (posts && !togglePostInput)">
+      <article class="post" v-for="post in posts" :key="post.postTitle">
+        <div class="user__profile">
+          <div class="user__image">
+            <img :src="post.photoImage" alt="picture" />
+          </div>
+          <div class="user__info">
+            <h3 class="username">
+              {{ post.postTitle }}
+            </h3>
+            <div>
+              <p class="userrole">
+                {{ post.postTitle }}
+              </p>
+              <p class="p1">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                  <path
+                    d="M256 0a256 256 0 1 1 0 512A256 256 0 1 1 256 0zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z"
+                  /></svg
+                >{{ post.userId }}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="postheader">
+          <h2>{{ post.postTitle }}</h2>
+          <p>{{ post.content }}</p>
+          <a :href="blogsData[0].url"
+            >Click here to continue Reading this Article...</a
+          >
+        </div>
+        <div class="image">
+          <img
+            :src="post.photoImage"
+            alt="/"
+          />
+        </div>
+
+        <div class="reaction-box">
+          <div class="left">
+            <a href="#" class="user">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                <path
+                  d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"
+                />
+              </svg>
+              <span>2980 views</span>
+            </a>
+          </div>
+          <div class="right">
+            <a href="#" class="icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                <path
+                  d="M512 240c0 114.9-114.6 208-256 208c-37.1 0-72.3-6.4-104.1-17.9c-11.9 8.7-31.3 20.6-54.3 30.6C73.6 471.1 44.7 480 16 480c-6.5 0-12.3-3.9-14.8-9.9c-2.5-6-1.1-12.8 3.4-17.4l0 0 0 0 0 0 0 0 .3-.3c.3-.3 .7-.7 1.3-1.4c1.1-1.2 2.8-3.1 4.9-5.7c4.1-5 9.6-12.4 15.2-21.6c10-16.6 19.5-38.4 21.4-62.9C17.7 326.8 0 285.1 0 240C0 125.1 114.6 32 256 32s256 93.1 256 208z"
+                />
+              </svg>
+              <span>(45) </span>
+            </a>
+            <a href="#" class="icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                <path
+                  d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z"
+                />
+              </svg>
+              <span>({{ post.postTitle }}) </span>
+            </a>
+          </div>
+        </div>
+      </article>
       <article class="post" v-for="user in users" :key="user.id.value">
         <div class="user__profile">
           <div class="user__image">
@@ -97,7 +167,14 @@
 import Loader from "../components/Loader.vue";
 import { blogsData } from "../stores/blogsData.ts";
 import BlogInputField from "../components/BlogInputField.vue";
-import { collection, getDocs } from "firebase/firestore";
+import {
+  getDocs,
+  collection,
+  limit,
+  onSnapshot,
+  orderBy,
+  query,
+} from "firebase/firestore";
 import { db } from "../utils/firebase";
 
 import { ref, reactive, onMounted } from "vue";
@@ -166,13 +243,12 @@ interface IRandomUserResponse {
 
 interface NewPost {
   userId: string;
-  postTitle: number;
+  postTitle: string;
   content: string;
   photoImage: string;
-  doc: {
-    data: any[];
-  };
+  [key: string]: any;
 }
+
 
 let users: IRandomUser[] = reactive([]);
 let togglePostInput = ref(false);
@@ -188,32 +264,41 @@ const fetchRandomUsers = async () => {
     const response = await axios.get<IRandomUserResponse>(endpoint);
     console.log(response.data.results);
     users = response.data.results;
+    handleUpdateBlogPosts();
   } catch (error) {
     console.error(error);
   }
 };
 
+let posts: NewPost[] = reactive([]);
+
 const handleUpdateBlogPosts = async () => {
-  try {
-    const posts: NewPost[] = [];
+  const postRef = collection(db, "blogpost");
+  const postQuery = query(postRef, orderBy("createdAt", "asc"), limit(5));
 
-    const querySnapshot = await getDocs(collection(db, "blogposts"));
-    console.log({ querySnapshot });
-    console.log(typeof querySnapshot );
-    querySnapshot.forEach((doc) => {
-      doc.data() // is never undefined for query doc snapshots
+  // Get initial data
+  const querySnapshot = await getDocs(postRef);
+
+  if (querySnapshot) {
+    querySnapshot.docs.map((doc: any) => {
       console.log(doc.id, " => ", doc.data());
-      // posts.push(doc.data());
-      console.log(posts);
-      console.log(blogsData);
-      // console.log("New post added:", postTitle);
-      // blogsData.push(posts)
+      posts.push(doc.data() as NewPost);
     });
-
-    //  return posts;
-  } catch (error) {
-    console.log(error);
+  } else {
+    console.log("No such document!");
   }
+
+  console.log(posts);
+
+  onSnapshot(postQuery, (snapshot) => {
+    snapshot.docs.map((doc) => {
+        posts.push(doc.data() as NewPost);
+    });
+    console.log(posts);
+  }),
+    (error: any) => {
+      console.log(error);
+    };
 };
 
 onMounted(async () => {

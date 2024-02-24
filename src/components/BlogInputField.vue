@@ -1,5 +1,5 @@
-<template>
-  <article class="bloginput__box">
+<template v-if="props.togglePostInput">
+  <article class="bloginput__box" >
     <button
       type="button"
       class="btn"
@@ -84,6 +84,7 @@
           class="blog__post"
           @click="handleInputcontent"
           @change="handleInputcontent"
+          @mouseenter="handleInputcontent"
         />
       </div>
       <input
@@ -100,6 +101,7 @@
         class="otherblog__post"
         @click="handleInputcontent"
         @change="handleInputcontent"
+        @mouseenter="handleInputcontent"
       />
     </div>
 
@@ -119,11 +121,15 @@
 import { ref, reactive, defineEmits } from "vue";
 import { VMarkdownEditor } from "vue3-markdown";
 import "vue3-markdown/dist/style.css";
-import {  setDoc, doc } from "firebase/firestore";
+import { setDoc, doc } from "firebase/firestore";
 import { db } from "../utils/firebase";
 import useFileUpload from "../composables/fileUpload";
 
-const emit = defineEmits(["addNewPost"])
+const emit = defineEmits(["addNewPost"]);
+
+const props = defineProps({
+  togglePostInput: Boolean,
+});
 
 const { uploadFile } = useFileUpload();
 
@@ -141,8 +147,8 @@ const post = reactive({
 });
 
 const updatePost = () => {
-    emit("addNewPost", post.postTitle)
-}
+  emit("addNewPost", post.postTitle);
+};
 
 const handleFileUpload = () => {
   return (upload.value = !upload.value);
@@ -199,13 +205,13 @@ const handleSubmit = () => {
     photoImage: post.photoImage,
   });
 
-  
-  post.postTitle= ""
-  post.content= ""
-  post.photoImage= "" 
-  
-  updatePost()
+  post.postTitle = "";
+  post.content = "";
+  post.photoImage = "";
 
+  updatePost();
+
+  !props.togglePostInput
 };
 </script>
 
