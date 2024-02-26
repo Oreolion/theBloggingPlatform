@@ -119,6 +119,7 @@
 
 <script setup lang="ts">
 import { ref, reactive, defineEmits } from "vue";
+// @ts-ignore
 import { VMarkdownEditor } from "vue3-markdown";
 import "vue3-markdown/dist/style.css";
 import { setDoc, doc } from "firebase/firestore";
