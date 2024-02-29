@@ -12,8 +12,8 @@
         <form action="">
           <div class="navigatepagebtn-box">
             <button>
-              <router-link to="/signup">REGISTER</router-link>
-              >
+              <router-link to="/signup" class="nbtn">REGISTER</router-link>
+              
             </button>
             <button>
               <router-link to="/login">LOGIN</router-link>
@@ -42,7 +42,7 @@
             <label for="email">
               Email address: <br />
               <input type="email" v-model="v$.email.$model" />
-              
+
               <small v-if="v$.email.$errors.length > 0 && v$.email.$errors[0]">
                 {{ v$.email.$errors[0].$message }}
               </small>
@@ -183,9 +183,10 @@ const handleSignUp = async () => {
   align-items: center;
   justify-content: center;
   gap: 2rem;
+  color: #e67e22;
 }
 
-.right__box .navigatepagebtn-box button {
+.right__box .navigatepagebtn-box button, .nbtn {
   background-color: #ddd;
   border-bottom: 1rem solid green;
   border-radius: 3px;
@@ -254,6 +255,38 @@ small {
   }
 }
 
-@media (min-width: 320px) and (max-width: 460px) {
+@media (max-width: 480px) {
+  .right__box {
+    display: flex;
+   
+  }
+
+  .inner__form label input {
+    width: 100%;
+    margin-right: 3rem;
+  }
+}
+
+@media (max-width: 320px) {
+    .right__box h1 {
+  font-size: 1.8rem;
+}
+
+.inner__form select,
+.inner__form label {
+  font-size: 1.2rem;
+}
+
+
+.right__box .navigatepagebtn-box button {
+  width: 35%;
+  color: #e67e22;
+  font-weight: bold;
+  &:hover {
+    color: #000;
+  }
+}
+
+
 }
 </style>

@@ -207,25 +207,102 @@ small {
 }
 
 @media (max-width: 480px) {
+  .right__box {
+    display: flex;
+   
+  }
+
   .right__box h1 {
-    font-size: 2.2rem;
-    text-align: center;
-    padding-right: 13rem;
-  }
+  font-size: 2.2rem;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
   .right__box .navigatepagebtn-box {
-    padding-right: 13rem;
-  }
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 4rem;
+  width: 30rem;
+}
+
+
+  .right__box .navigatepagebtn-box button {
+  margin-bottom: 2rem;
+  display: flex;
+  margin: 0 auto;
+  width: 12rem;
+  align-items: center;
+  justify-content: center;
+
+
+}
 
   .btn-box {
-    align-items: center;
-    justify-content: center;
-    padding-right: 10rem;
-  }
-  .btn-box button {
-    width: 80%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 4rem;
+ margin-left: auto;
+ margin-right: auto;
+}
+
+.btn-box button {
+    width: 100%;
+    margin: 0 auto;
+}
+
+  .inner__form label input {
+    width: 100%;
+    margin-right: 3rem;
   }
 }
 
-@media (min-width: 320px) and (max-width: 460px) {
+@media (max-width: 320px) {
+    .right__box h1 {
+  font-size: 1.8rem;
 }
+
+.right__box form {
+    width: 100%;
+}
+
+.right__box .navigatepagebtn-box {
+  margin-bottom: 2rem;
+  display: flex;
+  margin: 0 auto;
+  width: 30rem;
+
+}
+
+
+.inner__form select,
+.inner__form label {
+  font-size: 1.2rem;
+}
+
+.btn-box {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 4rem;
+ margin-left: auto;
+ margin-right: auto;
+}
+
+
+.right__box .navigatepagebtn-box button {
+  width: 35%;
+  color: #e67e22;
+  font-weight: bold;
+  &:hover {
+    color: #000;
+  }
+}
+
+}
+
 </style>

@@ -34,15 +34,7 @@ import HeaderAndNav from "../components/HeaderAndNav.vue";
   display: none;
 }
 
-.header .user {
-  flex-direction: row;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  position: absolute;
-  right: 6%;
-}
+
 
 .right__nav {
   display: flex;

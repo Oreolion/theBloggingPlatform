@@ -5,7 +5,6 @@
       <p>The Read Along Blog</p>
     </div>
     <div class="user">
-     
       <div class="user__info"></div>
     </div>
 
@@ -97,7 +96,11 @@
 
       <li>
         <router-link class="link" to="/dashboard/accountprofile">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+            <path
+              d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"
+            />
+          </svg>
           Account
         </router-link>
       </li>
@@ -145,7 +148,8 @@ const handleLogout = async () => {
 
 <style scoped>
 .logo {
-  color: var(--black);
+  color: #e67e22;
+  font-weight: bold;
   font-size: 2rem;
   margin-right: auto;
 }
@@ -177,27 +181,15 @@ h3 {
 }
 
 .logo {
-  margin: 2rem 0 -3rem;
+  margin: 2rem 0;
 }
 
 .logo p {
   font-size: 1rem;
 }
-.dashboard__nav .user {
-  margin-bottom: 5rem;
-  display: flex;
-  gap: 2rem;
-  align-items: center;
-  justify-content: center;
-  align-self: flex-start;
-}
 
 .mobile {
   display: none;
-}
-
-.dashboard__nav .user p {
-  font-size: 1.1rem;
 }
 
 .dashboard__navlists .link {
@@ -208,6 +200,7 @@ h3 {
   white-space: nowrap;
   cursor: pointer;
   font-weight: bold;
+  color: #ddd;
 }
 
 .dashboard__navlists .link svg {

@@ -492,8 +492,7 @@ svg {
 
 @media (max-width: 767px) {
   .dashboard__feeds {
-    margin-left: 2rem;
-    margin-right: 2rem;
+    margin-left: 4rem;
     padding: 1rem;
   }
 
@@ -524,7 +523,7 @@ svg {
 
 @media (max-width: 640px) {
   .dashboard__feeds {
-    width: 34rem;
+    width: 38rem;
   }
 }
 
@@ -537,7 +536,16 @@ svg {
     margin-right: 0.5rem;
     border: none;
     padding: 2rem 1rem;
-    width: 31rem;
+    width: 32rem;
+  }
+
+  .leftbox {
+    padding-right: 2rem;
+    margin-left: 1rem;
+  }
+
+  .leftbox p {
+    display: none;
   }
 
   .dashboardfeeds__header {
@@ -572,6 +580,16 @@ svg {
 }
 
 @media (max-width: 320px) {
+  .dashboard__feeds {
+    min-width: 100%;
+    padding: 1rem;
+    margin-left: -2rem;
+  }
+
+  .leftbox {
+    padding-right: 1rem;
+    margin-left: 1rem;
+  }
   .leftbox h1 {
     font-size: 2.3rem;
     letter-spacing: 2px;
@@ -579,6 +597,19 @@ svg {
 
   .leftbox p {
     display: none;
+  }
+
+  .user__profile {
+    flex-direction: row;
+  }
+
+  .post__box {
+    width: 100%;
+    gap: 2rem;
+  }
+
+  .post {
+    padding-left: 1rem;
   }
 
   .post p {

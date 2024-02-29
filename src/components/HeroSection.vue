@@ -10,7 +10,10 @@
       </div>
       <div class="right__herosection">
         <div class="imgbox">
-          <img src="/src/assets/images/andrew-neel-cckf4TsHAuw-unsplash.jpg" alt="backgroundimage" />
+          <img
+            src="/src/assets/images/andrew-neel-cckf4TsHAuw-unsplash.jpg"
+            alt="backgroundimage"
+          />
         </div>
       </div>
     </div>
@@ -34,8 +37,6 @@ h1 {
   background-color: #e67e22;
   min-height: 56rem;
   padding: 2rem 3%;
-
-  /* margin-top: 9rem; */
 }
 
 .inner__herosection {
@@ -59,6 +60,7 @@ h1 {
 }
 .left__herosection h3 {
   font-size: 2.5rem;
+  font-weight: bold;
   margin-bottom: 4rem;
   min-width: 47rem;
   max-width: 47rem;
@@ -101,25 +103,22 @@ h1 {
     text-align: center;
     padding-bottom: 4rem;
     padding-top: 14rem;
-    /* padding-left: 3rem; */
   }
 
   .left__herosection h1 {
-  font-size: 2.6rem;
-  min-width: 45rem;
-}
-.left__herosection h3 {
-  font-size: 2.3rem;
-  min-width: 47rem;
-  max-width: 47rem;
-}
-
+    font-size: 2.6rem;
+    min-width: 45rem;
+  }
+  .left__herosection h3 {
+    font-size: 2.3rem;
+    min-width: 47rem;
+    max-width: 47rem;
+  }
 
   .left__herosection .hero-btn {
     width: 17rem;
     margin: 0 16rem;
     height: 6rem;
-
   }
 
   .right__herosection .imgbox {
@@ -143,15 +142,9 @@ h1 {
     margin-left: 3rem;
   }
 
-  /* .left__herosection h1 {
-    
-    min-width: 41rem;
-  } */
   .left__herosection h3 {
-      /* max-width: 40rem; */
     font-size: 2rem;
     min-width: 38rem;
-
   }
 
   .left__herosection .hero-btn {
@@ -163,28 +156,41 @@ h1 {
 @media (max-width: 480px) {
   .left__herosection {
     margin: 0 1rem;
-    text-align: center;    
+    text-align: center;
     padding-left: 0rem;
-
+    min-width: 36rem;
   }
 
   .left__herosection h1 {
-    min-width: 32rem;
     font-size: 2rem;
-    margin-left: -3rem;
+    margin: 0 auto;
+    margin-bottom: 2rem;
   }
   .left__herosection h3 {
-    min-width: 27rem;
+    min-width: 16rem;
+    color: #000;
+    width: 28rem;
     font-size: 1.7rem;
+    margin: 0 auto;
+    margin-bottom: 3rem;
   }
 
   .left__herosection .hero-btn {
     width: 17rem;
     margin: 0 4rem;
+    margin: 0 auto;
   }
 }
 
-@media (min-width: 320px) and (max-width: 460px) {
-  
+@media (max-width: 320px) {
+  .left__herosection {
+    padding-top: 10rem;
+    min-width: 26rem;
+  }
+
+  .left__herosection h1 {
+    min-width: 26rem;
+    width: 28rem;
+  }
 }
 </style>

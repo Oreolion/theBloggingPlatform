@@ -107,8 +107,10 @@ h3 {
 
 .header .logo p {
   font-size: 1.3rem;
-  letter-spacing: 1px;
+  letter-spacing: 0.2px;
   padding-left: 4px;
+  max-width: 16rem;
+  color: green;
 }
 .right__nav {
   display: flex;
@@ -117,17 +119,22 @@ h3 {
   justify-content: center;
 }
 
+.header button {
+    &:hover {
+        color: #e67e22;
+    }
+}
+
 .mobile__nav {
-  background-color: #ccc;
+  background-color: rgba(350, 350, 350, 0.8);
   width: 34rem;
-  height: 25rem;
+  height: 100vh;
   position: absolute;
   display: none;
-  align-items: center;
-  justify-content: center;
+
   text-align: center;
-  top: 120%;
-  right: 3%;
+  top: 100%;
+  right: 0%;
   padding: 2rem;
   padding-bottom: 2rem;
 }
@@ -135,9 +142,12 @@ h3 {
 .mobile__nav li,
 .mobile__nav .li {
   margin-bottom: 2rem;
-  color: #fff;
+  color: #000;
   font-size: 1.6rem;
   font-weight: bold;
+  &:hover {
+    color: #e67e22;
+  }
 }
 
 .nav__icons {
@@ -180,6 +190,9 @@ svg {
   cursor: pointer;
   color: #fff;
   font-weight: bold;
+  &:hover {
+    color: #e67e22;
+  }
 }
 .search-form {
   position: absolute;
@@ -192,6 +205,7 @@ svg {
   background-color: #eee;
   padding: 0.6rem;
   border-radius: 0.6rem;
+ 
 }
 
 .search {
@@ -205,11 +219,12 @@ svg {
   margin-left: 0.7rem;
   font-size: 1.7rem;
   cursor: pointer;
+  &:hover {
+    background-color: #e67e22;
+  }
 }
 
 @media (max-width: 767px) {
-
-  
   .header {
     padding: 1.2rem 4%;
   }
@@ -264,6 +279,7 @@ svg {
 
   .mobile__nav {
     display: flex;
+    width: 26rem;
   }
 
   svg {

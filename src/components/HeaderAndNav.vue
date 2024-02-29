@@ -5,9 +5,7 @@
       <h3>THE RA BLOG</h3>
       <p>The Read Along Blog</p>
     </div>
-    <div class="user">
-      <div class="user__info"></div>
-    </div>
+
     <ul class="dashboard__navlists">
       <h5>Overview</h5>
       <li>
@@ -226,14 +224,15 @@ onAuthStateChanged(auth, (user) => {
 
 <style scoped>
 .logo {
-  color: var(--black);
+  color: #e67e22;
   font-size: 2rem;
   margin-right: auto;
 }
 
-h3 {
+.logo h3 {
   line-height: 1;
   letter-spacing: 0.7;
+  color: #e67e22;
 }
 
 .logo p {
@@ -259,36 +258,29 @@ h3 {
 
 .logo {
   margin: 2rem 0 -2rem;
+  color: #e67e22;
 }
 
 .logo p {
   font-size: 1rem;
-}
-.dashboard__nav .user {
-  margin-bottom: 5rem;
-  display: flex;
-  gap: 2rem;
-  align-items: center;
-  justify-content: center;
-  align-self: flex-start;
 }
 
 .mobile {
   display: none;
 }
 
-.dashboard__nav .user p {
-  font-size: 1.1rem;
-}
-
 .dashboard__navlists .link {
   display: flex;
-  gap: 2rem;
+  gap: 1rem;
   margin-bottom: 1rem;
   margin-left: 2rem;
   white-space: nowrap;
   cursor: pointer;
+  color: #ddd;
   font-weight: bold;
+  &:hover {
+    letter-spacing: 2px;
+  }
 }
 
 .dashboard__navlists .link svg {
@@ -311,13 +303,6 @@ h3 {
   font-weight: bold;
 }
 
-.dashboard__navlists .link li {
-  display: flex;
-  align-items: center;
-  &:hover {
-    color: var(--primary);
-  }
-}
 
 .header {
   position: fixed;
@@ -335,6 +320,10 @@ h3 {
 
 .innerdashboard__container .header .logo {
   display: none;
+}
+
+.innerdashboard__container .header p {
+  min-width: 2rem;
 }
 
 .header .user {
@@ -498,6 +487,21 @@ svg {
 }
 
 @media (max-width: 767px) {
+  .logo {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    color: #e67e22;
+    /* margin-left: -2rem; */
+  }
+
+  .logo h3 {
+    white-space: nowrap;
+  }
+
+  .logo p {
+    white-space: nowrap;
+  }
+
   .innerdashboard__container .header .logo {
     margin-bottom: 1rem;
     color: #e67e22;
@@ -554,10 +558,15 @@ svg {
   }
 }
 
-@media (max-width: 640px) {
-}
-
 @media (max-width: 480px) {
+  .logo h3 {
+    font-size: 1.8rem;
+  }
+
+  .logo p {
+    font-size: 0.8rem;
+  }
+
   .header {
     padding: 1.2rem 2%;
   }
@@ -573,5 +582,26 @@ svg {
     right: 22%;
     gap: 1rem;
   }
+}
+
+@media (max-width: 320px) {
+  .logo {
+    margin-left: -2rem;
+    margin-top: -2rem;
+    margin-bottom: 1rem;
+  }
+
+  .dashboard__navlists h5 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+  }
+
+
+  .dashboard__navlists .link {
+  gap: 1rem;
+  margin-bottom: .5rem;
+  white-space: nowrap;
+}
 }
 </style>
