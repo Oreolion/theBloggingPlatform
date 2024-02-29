@@ -1,5 +1,5 @@
-<template v-if="props.togglePostInput">
-  <article class="bloginput__box" >
+<template>
+  <article class="bloginput__box" v-if="props.togglePostInput && closeInput">
     <button
       type="button"
       class="btn"
@@ -9,6 +9,18 @@
     >
       Publish
     </button>
+    <svg
+      class="closeInput"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 384 512"
+      v-if="props.togglePostInput && closeInput"
+      v-show="closeInput"
+      @click="handlePostInput"
+    >
+      <path
+        d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"
+      />
+    </svg>
     <div class="inner__container">
       <div class="icons__box">
         <svg
@@ -118,7 +130,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, defineEmits } from "vue";
+import { ref, reactive } from "vue";
 // @ts-ignore
 import { VMarkdownEditor } from "vue3-markdown";
 import "vue3-markdown/dist/style.css";
@@ -126,11 +138,13 @@ import { setDoc, doc } from "firebase/firestore";
 import { db } from "../utils/firebase";
 import useFileUpload from "../composables/fileUpload";
 
-const emit = defineEmits(["addNewPost"]);
+const emit = defineEmits(["addNewPost", "removeBlogInputField"]);
 
-const props = defineProps({
+let props = defineProps({
   togglePostInput: Boolean,
 });
+
+let closeInput = ref(true);
 
 const { uploadFile } = useFileUpload();
 
@@ -140,6 +154,7 @@ let upload = ref(false);
 let uploadImage = ref(false);
 const inputContent = ref(false);
 let photoImage = ref("");
+// let togglePostInput = ref(false);
 
 const post = reactive({
   postTitle: "",
@@ -156,6 +171,12 @@ const handleFileUpload = () => {
 };
 const handleInputcontent = () => {
   return (inputContent.value = !inputContent.value);
+};
+
+const handlePostInput = () => {
+    emit("removeBlogInputField", closeInput);
+    !props.togglePostInput
+  return (closeInput.value = !closeInput.value);
 };
 
 const handleUpload = (file: string) => {
@@ -212,7 +233,7 @@ const handleSubmit = () => {
 
   updatePost();
 
-  !props.togglePostInput
+  !props.togglePostInput;
 };
 </script>
 
@@ -224,6 +245,15 @@ const handleSubmit = () => {
   align-items: center;
   flex-direction: column;
   margin: 0 auto;
+}
+
+.bloginput__box > svg {
+  height: 3rem;
+  width: 3rem;
+  position: absolute;
+  top: 17rem;
+  left: 30%;
+  cursor: pointer;
 }
 
 .inner__container {
@@ -344,6 +374,11 @@ const handleSubmit = () => {
     width: 35rem;
     height: 22rem;
     top: -1rem;
+  }
+
+  .bloginput__box > svg {
+    top: 16rem;
+    left: 12%;
   }
 }
 </style>

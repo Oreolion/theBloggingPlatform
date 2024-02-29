@@ -16,6 +16,7 @@
       v-if="togglePostInput"
       :togglePostInput="togglePostInput"
       @addNewPost="handleUpdateBlogPosts"
+      @remove-blog-input-field="handleBlogInputField"
     ></BlogInputField>
     <div class="post__box" v-if="users.length || (posts && !togglePostInput)">
       <article class="post" v-for="post in posts" :key="post.postTitle">
@@ -50,10 +51,7 @@
           >
         </div>
         <div class="image">
-          <img
-            :src="post.photoImage"
-            alt="/"
-          />
+          <img :src="post.photoImage" alt="/" />
         </div>
 
         <div class="reaction-box">
@@ -249,7 +247,6 @@ interface NewPost {
   [key: string]: any;
 }
 
-
 let users: IRandomUser[] = reactive([]);
 let togglePostInput = ref(false);
 
@@ -272,6 +269,10 @@ const fetchRandomUsers = async () => {
 
 let posts: NewPost[] = reactive([]);
 
+const handleBlogInputField = () => {
+  return (togglePostInput.value = false);
+};
+
 const handleUpdateBlogPosts = async () => {
   const postRef = collection(db, "blogpost");
   const postQuery = query(postRef, orderBy("createdAt", "asc"), limit(5));
@@ -292,7 +293,7 @@ const handleUpdateBlogPosts = async () => {
 
   onSnapshot(postQuery, (snapshot) => {
     snapshot.docs.map((doc) => {
-        posts.push(doc.data() as NewPost);
+      posts.push(doc.data() as NewPost);
     });
     console.log(posts);
   }),
@@ -577,9 +578,7 @@ svg {
   }
 
   .leftbox p {
-    font-size: 1.3rem;
-    letter-spacing: 1px;
-    max-width: 20rem;
+    display: none;
   }
 
   .post p {
