@@ -247,7 +247,7 @@ onAuthStateChanged(auth, (user) => {
   padding: 3rem;
   width: 25rem;
   height: 100vh;
-  background-color: #000;
+  background: rgba(0, 0, 05, 0.8);
   color: #ccc;
   font-size: 1.4rem;
   display: flex;

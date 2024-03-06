@@ -347,7 +347,7 @@ onMounted(async () => {
 }
 
 .leftbox {
-  background: rgba(256, 256, 256, 0.2);
+  background: rgba(006, 006, 006, 0.2);
   padding: 1rem;
   padding-right: 4rem;
   border-radius: 1rem;
@@ -356,6 +356,14 @@ onMounted(async () => {
 .leftbox h1 {
   font-size: 2.6rem;
   letter-spacing: 2px;
+}
+
+.postheader a {
+    color: green;
+    font-weight: bold;
+    &:hover {
+        letter-spacing: 1px;
+    }
 }
 
 .leftbox p {
