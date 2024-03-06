@@ -19,7 +19,12 @@
       @remove-blog-input-field="handleBlogInputField"
     ></BlogInputField>
     <div class="post__box" v-if="users.length || (posts && !togglePostInput)">
-      <article class="post" v-for="post in posts" :key="post.postTitle" v-if="!isLoading">
+      <article
+        class="post"
+        v-for="post in posts"
+        :key="post.postTitle"
+        v-if="!isLoading"
+      >
         <div class="user__profile">
           <div class="user__image">
             <img :src="post.photoImage" alt="picture" />
@@ -85,7 +90,12 @@
           </div>
         </div>
       </article>
-      <article class="post" v-for="user in users" :key="user.id.value" v-if="!isLoading">
+      <article
+        class="post"
+        v-for="user in users"
+        :key="user.id.value"
+        v-if="!isLoading"
+      >
         <div class="user__profile">
           <div class="user__image">
             <img :src="user.picture.thumbnail" alt="picture" />
@@ -266,7 +276,7 @@ const fetchRandomUsers = async () => {
   } catch (error) {
     console.error(error);
   } finally {
-    isLoading.value = false
+    isLoading.value = false;
   }
 };
 
@@ -279,7 +289,7 @@ const handleBlogInputField = () => {
 const handleUpdateBlogPosts = async () => {
   const postRef = collection(db, "blogpost");
   const postQuery = query(postRef, orderBy("createdAt", "asc"), limit(5));
-  isLoading.value = true
+  isLoading.value = true;
 
   // Get initial data
   const querySnapshot = await getDocs(postRef);
@@ -300,7 +310,7 @@ const handleUpdateBlogPosts = async () => {
       posts.push(doc.data() as NewPost);
     });
     console.log(posts);
-    isLoading.value = false
+    isLoading.value = false;
   }),
     (error: any) => {
       console.log(error);
@@ -324,6 +334,8 @@ onMounted(async () => {
   color: aliceblue;
   min-width: 33rem;
   min-height: 45rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .dashboardfeeds__header {
@@ -357,14 +369,14 @@ onMounted(async () => {
   padding: 1rem 2rem;
   border-top-left-radius: 3rem;
   border-bottom-right-radius: 3rem;
-  background: rgba(225, 225, 225, 0.2);
+  background: rgba(005, 005, 005, 0.2);
   color: #e67e22;
 }
 
 .dashboardfeeds__nav h3 {
   font-weight: bold;
   font-size: 2rem;
-  background: rgba(256, 256, 256, 0.2);
+  background: rgba(256, 256, 256, 0.1);
   padding: 0.5rem;
   border-radius: 0.5rem;
 }
@@ -506,6 +518,10 @@ svg {
     min-width: 29rem;
   }
 
+  .post h2 {
+    font-size: 2rem;
+  }
+
   .user__profile {
     flex-direction: column;
     gap: 1rem;
@@ -541,7 +557,7 @@ svg {
     margin-right: 0.5rem;
     border: none;
     padding: 2rem 1rem;
-    width: 32rem;
+    width: 36rem;
   }
 
   .leftbox {
@@ -560,6 +576,15 @@ svg {
 
   button {
     width: 23rem;
+  }
+
+  .user__profile {
+    flex-direction: row;
+  }
+
+  .post__box {
+    gap: 4rem;
+    width: 95%;
   }
 
   .post {
@@ -586,7 +611,7 @@ svg {
 
 @media (max-width: 320px) {
   .dashboard__feeds {
-    min-width: 100%;
+    width: 33rem;
     padding: 1rem;
     margin-left: -2rem;
   }
@@ -609,7 +634,7 @@ svg {
   }
 
   .post__box {
-    width: 100%;
+    width: 90%;
     gap: 2rem;
   }
 
@@ -619,6 +644,10 @@ svg {
 
   .post p {
     font-size: 1.3rem;
+  }
+
+  .post .reaction-box .right .icon {
+    margin-right: 1.5rem;
   }
 }
 </style>

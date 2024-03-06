@@ -206,7 +206,7 @@ h3 {
 
 .dashboard__navlists .link svg {
   background-color: #fff;
-  color: red;
+  fill: #e67e22;
   height: 2.3rem;
   border-radius: 50%;
   padding: 0.2rem;
@@ -222,6 +222,7 @@ h3 {
   font-size: 1.4rem;
   margin-bottom: 1rem;
   font-weight: bold;
+  border-bottom: 4px solid #e67e22;
 }
 
 .dashboard__navlists .link li {

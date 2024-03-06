@@ -301,6 +301,7 @@ onAuthStateChanged(auth, (user) => {
   font-size: 1.4rem;
   margin-bottom: 1rem;
   font-weight: bold;
+  border-bottom: 3px solid #ccc;
 }
 
 .header {
@@ -402,7 +403,6 @@ onAuthStateChanged(auth, (user) => {
 
 .nav__icons .notification-icon {
   display: flex;
-  color: red;
   height: 3rem;
   width: 3rem;
 }
@@ -429,6 +429,8 @@ svg {
   display: none;
   align-items: center;
   justify-content: center;
+  fill: #e67e22;
+
 }
 
 .search-form {
@@ -462,6 +464,7 @@ svg {
   display: flex;
   align-items: center;
   justify-content: center;
+  fill: #e67e22;
 }
 
 .search-form input {
@@ -585,15 +588,18 @@ svg {
 
 @media (max-width: 320px) {
   .logo {
-    margin-left: -2rem;
-    margin-top: -2rem;
-    margin-bottom: 1rem;
+    margin-left: 0rem;
+    margin-top: 3rem;
   }
 
   .dashboard__navlists h5 {
     font-size: 1.2rem;
     margin-bottom: 0.5rem;
     font-weight: bold;
+  }
+
+  .dashboard__nav {
+    padding: 0rem 1rem;
   }
 
   .dashboard__navlists .link {
