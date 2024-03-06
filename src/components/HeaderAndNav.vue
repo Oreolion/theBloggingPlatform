@@ -303,7 +303,6 @@ onAuthStateChanged(auth, (user) => {
   font-weight: bold;
 }
 
-
 .header {
   position: fixed;
   top: 0;
@@ -597,11 +596,10 @@ svg {
     font-weight: bold;
   }
 
-
   .dashboard__navlists .link {
-  gap: 1rem;
-  margin-bottom: .5rem;
-  white-space: nowrap;
-}
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+    white-space: nowrap;
+  }
 }
 </style>

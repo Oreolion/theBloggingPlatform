@@ -19,7 +19,7 @@
       @remove-blog-input-field="handleBlogInputField"
     ></BlogInputField>
     <div class="post__box" v-if="users.length || (posts && !togglePostInput)">
-      <article class="post" v-for="post in posts" :key="post.postTitle">
+      <article class="post" v-for="post in posts" :key="post.postTitle" v-if="!isLoading">
         <div class="user__profile">
           <div class="user__image">
             <img :src="post.photoImage" alt="picture" />
@@ -51,7 +51,7 @@
           >
         </div>
         <div class="image">
-          <img :src="post.photoImage" alt="/" />
+          <img :src="post.photoImage" alt="" />
         </div>
 
         <div class="reaction-box">
@@ -85,7 +85,7 @@
           </div>
         </div>
       </article>
-      <article class="post" v-for="user in users" :key="user.id.value">
+      <article class="post" v-for="user in users" :key="user.id.value" v-if="!isLoading">
         <div class="user__profile">
           <div class="user__image">
             <img :src="user.picture.thumbnail" alt="picture" />
@@ -119,7 +119,7 @@
         <div class="image">
           <img
             src="https://media.istockphoto.com/id/475680439/photo/mountain-biking-british-columbia.jpg?b=1&s=170667a&w=0&k=20&c=Yi_mh2gqEDh12juV7_SPi0PTTq2-Tic7Cc9CSWSl0Rg="
-            alt="/"
+            alt=""
           />
         </div>
 
@@ -155,7 +155,7 @@
         </div>
       </article>
     </div>
-    <div v-else v-if="!togglePostInput">
+    <div v-if="isLoading">
       <Loader></Loader>
     </div>
   </section>
@@ -249,6 +249,7 @@ interface NewPost {
 
 let users: IRandomUser[] = reactive([]);
 let togglePostInput = ref(false);
+let isLoading = ref(true);
 
 const handleTogglePostInput = () => {
   return (togglePostInput.value = !togglePostInput.value);
@@ -264,6 +265,8 @@ const fetchRandomUsers = async () => {
     handleUpdateBlogPosts();
   } catch (error) {
     console.error(error);
+  } finally {
+    isLoading.value = false
   }
 };
 
@@ -276,6 +279,7 @@ const handleBlogInputField = () => {
 const handleUpdateBlogPosts = async () => {
   const postRef = collection(db, "blogpost");
   const postQuery = query(postRef, orderBy("createdAt", "asc"), limit(5));
+  isLoading.value = true
 
   // Get initial data
   const querySnapshot = await getDocs(postRef);
@@ -296,6 +300,7 @@ const handleUpdateBlogPosts = async () => {
       posts.push(doc.data() as NewPost);
     });
     console.log(posts);
+    isLoading.value = false
   }),
     (error: any) => {
       console.log(error);
