@@ -6,9 +6,9 @@
         <h3>
           Discover stories, thinking, and expertise from writers on any topic.
         </h3>
-        <button class="hero-btn"> <router-link class="li" to="/signup"
-            >Get Started</router-link
-          ></button>
+        <button class="hero-btn">
+          <router-link class="li" to="/signup">Get Started</router-link>
+        </button>
       </div>
       <div class="right__herosection">
         <div class="imgbox">
@@ -36,11 +36,11 @@ h1 {
 }
 
 .li {
-    color: aliceblue;
-    font-weight: bold;
-    &:hover {
-        color: #000;
-    }
+  color: aliceblue;
+  font-weight: bold;
+  &:hover {
+    color: #000;
+  }
 }
 
 .section {
@@ -62,18 +62,22 @@ h1 {
 }
 
 .left__herosection h1 {
-  font-size: 3.5rem;
+  font-size: 3.9rem;
   margin-bottom: 3rem;
   letter-spacing: 0.5px;
   font-weight: bold;
   min-width: 49rem;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
 }
 .left__herosection h3 {
-  font-size: 2.5rem;
+  font-size: 2.7rem;
   font-weight: bold;
   margin-bottom: 4rem;
   min-width: 47rem;
   max-width: 47rem;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
 }
 
 .left__herosection .hero-btn {
