@@ -18,15 +18,11 @@
       <h3>Posts Highlights</h3>
       <span
         ><h3 class="analytics__header">Top posts</h3>
-        <!-- </span>
-      <span> -->
         <small>earned 2980 impressions</small>
       </span>
 
       <div class="user__profile">
-        <div class="user__image">
-          <!-- <img src="" alt="" /> -->
-        </div>
+        <div class="user__image"></div>
         <div class="user__info">
           <h3 class="username">Grace Ikpang</h3>
           <div>
@@ -128,7 +124,6 @@ import HeaderAndNav from "../components/HeaderAndNav.vue";
   margin-top: 13rem;
   font-size: 2rem;
   color: #fff;
-  
 }
 
 .postanalytics__box .bottom {
@@ -309,11 +304,10 @@ svg {
   display: flex;
   flex-direction: column;
   align-items: center;
-
 }
 
 .postanalytics__box .lower__box .box h3 {
-    font-size: 1.7rem;
+  font-size: 1.7rem;
 }
 
 @media (max-width: 768px) {
@@ -332,10 +326,9 @@ svg {
   .postanalytics__box .bottom {
     margin-left: 8rem;
     margin-bottom: 4rem;
-
-    .postanalytics__box .bottom button {
-      margin-bottom: 2rem;
-    }
+  }
+  .postanalytics__box .bottom button {
+    margin-bottom: 2rem;
   }
 
   .user__profile {
@@ -362,14 +355,21 @@ svg {
   }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 480px) {
   .post {
-    padding-left: 0;
+    margin-left: 3rem;
+    margin-bottom: 5rem;
   }
+  .postanalytics__box > .postanalytics__topheader {
+    font-size: 1.6rem;
+    color: #fff;
+    margin-left: 3rem;
+  }
+
   .post .image {
     width: 24rem;
     height: 20rem;
-    margin-bottom: 1rem;
+    margin-bottom: .2rem;
   }
 
   .post .reaction-box .left {
@@ -382,6 +382,14 @@ svg {
 
   .post .reaction-box .right .icon {
     margin-right: 4rem;
+  }
+
+  .postanalytics__box .bottom {
+    margin-left: 3rem;
+  }
+
+  .postanalytics__box .lower__box {
+    margin-left: 3rem;
   }
 }
 

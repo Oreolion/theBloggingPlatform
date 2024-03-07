@@ -6,7 +6,9 @@
         <h3>
           Discover stories, thinking, and expertise from writers on any topic.
         </h3>
-        <button class="hero-btn">Get started</button>
+        <button class="hero-btn"> <router-link class="li" to="/signup"
+            >Get Started</router-link
+          ></button>
       </div>
       <div class="right__herosection">
         <div class="imgbox">
@@ -31,6 +33,14 @@
 <style scoped>
 h1 {
   color: #fff;
+}
+
+.li {
+    color: aliceblue;
+    font-weight: bold;
+    &:hover {
+        color: #000;
+    }
 }
 
 .section {

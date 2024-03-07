@@ -260,7 +260,6 @@ h3 {
   width: 22rem;
   padding: 2rem;
   position: absolute;
-  /* color: var(--background-primary); */
   top: 11%;
   right: 5%;
   background: rgba(0, 0, 015, 0.5);
@@ -393,7 +392,7 @@ svg {
   flex-direction: column;
   width: 34rem;
   align-self: flex-start;
-  background: rgba(215, 215, 215, 0.2);
+  background: rgba(005, 005, 005, 0.2);
 }
 
 .settings__section .right__section .box1,
@@ -416,7 +415,7 @@ svg {
 .settings__section .left__section {
   display: flex;
   flex-direction: column;
-  background: rgba(215, 215, 215, 0.2);
+  background: rgba(005, 005, 005, 0.2);
   padding: 2rem;
   width: 37rem;
 }
@@ -453,6 +452,7 @@ svg {
 }
 .settings__section .left__section .inner__box form input {
   height: 3rem;
+  text-indent: 1rem;
 }
 
 .settings__section .left__section .inner__box form .upload {

@@ -1,8 +1,8 @@
 <template>
   <nav class="dashboard__nav">
     <div class="logo link">
-      <h3>THE RA BLOG</h3>
-      <p>The Read Along Blog</p>
+      <h3>THE <span>RA</span> BLOG</h3>
+      <p>The <span>Read Along</span> Blog</p>
     </div>
     <div class="user">
       <div class="user__info"></div>
@@ -159,10 +159,32 @@ h3 {
   letter-spacing: 0.7;
 }
 
+h3 span {
+  color: #ccc;
+  background-color: #e67e22;
+  border-top-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  padding: 0.2rem;
+  font-weight: bold;
+}
+
 .logo p {
   font-size: 1.3rem;
+  font-weight: bold;
   letter-spacing: 1px;
+  padding: 0.5rem;
   padding-left: 4px;
+  background: rgba(255, 255, 255, 0.2);
+  border-top-right-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+}
+
+.logo p span {
+  background: rgba(355, 355, 355, 0.3);
+  font-weight: bold;
+  border-radius: 0.4rem;
+  padding: 0.2rem;
+  font-size: 1.3rem;
 }
 .dashboard__nav {
   position: fixed;

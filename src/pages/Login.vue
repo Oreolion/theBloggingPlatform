@@ -8,6 +8,12 @@
       </p>
     </div>
     <div class="right__box">
+      <div class="logo link">
+        <router-link to="/" style="color: inherit;">
+          <h3>THE <span>RA</span> BLOG</h3>
+          <p>The <span>Read Along</span> Blog</p>
+        </router-link>
+      </div>
       <div class="signup__form">
         <form action="">
           <div class="navigatepagebtn-box">
@@ -129,10 +135,59 @@ const handleLogin = async () => {
   padding: 2rem;
   padding-top: 10rem;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   background: #000;
   color: #fff;
+}
+
+.logo {
+  color: #e67e22;
+  font-size: 2rem;
+  margin: 0 auto;
+  margin-bottom: 3rem;
+  cursor: pointer;
+}
+
+.logo h3 {
+  line-height: 1;
+  letter-spacing: 0.7;
+  color: #e67e22;
+}
+
+.logo p {
+  font-size: 1.3rem;
+  letter-spacing: 1px;
+  padding-left: 4px;
+}
+
+h3 span {
+  color: #ccc;
+  background-color: green;
+  border-top-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  padding: 0.2rem;
+  font-weight: bold;
+}
+
+.logo p {
+  font-size: 1.3rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  padding: 0.5rem;
+  padding-left: 4px;
+  background: rgba(255, 255, 255, 0.2);
+  border-top-right-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+}
+
+.logo p span {
+  background: rgba(355, 355, 355, 0.3);
+  font-weight: bold;
+  border-radius: 0.4rem;
+  padding: 0.2rem;
+  font-size: 1.3rem;
 }
 
 .right__box form {
@@ -154,11 +209,18 @@ const handleLogin = async () => {
 
 .right__box .navigatepagebtn-box button {
   background-color: #ddd;
-  border-bottom: 1rem solid green;
+  border-bottom: 0.5rem solid #e67e22;
+  color: #fff;
   border-radius: 3px;
   width: 40%;
   height: 3rem;
 }
+
+.navigatepagebtn-box button > * {
+  color: #e67e22;
+  font-weight: bold;
+}
+
 .form__header {
   margin-bottom: 2rem;
 }
@@ -196,10 +258,14 @@ small {
 }
 
 .btn-box button {
-  background: #777;
+  background: rgba(355, 355, 355, 0.2);
   width: 98%;
+  border: 3px solid #fff;
+  &:hover {
+    color: #fff;
+    background: rgba(005, 005, 005, 0.2);
+  }
 }
-
 @media (max-width: 640px) {
   .left__box {
     display: none;
@@ -209,51 +275,47 @@ small {
 @media (max-width: 480px) {
   .right__box {
     display: flex;
-   
   }
 
   .right__box h1 {
-  font-size: 2.2rem;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+    font-size: 2.2rem;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
   .right__box .navigatepagebtn-box {
-  margin-bottom: 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-left: 4rem;
-  width: 30rem;
-}
-
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 4rem;
+    width: 30rem;
+  }
 
   .right__box .navigatepagebtn-box button {
-  margin-bottom: 2rem;
-  display: flex;
-  margin: 0 auto;
-  width: 12rem;
-  align-items: center;
-  justify-content: center;
-
-
-}
+    margin-bottom: 2rem;
+    display: flex;
+    margin: 0 auto;
+    width: 12rem;
+    align-items: center;
+    justify-content: center;
+  }
 
   .btn-box {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  margin-top: 4rem;
- margin-left: auto;
- margin-right: auto;
-}
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 4rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
 
-.btn-box button {
+  .btn-box button {
     width: 100%;
     margin: 0 auto;
-}
+  }
 
   .inner__form label input {
     width: 100%;
@@ -262,47 +324,42 @@ small {
 }
 
 @media (max-width: 320px) {
-    .right__box h1 {
-  font-size: 1.8rem;
-}
+  .right__box h1 {
+    font-size: 1.8rem;
+  }
 
-.right__box form {
+  .right__box form {
     width: 100%;
-}
+  }
 
-.right__box .navigatepagebtn-box {
-  margin-bottom: 2rem;
-  display: flex;
-  margin: 0 auto;
-  width: 30rem;
+  .right__box .navigatepagebtn-box {
+    margin-bottom: 2rem;
+    display: flex;
+    margin: 0 auto;
+    width: 30rem;
+  }
 
-}
+  .inner__form select,
+  .inner__form label {
+    font-size: 1.2rem;
+  }
 
+  .btn-box {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 4rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
 
-.inner__form select,
-.inner__form label {
-  font-size: 1.2rem;
-}
-
-.btn-box {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  margin-top: 4rem;
- margin-left: auto;
- margin-right: auto;
-}
-
-
-.right__box .navigatepagebtn-box button {
-  width: 35%;
-  color: #e67e22;
-  font-weight: bold;
-  &:hover {
-    color: #000;
+  .right__box .navigatepagebtn-box button {
+    width: 35%;
+    color: #e67e22;
+    font-weight: bold;
+    &:hover {
+      color: #000;
+    }
   }
 }
-
-}
-
 </style>

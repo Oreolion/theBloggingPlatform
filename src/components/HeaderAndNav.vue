@@ -2,8 +2,8 @@
   <!-- mobile dashboard navbar -->
   <nav class="dashboard__nav mobile" v-if="toggle">
     <div class="logo link">
-      <h3>THE RA BLOG</h3>
-      <p>The Read Along Blog</p>
+      <h3>THE <span>RA</span> BLOG</h3>
+      <p>The <span>Read Along</span> Blog</p>
     </div>
 
     <ul class="dashboard__navlists">
@@ -127,8 +127,8 @@
   <main class="innerdashboard__container">
     <header class="header">
       <div class="logo link">
-        <h3>THE RA BLOG</h3>
-        <p>The Read Along Blog</p>
+        <h3>THE <span>RA</span> BLOG</h3>
+        <p>The <span>Read Along</span> Blog</p>
       </div>
       <nav class="right__nav">
         <div class="nav__icons">
@@ -180,6 +180,28 @@
           <img :src="profile.photoURL" alt="photo-url" class="" v-else />
         </router-link>
       </div>
+      <svg
+        class="caret"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 320 512"
+        @click="toggleDropDown"
+      >
+        <path
+          d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z"
+        />
+      </svg>
+      <div class="notificationbox" v-if="dropDown">
+        <li @click="handleLogout">
+          <div class="link">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+              <path
+                d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"
+              />
+            </svg>
+            <p>Logout</p>
+          </div>
+        </li>
+      </div>
     </header>
   </main>
 </template>
@@ -209,9 +231,13 @@ const handleLogout = async () => {
 };
 
 let toggle = ref<boolean>(false);
+let dropDown = ref<boolean>(false);
 
 function toggleMenu() {
   return (toggle.value = !toggle.value);
+}
+function toggleDropDown() {
+  return (dropDown.value = !dropDown.value);
 }
 
 onAuthStateChanged(auth, (user) => {
@@ -239,6 +265,34 @@ onAuthStateChanged(auth, (user) => {
   font-size: 1.3rem;
   letter-spacing: 1px;
   padding-left: 4px;
+}
+
+h3 span {
+  color: green;
+  background-color: #e67e22;
+  border-top-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  padding: 0.2rem;
+  font-weight: bold;
+}
+
+.logo p {
+  font-size: 1.3rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  padding: 0.5rem;
+  padding-left: 4px;
+  background: rgba(255, 255, 255, 0.2);
+  border-top-right-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+}
+
+.logo p span {
+  background: rgba(355, 355, 355, 0.3);
+  font-weight: bold;
+  border-radius: 0.4rem;
+  padding: 0.2rem;
+  font-size: 1.3rem;
 }
 .dashboard__nav {
   position: fixed;
@@ -301,7 +355,7 @@ onAuthStateChanged(auth, (user) => {
   font-size: 1.4rem;
   margin-bottom: 1rem;
   font-weight: bold;
-  border-bottom: 3px solid #ccc;
+  border-bottom: 3px solid #e67e22;
 }
 
 .header {
@@ -310,7 +364,6 @@ onAuthStateChanged(auth, (user) => {
   left: 0;
   right: 0;
   background: #bbb;
-  /* box-shadow: var(--box-shadow); */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -326,39 +379,46 @@ onAuthStateChanged(auth, (user) => {
   min-width: 2rem;
 }
 
-.header .user {
-  flex-direction: row;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  position: absolute;
-  right: 6%;
-}
-
 .right__nav {
   display: flex;
-  gap: 3rem;
+  gap: 2rem;
   align-items: center;
   justify-content: center;
 }
 
 .notificationbox {
-  height: 12rem;
+  height: 6rem;
   width: 22rem;
-  padding: 2rem;
   position: absolute;
   color: #fff;
-  top: 11%;
-  left: 22%;
+  top: 10rem;
+  right: 7%;
   background: rgba(0, 0, 015, 0.5);
-  text-align: center;
-  padding-top: 3rem;
   z-index: 111;
+  display: flex;
+  flex-direction: row;
+  padding: 2rem;
+  list-style: none;
+}
+
+.notificationbox svg {
+    display: flex;
+}
+
+.notificationbox .link {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    justify-content: center;
 }
 
 .notificationbox p {
-  font-size: 1.6rem;
+  font-size: 1.4rem;
+  font-weight: bold;
+  cursor: pointer;
+  &:hover {
+    color: red;
+  }
 }
 
 .navigationlist {
@@ -366,7 +426,6 @@ onAuthStateChanged(auth, (user) => {
   width: 22rem;
   padding: 2rem;
   position: absolute;
-  /* color: var(--background-primary); */
   top: 11%;
   right: 5%;
   background: rgba(0, 0, 015, 0.5);
@@ -398,7 +457,6 @@ onAuthStateChanged(auth, (user) => {
   color: #fff;
   cursor: pointer;
   gap: 1rem;
-  /* align-items: center; */
 }
 
 .nav__icons .notification-icon {
@@ -423,6 +481,11 @@ onAuthStateChanged(auth, (user) => {
   justify-content: center;
 }
 
+.caret {
+  display: inline-block;
+  cursor: pointer;
+}
+
 svg {
   height: 3rem;
   width: 3rem;
@@ -430,7 +493,6 @@ svg {
   align-items: center;
   justify-content: center;
   fill: #e67e22;
-
 }
 
 .search-form {
@@ -458,6 +520,9 @@ svg {
   margin-left: 0.7rem;
   font-size: 1.7rem;
   cursor: pointer;
+  &:hover {
+    background-color: rgba(0, 0, 05, 0.3);
+  }
 }
 
 .search-form .search svg {
@@ -478,6 +543,9 @@ svg {
   width: 7rem;
   border-radius: 50%;
   background-color: #000;
+  top: 15%;
+  right: 10%;
+  position: absolute;
 }
 
 .img__box img {
@@ -552,6 +620,9 @@ svg {
   .header .img__box {
     height: 5rem;
     width: 5rem;
+    top: 22%;
+    right: 10%;
+    position: absolute;
   }
 
   .post {
@@ -562,15 +633,30 @@ svg {
 
 @media (max-width: 480px) {
   .logo h3 {
-    font-size: 1.8rem;
+    font-size: 1.7rem;
   }
 
   .logo p {
     font-size: 0.8rem;
+    font-weight: bold;
+    letter-spacing: 0;
+  }
+
+  .logo p span {
+    padding: 0.2rem;
+    font-size: 0.9rem;
   }
 
   .header {
     padding: 1.2rem 2%;
+  }
+
+  .header .nav__icons {
+    display: flex;
+    gap: 3rem;
+    position: absolute;
+    top: 40%;
+    right: 23%;
   }
   .dashboard__nav {
     width: 17rem;
@@ -580,8 +666,12 @@ svg {
     display: none;
   }
 
+  .caret {
+    margin-left: 1rem;
+  }
+
   .header .nav__icons {
-    right: 22%;
+    right: 27%;
     gap: 1rem;
   }
 }
@@ -606,6 +696,12 @@ svg {
     gap: 1rem;
     margin-bottom: 0.5rem;
     white-space: nowrap;
+  }
+
+  .header .nav__icons {
+    gap: 0.5rem;
+    top: 40%;
+    right: 27%;
   }
 }
 </style>

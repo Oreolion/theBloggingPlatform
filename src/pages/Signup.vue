@@ -8,12 +8,17 @@
       </p>
     </div>
     <div class="right__box">
+      <div class="logo link">
+        <router-link to="/" style="color: inherit">
+          <h3>THE <span>RA</span> BLOG</h3>
+          <p>The <span>Read Along</span> Blog</p>
+        </router-link>
+      </div>
       <div class="signup__form">
         <form action="">
           <div class="navigatepagebtn-box">
             <button>
               <router-link to="/signup" class="nbtn">REGISTER</router-link>
-              
             </button>
             <button>
               <router-link to="/login">LOGIN</router-link>
@@ -167,10 +172,59 @@ const handleSignUp = async () => {
   flex: 1 1 60%;
   padding: 2rem;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   background: #000;
   color: #fff;
+}
+
+.logo {
+  color: #e67e22;
+  font-size: 2rem;
+  margin: 0 auto;
+  margin-bottom: 3rem;
+  cursor: pointer;
+}
+
+.logo h3 {
+  line-height: 1;
+  letter-spacing: 0.7;
+  color: #e67e22;
+}
+
+.logo p {
+  font-size: 1.3rem;
+  letter-spacing: 1px;
+  padding-left: 4px;
+}
+
+h3 span {
+  color: #ccc;
+  background-color: #e67e22;
+  border-top-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  padding: 0.2rem;
+  font-weight: bold;
+}
+
+.logo p {
+  font-size: 1.3rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  padding: 0.5rem;
+  padding-left: 4px;
+  background: rgba(255, 255, 255, 0.2);
+  border-top-right-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+}
+
+.logo p span {
+  background: rgba(355, 355, 355, 0.3);
+  font-weight: bold;
+  border-radius: 0.4rem;
+  padding: 0.2rem;
+  font-size: 1.3rem;
 }
 
 .right__box h1 {
@@ -186,11 +240,18 @@ const handleSignUp = async () => {
   color: #e67e22;
 }
 
-.right__box .navigatepagebtn-box button, .nbtn {
+.navigatepagebtn-box button > * {
+  color: #e67e22;
+  font-weight: bold;
+}
+
+.right__box .navigatepagebtn-box button,
+.nbtn {
   background-color: #ddd;
-  border-bottom: 1rem solid green;
+  border-bottom: 0.5rem solid #e67e22;
   border-radius: 3px;
   width: 40%;
+  font-weight: bold;
   height: 3rem;
 }
 .form__header {
@@ -245,8 +306,13 @@ small {
 }
 
 .btn-box button {
-  background: #777;
+  background: rgba(355, 355, 355, 0.2);
   width: 98%;
+  border: 3px solid #fff;
+  &:hover {
+    color: #fff;
+    background: rgba(005, 005, 005, 0.2);
+  }
 }
 
 @media (max-width: 640px) {
@@ -258,7 +324,6 @@ small {
 @media (max-width: 480px) {
   .right__box {
     display: flex;
-   
   }
 
   .inner__form label input {
@@ -268,25 +333,22 @@ small {
 }
 
 @media (max-width: 320px) {
-    .right__box h1 {
-  font-size: 1.8rem;
-}
-
-.inner__form select,
-.inner__form label {
-  font-size: 1.2rem;
-}
-
-
-.right__box .navigatepagebtn-box button {
-  width: 35%;
-  color: #e67e22;
-  font-weight: bold;
-  &:hover {
-    color: #000;
+  .right__box h1 {
+    font-size: 1.8rem;
   }
-}
 
+  .inner__form select,
+  .inner__form label {
+    font-size: 1.2rem;
+  }
 
+  .right__box .navigatepagebtn-box button {
+    width: 35%;
+    color: #e67e22;
+    font-weight: bold;
+    &:hover {
+      color: #000;
+    }
+  }
 }
 </style>

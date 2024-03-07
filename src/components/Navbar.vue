@@ -1,8 +1,10 @@
 <template>
   <header class="header">
-    <div class="logo">
-      <h3>THE RA BLOG</h3>
-      <p>The Read Along Blog</p>
+    <div class="logo link">
+      <router-link to="/">
+        <h3>THE <span>RA</span> BLOG</h3>
+        <p style="color: #e67e22">The <span>Read Along</span> Blog</p>
+      </router-link>
     </div>
 
     <nav class="right__nav">
@@ -86,32 +88,69 @@ let toggleMenu = () => {
   left: 0;
   right: 0;
   background: #bbb;
-  /* box-shadow: var(--box-shadow); */
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.2rem 7%;
+  padding: 1.2rem 4%;
   height: 9rem;
 }
 
 .header .logo {
-  color: var(--black);
   font-size: 2rem;
   margin-right: auto;
+  background-color: rgba(05, 05, 05, 0.1);
+  padding: 0.5rem;
 }
 
-h3 {
+.logo {
+  color: #e67e22;
+  cursor: pointer;
+}
+
+.logo h3 {
   line-height: 1;
   letter-spacing: 0.7;
+  color: #e67e22;
+  font-size: 2.5rem;
 }
 
-.header .logo p {
+.logo p {
   font-size: 1.3rem;
-  letter-spacing: 0.2px;
+  letter-spacing: 1px;
   padding-left: 4px;
-  max-width: 16rem;
-  color: green;
 }
+
+h3 span {
+  color: #ccc;
+  background-color: green;
+  border-top-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  padding: 0.2rem;
+  font-weight: bold;
+}
+
+.logo p {
+  font-size: 1.3rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  padding: 0.5rem;
+  padding-left: 4px;
+  background: rgba(05, 05, 05, 0.5);
+  border-top-right-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+}
+
+.logo p span {
+  background: rgba(05, 05, 05, 0.4);
+  font-weight: bold;
+  border-radius: 0.4rem;
+  letter-spacing: 0.2;
+
+  padding: 0.2rem;
+  font-size: 1.3rem;
+  text-transform: uppercase;
+}
+
 .right__nav {
   display: flex;
   gap: 3rem;
@@ -120,9 +159,9 @@ h3 {
 }
 
 .header button {
-    &:hover {
-        color: #e67e22;
-    }
+  &:hover {
+    color: #e67e22;
+  }
 }
 
 .mobile__nav {
@@ -205,7 +244,6 @@ svg {
   background-color: #eee;
   padding: 0.6rem;
   border-radius: 0.6rem;
- 
 }
 
 .search {
@@ -234,21 +272,23 @@ svg {
     font-size: 2rem;
     margin-right: 3rem;
     z-index: 111;
+    background-color: rgba(05, 05, 05, 0.1);
+    padding: 0.5rem;
   }
 
-  h3 {
+  .logo h3 {
     line-height: 1.2;
     letter-spacing: 0.2;
-    font-size: 1.6rem;
+    font-size: 2.2rem;
   }
 
-  .header .logo p {
+  .logo p {
     font-size: 1.3rem;
     letter-spacing: 0;
     padding-left: 4px;
-    min-width: 11rem;
     line-height: 0.9;
     white-space: nowrap;
+    color: #e67e22;
   }
 
   .right__nav {
