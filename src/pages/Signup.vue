@@ -159,6 +159,8 @@ const handleSignUp = async () => {
   margin-bottom: 1rem;
   font-weight: bold;
   padding-top: 20rem;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
 }
 
 .left__box p {
@@ -166,6 +168,8 @@ const handleSignUp = async () => {
   margin-left: 3rem;
   font-weight: bold;
   color: #e67e22;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
   align-self: flex-start;
 }
 .right__box {

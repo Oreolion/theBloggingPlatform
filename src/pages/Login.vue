@@ -121,6 +121,8 @@ const handleLogin = async () => {
   margin-bottom: 1rem;
   font-weight: bold;
   padding-top: 5rem;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
 }
 
 .left__box p {
@@ -129,6 +131,8 @@ const handleLogin = async () => {
   font-weight: bold;
   color: #e67e22;
   align-self: flex-start;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
 }
 .right__box {
   flex: 1 1 60%;

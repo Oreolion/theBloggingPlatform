@@ -8,26 +8,24 @@
       <div class="box1">
         <h5>Explore</h5>
         <ul>
-          <li>Scissors 101</li>
-          <li>Intergrations & API</li>
-          <li>Pricing</li>
+          <li>Community</li>
+          <li>Trending Blogs</li>
+          <li>Chatter for teams</li>
         </ul>
       </div>
       <div class="box1">
         <h5>Support</h5>
         <ul>
-          <li>Social Media</li>
-          <li>Digital Marketing</li>
-          <li>Customer Service</li>
-          <li>For Developers</li>
+          <li>Support Docs</li>
+          <li>Join Slack</li>
+          <li>Contact</li>
         </ul>
       </div>
       <div class="box1">
         <h5>Official Blog</h5>
         <ul>
-          <li>Link Management</li>
-          <li>QR Codes</li>
-          <li>Link-in-bio</li>
+          <li>Official Blog</li>
+          <li>Engineering Blog</li>
         </ul>
       </div>
     </div>
