@@ -224,6 +224,9 @@ h3 span {
   cursor: pointer;
   font-weight: bold;
   color: #ddd;
+  &:hover {
+    letter-spacing: 1px;
+  }
 }
 
 .dashboard__navlists .link svg {

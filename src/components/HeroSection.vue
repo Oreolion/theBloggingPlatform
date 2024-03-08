@@ -4,7 +4,7 @@
       <div class="left__herosection">
         <h1>Curious to learn new things? okay! READ ALONG...</h1>
         <h3>
-          Discover stories, thinking, and expertise from writers on any topic.
+            Unleash the Power of Words, Connect with Like-minded Readers and Writers, Discover stories, thinking, and expertise from writers on any topic.
         </h3>
         <button class="hero-btn">
           <router-link class="li" to="/signup">Get Started</router-link>

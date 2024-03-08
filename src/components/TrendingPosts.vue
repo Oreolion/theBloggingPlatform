@@ -73,8 +73,8 @@
 
 <style scoped>
 section {
-  margin-bottom: 12rem;
-  padding-bottom: 12rem;
+  margin-bottom: 10rem;
+  padding-bottom: 10rem;
 }
 .post__box {
   display: flex;
@@ -91,10 +91,11 @@ section {
   text-align: center;
   color: #ccc;
   font-size: 3rem;
+  font-weight: bold;
   margin-bottom: 2rem;
 }
 .post__box .header p {
-  max-width: 89rem;
+  max-width: 93rem;
   font-size: 2rem;
 }
 
@@ -107,13 +108,18 @@ section {
 }
 
 .post__box .post {
-  flex: 1 1 20rem;
-  max-width: 28rem;
+  flex: 1 1 22rem;
+  max-width: 30rem;
   background: rgba(2, 1, 1, 0.3);
   box-shadow: 6px 4px 4px rgba(250, 250, 220, 0.2);
   height: 38rem;
   border-radius: 1rem;
   padding: 3rem;
+  border-top: 0.5rem dotted #e67e22;
+  border-left: 0.5rem dotted #e67e22;
+  border-top-left-radius: 3rem;
+  border-bottom-left-radius: 3rem;
+  border-top-right-radius: 6rem;
 }
 
 .post__box h2 {
@@ -121,6 +127,8 @@ section {
   font-weight: bold;
   margin-bottom: 1rem;
   color: #ccc;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
 }
 
 .post__box p {
@@ -128,6 +136,8 @@ section {
   margin-bottom: 2rem;
   color: #ccc;
   max-width: 20rem;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
 }
 
 .post__box .post .svg {
@@ -155,6 +165,10 @@ section {
 
   .posts {
     gap: 4rem;
+  }
+
+  .post__box .header h1 {
+    font-size: 2.5rem;
   }
 }
 </style>

@@ -1,102 +1,121 @@
 <template>
   <section>
-    <div class="inner-postcontainer">
-      <div class="post-container">
-        <BlogPost></BlogPost>
-        <BlogPost></BlogPost>
-        <BlogPost></BlogPost>
-        <BlogPost></BlogPost>
-        <BlogPost></BlogPost>
-        <BlogPost></BlogPost>
-      </div>
-      <div class="side-bar">
-        <PostCategory></PostCategory>
-        <div class="footer-box">
-          <ul class="links">
-            <li><a href="#">Help</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Career</a></li>
-            <li><a href="#">Blog</a></li>
-            <li><a href="#">Privacy</a></li>
-            <li><a href="#">Terms</a></li>
-            <li><a href="#">Teams</a></li>
-          </ul>
+    <div class="inner-container">
+      <div class="leftbox">
+        <div class="imgbox">
+          <img
+            src="/src/assets/images/pexels-justin-shaifer-1222271.jpg"
+            alt=""
+          />
         </div>
+        <div class="imgbox">
+          <img
+            src="/src/assets/images/pexels-andrea-piacquadio-762020.jpg"
+            alt=""
+          />
+        </div>
+        <div class="imgbox">
+          <img
+            src="/src/assets/images/pexels-daniel-xavier-1239291.jpg"
+            alt=""
+          />
+        </div>
+      </div>
+      <div class="rightbox">
+        <h1>Write, read and connect with great minds on chatter</h1>
+        <p>
+          Share people your great ideas, and also read write-ups based on your
+          interests. connect with people of same interests and goals
+        </p>
+        <button>Get Started</button>
       </div>
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
-import BlogPost from "./BlogPost.vue";
-import PostCategory from "./PostCategory.vue";
-// defineProps({
-//     image: {
-//         type: String,
-//         required: true
-//     }
-// })
+// import BlogPost from "./BlogPost.vue";
 </script>
 
 <style scoped>
 section {
-  padding: 2rem 5%;
-}
-.post-container {
-  display: flex;
-  gap: 3rem;
-  flex-flow: row;
-  flex-wrap: wrap;
-  flex: 1 1 67%;
+  padding: 4rem 10%;
 }
 
-.inner-postcontainer {
+.inner-container {
   display: flex;
-  gap: 4rem;
-  flex-wrap: wrap;
+  align-items: center;
+  width: 100%;
+  gap: 20rem;
 }
 
-.post-container .post {
-  padding: 2rem;
-  border-radius: 1rem;
-  margin-bottom: 2rem;
-  background-color: #ddd;
-  box-shadow: 2px 4px 2px rgba(250, 250, 220, 0.2);
-  min-width: 32rem;
-  display: flex;
-  flex-wrap: wrap;
-  flex: 1 1 36rem;
-}
-
-.side-bar {
-  flex: 1 1 25%;
+.leftbox {
   display: flex;
   flex-direction: column;
+  gap: 4rem;
+  flex: 1 1 30%;
+  height: 40rem;
+  margin-bottom: 5rem;
 }
 
-.side-bar .footer-box {
-  border-radius: 1rem;
-  min-width: 20rem;
-  height: 20rem;
+.leftbox .imgbox:nth-child(2) {
+  align-self: flex-end;
 }
 
-.side-bar .footer-box .links {
-  display: flex;
-  gap: 2rem;
-  flex-wrap: wrap;
-  font-size: 1.7rem;
-  padding: 2rem;
+.imgbox {
+  height: 11rem;
+  width: 11rem;
 }
 
-@media (max-width: 640px) {
-  .post-container .post {
-    min-width: 27rem;
+.imgbox img {
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.rightbox {
+  background-color: rgba(5, 5, 5, 0.2);
+  flex: 1 1 50%;
+  padding: 3rem;
+  color: #ccc;
+  box-shadow: 6px 4px 4px rgba(250, 250, 220, 0.2);
+  border-top: 0.5rem dotted #e67e22;
+  border-left: 0.5rem dotted #e67e22;
+  border-top-left-radius: 3rem;
+  border-bottom-left-radius: 3rem;
+  border-top-right-radius: 6rem;
+}
+
+.rightbox h1 {
+  font-size: 2.9rem;
+  max-width: 51rem;
+  margin-bottom: 2rem;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+.rightbox p {
+  font-size: 1.9rem;
+  margin-bottom: 2rem;
+  max-width: 51rem;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+
+button {
+  width: 15rem;
+  height: 6rem;
+}
+
+@media (max-width: 768px) {
+  .inner-container {
+    flex-direction: column;
+    gap: 3rem;
   }
 }
-@media (max-width: 500px) {
-  .post-container .post {
-    min-width: 15rem;
-    width: 19rem;
+@media (max-width: 320px) {
+  .rightbox h1 {
+    font-size: 2.5rem;
   }
 }
 </style>
