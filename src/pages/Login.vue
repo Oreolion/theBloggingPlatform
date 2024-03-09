@@ -146,7 +146,7 @@ const handleSignupWithGoogle = async () => {
 }
 
 .left__box h1 {
-  font-size: 4rem;
+  font-size: 3.5rem;
   margin-bottom: 1rem;
   font-weight: bold;
   margin-top: -15rem;
@@ -155,7 +155,7 @@ const handleSignupWithGoogle = async () => {
 }
 
 .left__box p {
-  font-size: 2.4rem;
+  font-size: 2.2rem;
   font-weight: bold;
   margin-left: 2rem;
   color: #e67e22;
