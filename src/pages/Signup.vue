@@ -106,7 +106,6 @@ import { useVuelidate } from "@vuelidate/core";
 import { required, email, minLength, sameAs } from "@vuelidate/validators";
 import { reactive, computed } from "vue";
 import { useRouter } from "vue-router";
-import { useUserStore } from "../stores/pinia";
 
 const userRules = {
   email: { required, email },
@@ -160,16 +159,17 @@ const handleSignupWithGoogle = async () => {
     await signInWithPopup(auth, provider);
     router.push("/dashboard");
     // This gives you a Google Access Token. You can use it to access the Google API.
-    const credential = await GoogleAuthProvider.credentialFromResult(result);
-    const token = credential.accessToken;
+    // const credential = await GoogleAuthProvider.credentialFromResult(result);
+    // const token = credential.accessToken;
     // The signed-in user info.
     // const user = result.user;
     // console.log(user)
   } catch (error) {
     console.log(error);
     // Handle Errors here.
-    const errorCode = error.code;
-    const errorMessage = error.message;
+    console.log(error)
+    // const errorCode = error.code;
+    // const errorMessage = error.message;
     // The email of the user's account used.
     // const email = error.customData.email;
     // The AuthCredential type that was used.
@@ -183,16 +183,16 @@ const handleSignupWithX = async () => {
     await signInWithPopup(auth, provider);
     router.push("/dashboard");
     // This gives you a Google Access Token. You can use it to access the Google API.
-    const credential = await TwitterAuthProvider.credentialFromResult(result);
-    const token = credential.accessToken;
+    // const credential = await TwitterAuthProvider.credentialFromResult(result);
+    // const token = credential.accessToken;
     // The signed-in user info.
     // const user = result.user;
     // console.log(user)
   } catch (error) {
     console.log(error);
     // Handle Errors here.
-    const errorCode = error.code;
-    const errorMessage = error.message;
+    // const errorCode = error.code;
+    // const errorMessage = error.message;
     // The email of the user's account used.
     // const email = error.customData.email;
     // The AuthCredential type that was used.
