@@ -1,7 +1,7 @@
 <template>
   <section class="section">
     <div class="left__box">
-      <h1>WELCOME TO READ ALONG...</h1>
+      <h1>WELCOME TO READ <span>ALONG...</span></h1>
       <p>
         Unleash the Power of Words, Connect with Like-minded Readers and
         Writers...
@@ -9,7 +9,7 @@
     </div>
     <div class="right__box">
       <div class="logo link">
-        <router-link to="/" style="color: inherit;">
+        <router-link to="/" style="color: inherit">
           <h3>THE <span>RA</span> BLOG</h3>
           <p>The <span>Read Along</span> Blog</p>
         </router-link>
@@ -43,8 +43,9 @@
 
             <div class="btn-box">
               <button type="button" @click="handleLogin">Login account</button>
-              <button>Sign in with google</button>
-              <button>Sign in with LinkedIn</button>
+              <button @click="handleSignupWithGoogle">
+                Sign in with google
+              </button>
             </div>
           </div>
         </form>
@@ -60,7 +61,11 @@ import { toast } from "vue3-toastify";
 import { useVuelidate } from "@vuelidate/core";
 import { required, email, minLength } from "@vuelidate/validators";
 import { auth } from "../utils/firebase";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import {
+  signInWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from "firebase/auth";
 const user = reactive({
   email: "",
   password: "",
@@ -95,6 +100,30 @@ const handleLogin = async () => {
     toast.error(error.message);
   }
 };
+
+const provider = new GoogleAuthProvider();
+
+const handleSignupWithGoogle = async () => {
+  try {
+    await signInWithPopup(auth, provider);
+    router.push("/dashboard");
+    // This gives you a Google Access Token. You can use it to access the Google API.
+    const credential = await GoogleAuthProvider.credentialFromResult(result);
+    const token = credential.accessToken;
+    // The signed-in user info.
+    // const user = result.user;
+    // console.log(user)
+  } catch (error) {
+    console.log(error);
+    // Handle Errors here.
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // The email of the user's account used.
+    // const email = error.customData.email;
+    // The AuthCredential type that was used.
+    // const credential = GoogleAuthProvider.credentialFromError(error);
+  }
+};
 </script>
 
 <style scoped>
@@ -117,22 +146,27 @@ const handleLogin = async () => {
 }
 
 .left__box h1 {
-  font-size: 3rem;
+  font-size: 4rem;
   margin-bottom: 1rem;
   font-weight: bold;
-  padding-top: 5rem;
+  margin-top: -15rem;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
 }
 
 .left__box p {
-  font-size: 2rem;
-  margin-left: 3rem;
+  font-size: 2.4rem;
   font-weight: bold;
+  margin-left: 2rem;
   color: #e67e22;
   align-self: flex-start;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
+}
+
+.left__box h1 span {
+  color: #e67e22;
+  font-weight: bold;
 }
 .right__box {
   flex: 1 1 60%;

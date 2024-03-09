@@ -22,7 +22,7 @@
         </div>
       </div>
       <div class="rightbox">
-        <h1>Write, read and connect with great minds on chatter</h1>
+        <h1>Write, read and connect with great minds on Read Along</h1>
         <p>
           Share people your great ideas, and also read write-ups based on your
           interests. connect with people of same interests and goals

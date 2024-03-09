@@ -10,7 +10,7 @@
         <ul>
           <li>Community</li>
           <li>Trending Blogs</li>
-          <li>Chatter for teams</li>
+          <li>Read Along for teams</li>
         </ul>
       </div>
       <div class="box1">

@@ -1,7 +1,7 @@
 <template>
   <section class="section">
     <div class="left__box">
-      <h1>WELCOME TO READ ALONG...</h1>
+      <h1>WELCOME TO READ <span>ALONG...</span></h1>
       <p>
         Unleash the Power of Words, Connect with Like-minded Readers and
         Writers...
@@ -69,8 +69,22 @@
 
             <div class="btn-box">
               <button @click="handleSignUp">Create account</button>
-              <button>Sign up with google</button>
-              <button>Sign up with LinkedIn</button>
+              <button @click="handleSignupWithGoogle">
+                Sign up with
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 488 512">
+                  <path
+                    d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"
+                  />
+                </svg>
+              </button>
+              <button @click="handleSignupWithX">
+                Sign up with
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                  <path
+                    d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"
+                  />
+                </svg>
+              </button>
             </div>
           </div>
         </form>
@@ -80,13 +94,19 @@
 </template>
 
 <script setup lang="ts">
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  GoogleAuthProvider,
+  TwitterAuthProvider,
+  signInWithPopup,
+} from "firebase/auth";
 import { auth } from "../utils/firebase.ts";
 import { toast } from "vue3-toastify";
 import { useVuelidate } from "@vuelidate/core";
 import { required, email, minLength, sameAs } from "@vuelidate/validators";
 import { reactive, computed } from "vue";
 import { useRouter } from "vue-router";
+import { useUserStore } from "../stores/pinia";
 
 const userRules = {
   email: { required, email },
@@ -133,6 +153,52 @@ const handleSignUp = async () => {
     toast.error(error.message);
   }
 };
+
+const handleSignupWithGoogle = async () => {
+  const provider = new GoogleAuthProvider();
+  try {
+    await signInWithPopup(auth, provider);
+    router.push("/dashboard");
+    // This gives you a Google Access Token. You can use it to access the Google API.
+    const credential = await GoogleAuthProvider.credentialFromResult(result);
+    const token = credential.accessToken;
+    // The signed-in user info.
+    // const user = result.user;
+    // console.log(user)
+  } catch (error) {
+    console.log(error);
+    // Handle Errors here.
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // The email of the user's account used.
+    // const email = error.customData.email;
+    // The AuthCredential type that was used.
+    // const credential = GoogleAuthProvider.credentialFromError(error);
+  }
+};
+
+const handleSignupWithX = async () => {
+  const provider = new TwitterAuthProvider();
+  try {
+    await signInWithPopup(auth, provider);
+    router.push("/dashboard");
+    // This gives you a Google Access Token. You can use it to access the Google API.
+    const credential = await TwitterAuthProvider.credentialFromResult(result);
+    const token = credential.accessToken;
+    // The signed-in user info.
+    // const user = result.user;
+    // console.log(user)
+  } catch (error) {
+    console.log(error);
+    // Handle Errors here.
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // The email of the user's account used.
+    // const email = error.customData.email;
+    // The AuthCredential type that was used.
+    // const credential = TwitterAuthProvider.credentialFromError(error);
+  }
+};
 </script>
 
 <style scoped>
@@ -155,22 +221,27 @@ const handleSignUp = async () => {
 }
 
 .left__box h1 {
-  font-size: 3rem;
+  font-size: 4rem;
   margin-bottom: 1rem;
   font-weight: bold;
-  padding-top: 20rem;
+  margin-top: -15rem;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
 }
 
 .left__box p {
-  font-size: 2rem;
-  margin-left: 3rem;
+  font-size: 2.5rem;
   font-weight: bold;
+  margin-left: 2rem;
   color: #e67e22;
+  align-self: flex-start;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
-  align-self: flex-start;
+}
+
+.left__box h1 span {
+  color: #e67e22;
+  font-weight: bold;
 }
 .right__box {
   flex: 1 1 60%;
@@ -313,10 +384,20 @@ small {
   background: rgba(355, 355, 355, 0.2);
   width: 98%;
   border: 3px solid #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
   &:hover {
     color: #fff;
     background: rgba(005, 005, 005, 0.2);
   }
+}
+
+.btn-box button svg {
+  height: 3rem;
+  width: 3rem;
+  fill: #e67e22;
 }
 
 @media (max-width: 640px) {
