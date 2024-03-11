@@ -27,7 +27,7 @@
           <h1 class="form__header">Welcome Back</h1>
           <div class="inner__form">
             <label for="email">
-              Email address: <br />
+              Email:<br />
               <input type="email" v-model="v$.email.$model" />
               <small v-if="v$.email.$errors.length > 0 && v$.email.$errors[0]">
                 {{ v$.email.$errors[0].$message }}

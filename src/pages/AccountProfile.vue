@@ -5,9 +5,9 @@
     <div class="left__section">
       <h2>PROFILE UPDATE</h2>
       <small v-if="!profile.photoUrl">click the box to upload image</small>
-      <div class="inner__box" v-if="!isLoading">
+      <div class="inner__box" v-if="profile.email || !isLoading">
         <div class="usericon__box" @click="fileInput?.click()">
-          <span class="" v-if="!profile.photoUrl">R.A</span>
+          <span class="" v-if="!profile.photoUrl">{{ profile.email.slice(0, 1) }}</span>
 
           <img :src="profile.photoUrl" alt="photo-url" class="" v-else />
 

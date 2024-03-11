@@ -2,9 +2,9 @@
   <router-view></router-view>
 </template>
 <script setup lang="ts">
-import { getAuth, onAuthStateChanged } from "firebase/auth";
-
-const auth = getAuth();
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "/src/utils/firebase";
+// const auth = getAuth();
 onAuthStateChanged(auth, (user) => {
   if (user) {
     // User is signed in, see docs for a list of available properties
