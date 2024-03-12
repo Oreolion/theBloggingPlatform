@@ -3,7 +3,7 @@
 </template>
 <script setup lang="ts">
 import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "/src/utils/firebase";
+import { auth } from "../src/utils/firebase";
 // const auth = getAuth();
 onAuthStateChanged(auth, (user) => {
   if (user) {
