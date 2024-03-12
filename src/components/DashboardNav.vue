@@ -150,13 +150,14 @@ const handleLogout = async () => {
 .logo {
   color: #e67e22;
   font-weight: bold;
-  font-size: 2rem;
   margin-right: auto;
 }
 
 h3 {
   line-height: 1;
   letter-spacing: 0.7;
+  font-size: 1.8rem;
+  text-align: center;
 }
 
 h3 span {
@@ -169,7 +170,7 @@ h3 span {
 }
 
 .logo p {
-  font-size: 1.3rem;
+  font-size: 1rem;
   font-weight: bold;
   letter-spacing: 1px;
   padding: 0.5rem;
@@ -205,10 +206,6 @@ h3 span {
 .logo {
   margin: 1rem 0;
   margin-bottom: 2rem;
-}
-
-.logo p {
-  font-size: 1rem;
 }
 
 .mobile {

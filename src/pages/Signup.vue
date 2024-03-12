@@ -266,17 +266,13 @@ const handleSignupWithX = async () => {
   line-height: 1;
   letter-spacing: 0.7;
   color: #e67e22;
-}
-
-.logo p {
-  font-size: 1.3rem;
-  letter-spacing: 1px;
-  padding-left: 4px;
+  font-size: 1.8rem;
+  text-align: center;
 }
 
 h3 span {
   color: #ccc;
-  background-color: #e67e22;
+  background-color: green;
   border-top-left-radius: 6px;
   border-bottom-right-radius: 6px;
   padding: 0.2rem;
@@ -284,7 +280,7 @@ h3 span {
 }
 
 .logo p {
-  font-size: 1.3rem;
+  font-size: 1rem;
   font-weight: bold;
   letter-spacing: 1px;
   padding: 0.5rem;

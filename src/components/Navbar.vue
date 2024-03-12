@@ -108,14 +108,10 @@ let toggleMenu = () => {
   line-height: 1;
   letter-spacing: 0.7;
   color: #e67e22;
-  font-size: 2.5rem;
+  font-size: 1.8rem;
+  text-align: center;
 }
 
-.logo p {
-  font-size: 1.3rem;
-  letter-spacing: 1px;
-  padding-left: 4px;
-}
 
 h3 span {
   color: #ccc;
@@ -127,7 +123,7 @@ h3 span {
 }
 
 .logo p {
-  font-size: 1.3rem;
+  font-size: 1rem;
   font-weight: bold;
   letter-spacing: 1px;
   padding: 0.5rem;

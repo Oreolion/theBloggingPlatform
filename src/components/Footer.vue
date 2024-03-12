@@ -99,6 +99,8 @@ footer {
   font-size: 2.3rem;
   font-weight: bold;
   margin-bottom: 2rem;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
 }
 
 .footer li {
@@ -106,7 +108,8 @@ footer {
   font-weight: bold;
   margin-bottom: 1rem;
   white-space: nowrap;
-  font-family: "Gilroy-Regular", sans-serif;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
   cursor: pointer;
   &:hover {
     color: #e67e22;
