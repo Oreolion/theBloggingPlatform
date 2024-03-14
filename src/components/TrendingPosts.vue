@@ -73,8 +73,8 @@
 
 <style scoped>
 section {
-  margin-bottom: 10rem;
-  padding-bottom: 10rem;
+  margin-bottom: 3rem;
+  padding-bottom: 3rem;
 }
 .post__box {
   display: flex;
@@ -159,7 +159,7 @@ section {
 
 @media (max-width: 480px) {
   section {
-    margin-bottom: 8rem;
+    margin-bottom: 2rem;
     padding-bottom: 0;
   }
 
