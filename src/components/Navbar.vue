@@ -87,7 +87,7 @@ let toggleMenu = () => {
   top: 0;
   left: 0;
   right: 0;
-  background: #bbb;
+  background: rgba(295, 295, 295, 0.7);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -110,6 +110,9 @@ let toggleMenu = () => {
   color: #e67e22;
   font-size: 1.8rem;
   text-align: center;
+  font-weight: bold;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
 }
 
 
@@ -120,6 +123,8 @@ h3 span {
   border-bottom-right-radius: 6px;
   padding: 0.2rem;
   font-weight: bold;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
 }
 
 .logo p {
@@ -131,6 +136,8 @@ h3 span {
   background: rgba(05, 05, 05, 0.5);
   border-top-right-radius: 1rem;
   border-bottom-left-radius: 1rem;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
 }
 
 .logo p span {
@@ -138,9 +145,8 @@ h3 span {
   font-weight: bold;
   border-radius: 0.4rem;
   letter-spacing: 0.2;
-
   padding: 0.2rem;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   text-transform: uppercase;
 }
 

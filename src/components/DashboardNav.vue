@@ -114,7 +114,7 @@
           <p>Notifications</p>
         </div>
       </li>
-      <li @click="handleLogout">
+      <li class="logout" @click="handleLogout">
         <div class="link">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
             <path
@@ -151,12 +151,15 @@ const handleLogout = async () => {
   color: #e67e22;
   font-weight: bold;
   margin-right: auto;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
 }
 
 h3 {
   line-height: 1;
   letter-spacing: 0.7;
   font-size: 1.8rem;
+  font-weight: bold;
   text-align: center;
 }
 
@@ -182,17 +185,18 @@ h3 span {
 
 .logo p span {
   background: rgba(355, 355, 355, 0.3);
+  background-color: green;
   font-weight: bold;
   border-radius: 0.4rem;
   padding: 0.2rem;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
 }
 .dashboard__nav {
   position: fixed;
   top: 0;
   left: 0;
   padding: 2rem 3rem;
-  width: 25rem;
+  width: 27rem;
   height: 100vh;
   background: rgba(0, 0, 05, 0.8);
   color: #ccc;
@@ -220,6 +224,7 @@ h3 span {
   white-space: nowrap;
   cursor: pointer;
   font-weight: bold;
+  font-size: 1.7rem;
   color: #ddd;
   &:hover {
     letter-spacing: 1px;
@@ -235,7 +240,7 @@ h3 span {
   width: 2.3rem;
 }
 
-.dashboard__navlists li:last-child {
+.dashboard__navlists .logout {
   color: red;
   font-weight: bold;
 }

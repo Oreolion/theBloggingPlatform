@@ -165,9 +165,8 @@ const handleSignupWithGoogle = async () => {
     // const user = result.user;
     // console.log(user)
   } catch (error) {
-    console.log(error);
     // Handle Errors here.
-    console.log(error)
+    console.log(error);
     // const errorCode = error.code;
     // const errorMessage = error.message;
     // The email of the user's account used.

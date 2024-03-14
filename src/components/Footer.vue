@@ -38,19 +38,17 @@
 <style scoped>
 .logo {
   color: #e67e22;
-  font-size: 2rem;
 }
 
 .logo h3 {
   line-height: 1;
   letter-spacing: 0.7;
   color: #e67e22;
-}
-
-.logo p {
-  font-size: 1.3rem;
-  letter-spacing: 1px;
-  padding-left: 4px;
+  font-weight: bold;
+  font-size: 1.8rem;
+  text-align: center;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
 }
 
 h3 span {
@@ -63,7 +61,7 @@ h3 span {
 }
 
 .logo p {
-  font-size: 1.3rem;
+  font-size: 1rem;
   font-weight: bold;
   letter-spacing: 1px;
   padding: 0.5rem;
@@ -72,18 +70,20 @@ h3 span {
   border-top-right-radius: 1rem;
   border-bottom-left-radius: 1rem;
   white-space: nowrap;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
 }
 
 .logo p span {
-  background: rgba(355, 355, 355, 0.3);
   font-weight: bold;
   border-radius: 0.4rem;
   padding: 0.2rem;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
+  background-color: green;
 }
 
 footer {
-  background: #bbb;
+  background: rgba(295, 295, 295, 0.7);
 }
 
 .inner-footer {

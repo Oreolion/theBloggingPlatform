@@ -4,7 +4,6 @@
   --orange: #e67e22;
   --black: #333;
   --light-color: #777;
-  --border: 0.1rem solid rgba(0, 0, 0, 0.2);
   --box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
 }
 
@@ -22,7 +21,7 @@
 }
 
 html {
-  font-size: 62.5%;
+  font-size: 60%;
   overflow-x: hidden;
   scroll-behavior: smooth;
   scroll-padding-top: 6rem;

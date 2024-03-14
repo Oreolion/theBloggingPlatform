@@ -359,7 +359,7 @@ h3 span {
   top: 0;
   left: 0;
   right: 0;
-  background: #bbb;
+  background: rgba(295, 295, 295, 0.7);
   display: flex;
   justify-content: space-between;
   align-items: center;
