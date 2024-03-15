@@ -27,22 +27,29 @@
       >
         <div class="user__profile">
           <div class="user__image">
-            <img :src="post.photoImage" alt="picture" />
+            <span class="" v-if="!profile.photoURL">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                <path
+                  d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"
+                /></svg
+            ></span>
+            <img :src="profile.photoURL" alt="picture" v-else />
           </div>
           <div class="user__info">
             <h3 class="username">
-              {{ post.postTitle }}
+              Name: {{ profile.displayName.toUpperCase() }} || Email:
+              {{ profile.email }}
             </h3>
             <div>
               <p class="userrole">
-                {{ post.postTitle }}
+                {{ profile.displayName }}
               </p>
               <p class="p1">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                   <path
                     d="M256 0a256 256 0 1 1 0 512A256 256 0 1 1 256 0zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z"
                   /></svg
-                >{{ post.userId }}
+                >{{ setCurrentDate() }}
               </p>
             </div>
           </div>
@@ -51,9 +58,6 @@
         <div class="postheader">
           <h2>{{ post.postTitle }}</h2>
           <p>{{ post.content }}</p>
-          <a :href="blogsData[0].url"
-            >Click here to continue Reading this Article...</a
-          >
         </div>
         <div class="image">
           <img :src="post.photoImage" alt="" />
@@ -85,7 +89,7 @@
                   d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z"
                 />
               </svg>
-              <span>({{ post.postTitle }}) </span>
+              <span>(20) </span>
             </a>
           </div>
         </div>
@@ -184,7 +188,8 @@ import {
   query,
 } from "firebase/firestore";
 import { db } from "../utils/firebase";
-
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../utils/firebase";
 import { ref, reactive, onMounted } from "vue";
 import axios from "axios";
 
@@ -282,9 +287,35 @@ const fetchRandomUsers = async () => {
 
 let posts: NewPost[] = reactive([]);
 
+let profile = reactive({
+  photoURL: "",
+  displayName: "",
+  email: "",
+});
+
 const handleBlogInputField = () => {
   return (togglePostInput.value = false);
 };
+const setCurrentDate = () => {
+  const currentDate = new Date();
+  const year = currentDate.getFullYear();
+  const month = currentDate.getMonth() + 1; // Adding 1 since months are zero-based
+  const day = currentDate.getDate();
+
+  // Format the date as needed
+  let formattedDate = `${day}-${month}-${year}`;
+
+  return formattedDate;
+};
+
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    isLoading.value = false;
+    profile.photoURL = user.photoURL ?? "";
+    profile.displayName = user.displayName ?? "";
+    profile.email = user.email ?? "";
+  }
+});
 
 const handleUpdateBlogPosts = async () => {
   const postRef = collection(db, "blogpost");
@@ -359,11 +390,11 @@ onMounted(async () => {
 }
 
 .postheader a {
-    color: green;
-    font-weight: bold;
-    &:hover {
-        letter-spacing: 1px;
-    }
+  color: green;
+  font-weight: bold;
+  &:hover {
+    letter-spacing: 1px;
+  }
 }
 
 .leftbox p {
@@ -417,6 +448,13 @@ onMounted(async () => {
   height: 7rem;
   border-radius: 50%;
   background-color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user__image svg {
+    fill: #e67e22;
 }
 
 .user__image img {
