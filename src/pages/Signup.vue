@@ -1,7 +1,10 @@
 <template>
   <section class="section">
     <div class="left__box">
-      <h1>WELCOME TO <br/> READ <span>ALONG...</span></h1>
+      <h1>
+        WELCOME TO <br />
+        READ <span>ALONG...</span>
+      </h1>
       <p>
         Unleash the Power of Words, Connect with Like-minded Readers and
         Writers...
@@ -408,7 +411,6 @@ h3 span {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 2rem;
   color: #e67e22;
 }
 
@@ -514,8 +516,13 @@ small {
 }
 
 @media (max-width: 480px) {
+  .section {
+    padding: 3rem 0%;
+  }
   .right__box {
     display: flex;
+    padding: 2rem 2%;
+    margin-left: -10rem;
   }
 
   .inner__form label input {

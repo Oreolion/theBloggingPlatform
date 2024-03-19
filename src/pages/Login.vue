@@ -2,7 +2,8 @@
   <section class="section">
     <div class="left__box">
       <h1>
-        WELCOME TO <br /> READ 
+        WELCOME TO <br />
+        READ
         <span>ALONG...</span>
       </h1>
       <p>
@@ -337,7 +338,6 @@ h3 span {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 2rem;
 }
 
 .right__box .navigatepagebtn-box button {
@@ -384,7 +384,7 @@ br {
 }
 
 .inner__form label input {
-  height: 4rem;
+  height: 5rem;
   width: 100%;
   padding: 0 1rem;
 }
@@ -419,6 +419,9 @@ small {
   width: 3rem;
 }
 @media (max-width: 640px) {
+  .section {
+    padding: 5rem 0%;
+  }
   .left__box {
     display: none;
   }
@@ -427,6 +430,12 @@ small {
 @media (max-width: 480px) {
   .right__box {
     display: flex;
+    padding: 2rem 0;
+  }
+
+  .right__box form {
+    padding: 2rem;
+
   }
 
   .right__box h1 {
@@ -442,7 +451,6 @@ small {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-left: 4rem;
     width: 30rem;
   }
 
