@@ -1,11 +1,20 @@
 <template>
   <section class="section">
     <div class="left__box">
-      <h1>WELCOME TO READ <span>ALONG...</span></h1>
+      <h1>
+        WELCOME TO <br /> READ 
+        <span>ALONG...</span>
+      </h1>
       <p>
         Unleash the Power of Words, Connect with Like-minded Readers and
         Writers...
       </p>
+      <div class="imgbox">
+        <img
+          src="../assets/images/3d-hygge-isometric-view-of-young-woman-working-in-vr-headset.png"
+          alt=""
+        />
+      </div>
     </div>
     <div class="right__box">
       <div>
@@ -215,33 +224,37 @@ const handleSignupWithGoogle = async () => {
 <style scoped>
 .section {
   display: flex;
-  padding: 0;
+  padding: 6rem 7%;
+  background: #000;
 }
 
 .left__box {
-  flex: 1 1 40%;
-  background: url("../assets/images/windows-YzLMmxDTrvI-unsplash.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  padding-left: -4rem;
+  flex: 1 1 50%;
+  background: #000;
+  margin-top: -1rem;
+  padding: 3rem;
+  border-right: 10px solid #e67e22;
+  box-shadow: 4px 8px 16px rgb(215, 215, 215, 0.6);
+  border-radius: 3rem;
   display: flex;
+  gap: 3rem;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
 .left__box h1 {
-  font-size: 3.5rem;
+  font-size: 4.5rem;
   margin-bottom: 1rem;
+  margin-top: -5rem;
+  color: #ccc;
   font-weight: bold;
-  margin-top: -15rem;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
 }
 
 .left__box p {
-  font-size: 2.2rem;
+  font-size: 3rem;
   font-weight: bold;
   margin-left: 2rem;
   color: #e67e22;
@@ -255,7 +268,7 @@ const handleSignupWithGoogle = async () => {
   font-weight: bold;
 }
 .right__box {
-  flex: 1 1 60%;
+  flex: 1 1 50%;
   padding: 2rem;
   padding-top: 10rem;
   display: flex;
@@ -340,12 +353,10 @@ h3 span {
   &:hover {
     box-shadow: 4px 8px 16px rgba(225, 225, 225, 0.4);
   }
-
-  
 }
 
 .right__box .navigatepagebtn-box button:last-child {
-    border-bottom: 0.5rem solid green;
+  border-bottom: 0.5rem solid green;
 }
 
 .navigatepagebtn-box button > * {

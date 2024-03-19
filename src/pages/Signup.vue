@@ -1,11 +1,17 @@
 <template>
   <section class="section">
     <div class="left__box">
-      <h1>WELCOME TO READ <span>ALONG...</span></h1>
+      <h1>WELCOME TO <br/> READ <span>ALONG...</span></h1>
       <p>
         Unleash the Power of Words, Connect with Like-minded Readers and
         Writers...
       </p>
+      <div class="imgbox">
+        <img
+          src="../assets/images/3d-hygge-top-view-of-colleagues-discussing-work-project.png"
+          alt=""
+        />
+      </div>
     </div>
     <div class="right__box">
       <div>
@@ -286,35 +292,49 @@ const handleSignupWithX = async () => {
 <style scoped>
 .section {
   display: flex;
-  padding: 0;
+  padding: 7rem 7%;
+  background: #000;
+  gap: 4rem;
+  /* padding: 4rem 10%; */
 }
 
 .left__box {
-  flex: 1 1 40%;
-  background: url("../assets/images/windows-YzLMmxDTrvI-unsplash.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  padding-left: -4rem;
+  flex: 1 1 50%;
+  padding: 4rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  border-right: 10px solid #e67e22;
+  box-shadow: 4px 8px 16px rgb(215, 215, 215, 0.6);
+  border-radius: 3rem;
 }
 
+.imgbox {
+  height: 50rem;
+  margin-top: 8rem;
+}
+
+img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
 .left__box h1 {
-  font-size: 3.5rem;
-  margin-bottom: 1rem;
+  font-size: 4.5rem;
+  margin-bottom: 3rem;
+  color: #ccc;
   font-weight: bold;
-  margin-top: -15rem;
+  margin-top: -5rem;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
 }
 
 .left__box p {
-  font-size: 2.2rem;
+  font-size: 3rem;
   font-weight: bold;
   margin-left: 2rem;
+  margin-bottom: 4rem;
   color: #e67e22;
   align-self: flex-start;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
@@ -326,13 +346,12 @@ const handleSignupWithX = async () => {
   font-weight: bold;
 }
 .right__box {
-  flex: 1 1 60%;
+  flex: 1 1 50%;
   padding: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: #000;
   color: #fff;
 }
 
@@ -393,7 +412,6 @@ h3 span {
   color: #e67e22;
 }
 
-
 .navigatepagebtn-box button > * {
   color: #e67e22;
   font-weight: bold;
@@ -415,7 +433,7 @@ h3 span {
 }
 
 .right__box .navigatepagebtn-box button:first-child {
-    border-bottom: 0.5rem solid green;
+  border-bottom: 0.5rem solid green;
 }
 
 .form__header {

@@ -1,7 +1,7 @@
 
 # A BLOGGING PLATFORM
 
-Welcome to the Read Along Blog App! This is a platform where users can publish and engage with content across various categories, such tech, science, travels, metaphysics, machine learning and more.
+Welcome to the Read Along Blog App! This is a platform where users can publish and engage with content across various categories, such as tech, science, travels, metaphysics, machine learning and more.
 
 ![The Read Along Blog App](https://the-read-along-blog.firebaseapp.com/)
 
