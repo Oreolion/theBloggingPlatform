@@ -2,6 +2,7 @@ import { createRouter, createWebHashHistory } from "vue-router";
 import LandingPage from "../pages/LandingPage.vue";
 import Dashboard from "../layouts/dashboard.vue";
 import PostAnalyticsVue from "../pages/PostAnalytics.vue";
+import NoContentPage from "../components/NoContentPage.vue";
 import NotFound from "../pages/NotFound.vue";
 import SignupPageVue from "../pages/Signup.vue";
 import LoginVue from "../pages/Login.vue";
@@ -30,6 +31,13 @@ const router = createRouter({
         path: "/dashboard/postanalytics",
         name: "post-analytics",
         component: PostAnalyticsVue,
+        meta: { requiresAuth: true },
+
+      },
+    {
+        path: "/dashboard/nocontent",
+        name: "no-content-page",
+        component: NoContentPage,
         meta: { requiresAuth: true },
 
       },

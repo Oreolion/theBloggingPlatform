@@ -21,34 +21,34 @@
         </router-link>
       </li>
       <li>
-        <div class="link" @click="">
+        <router-link class="link" to="/dashboard/nocontent">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
             <path
               d="M0 48V487.7C0 501.1 10.9 512 24.3 512c5 0 9.9-1.5 14-4.4L192 400 345.7 507.6c4.1 2.9 9 4.4 14 4.4c13.4 0 24.3-10.9 24.3-24.3V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48z"
             />
           </svg>
-          <p>Bookmarks</p>
-        </div>
+          Bookmarks
+        </router-link>
       </li>
       <li>
-        <div class="link">
+        <router-link to="/dashboard/nocontent" class="link">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
             <path
               d="M208 352c114.9 0 208-78.8 208-176S322.9 0 208 0S0 78.8 0 176c0 38.6 14.7 74.3 39.6 103.4c-3.5 9.4-8.7 17.7-14.2 24.7c-4.8 6.2-9.7 11-13.3 14.3c-1.8 1.6-3.3 2.9-4.3 3.7c-.5 .4-.9 .7-1.1 .8l-.2 .2 0 0 0 0C1 327.2-1.4 334.4 .8 340.9S9.1 352 16 352c21.8 0 43.8-5.6 62.1-12.5c9.2-3.5 17.8-7.4 25.3-11.4C134.1 343.3 169.8 352 208 352zM448 176c0 112.3-99.1 196.9-216.5 207C255.8 457.4 336.4 512 432 512c38.2 0 73.9-8.7 104.7-23.9c7.5 4 16 7.9 25.2 11.4c18.3 6.9 40.3 12.5 62.1 12.5c6.9 0 13.1-4.5 15.2-11.1c2.1-6.6-.2-13.8-5.8-17.9l0 0 0 0-.2-.2c-.2-.2-.6-.4-1.1-.8c-1-.8-2.5-2-4.3-3.7c-3.6-3.3-8.5-8.1-13.3-14.3c-5.5-7-10.7-15.4-14.2-24.7c24.9-29 39.6-64.7 39.6-103.4c0-92.8-84.9-168.9-192.6-175.5c.4 5.1 .6 10.3 .6 15.5z"
             />
           </svg>
           <p>Team Blog</p>
-        </div>
+        </router-link>
       </li>
       <li>
-        <div class="link" @click="">
+        <router-link class="link" to="/dashboard/nocontent">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
             <path
               d="M469.3 19.3l23.4 23.4c25 25 25 65.5 0 90.5l-56.4 56.4L322.3 75.7l56.4-56.4c25-25 65.5-25 90.5 0zM44.9 353.2L299.7 98.3 413.7 212.3 158.8 467.1c-6.7 6.7-15.1 11.6-24.2 14.2l-104 29.7c-8.4 2.4-17.4 .1-23.6-6.1s-8.5-15.2-6.1-23.6l29.7-104c2.6-9.2 7.5-17.5 14.2-24.2zM249.4 103.4L103.4 249.4 16 161.9c-18.7-18.7-18.7-49.1 0-67.9L94.1 16c18.7-18.7 49.1-18.7 67.9 0l19.8 19.8c-.3 .3-.7 .6-1 .9l-64 64c-6.2 6.2-6.2 16.4 0 22.6s16.4 6.2 22.6 0l64-64c.3-.3 .6-.7 .9-1l45.1 45.1zM408.6 262.6l45.1 45.1c-.3 .3-.7 .6-1 .9l-64 64c-6.2 6.2-6.2 16.4 0 22.6s16.4 6.2 22.6 0l64-64c.3-.3 .6-.7 .9-1L496 350.1c18.7 18.7 18.7 49.1 0 67.9L417.9 496c-18.7 18.7-49.1 18.7-67.9 0l-87.4-87.4L408.6 262.6z"
             />
           </svg>
           <p>Drafts</p>
-        </div>
+        </router-link>
       </li>
       <li>
         <router-link class="link" to="/dashboard/postanalytics">
@@ -62,34 +62,29 @@
       </li>
       <h5>Trending Tags</h5>
       <li>
-        <div class="link" @click="">
-          <p>Programming</p>
-        </div>
+        <router-link class="link" to="/dashboard/nocontent">
+          Programming
+        </router-link>
       </li>
       <li>
-        <div class="link" @click="">
-          <p>Data Science</p>
-        </div>
+        <router-link class="link" to="/dashboard/nocontent">
+          Data Science
+        </router-link>
       </li>
       <li>
-        <div class="link">
-          <p>Metaphysics</p>
-        </div>
+        <router-link class="link" to="/dashboard/nocontent">
+          Metaphysics
+        </router-link>
       </li>
       <li>
-        <div class="link" @click="">
-          <p>Machine Learning</p>
-        </div>
+        <router-link class="link" to="/dashboard/nocontent">
+          Machine Learning
+        </router-link>
       </li>
       <li>
-        <div class="link" @click="">
-          <p>Politics</p>
-        </div>
-      </li>
-      <li>
-        <div class="link" @click="">
-          <p>See all</p>
-        </div>
+        <router-link class="link" to="/dashboard/nocontent">
+          Politics
+        </router-link>
       </li>
 
       <h5>Personal</h5>
@@ -105,16 +100,16 @@
         </router-link>
       </li>
       <li>
-        <div class="link" @Click="">
+        <router-link class="link" to="/dashboard/nocontent">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
             <path
               d="M224 0c-17.7 0-32 14.3-32 32V51.2C119 66 64 130.6 64 208v18.8c0 47-17.3 92.4-48.5 127.6l-7.4 8.3c-8.4 9.4-10.4 22.9-5.3 34.4S19.4 416 32 416H416c12.6 0 24-7.4 29.2-18.9s3.1-25-5.3-34.4l-7.4-8.3C401.3 319.2 384 273.9 384 226.8V208c0-77.4-55-142-128-156.8V32c0-17.7-14.3-32-32-32zm45.3 493.3c12-12 18.7-28.3 18.7-45.3H224 160c0 17 6.7 33.3 18.7 45.3s28.3 18.7 45.3 18.7s33.3-6.7 45.3-18.7z"
             />
           </svg>
-          <p>Notifications</p>
-        </div>
+          Notifications
+        </router-link>
       </li>
-      <li class="logout" @click="handleLogout">
+      <li @click="handleLogout">
         <div class="link">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
             <path
