@@ -522,7 +522,7 @@ small {
   .right__box {
     display: flex;
     padding: 2rem 2%;
-    margin-left: -10rem;
+    margin-left: -6rem;
   }
 
   .inner__form label input {

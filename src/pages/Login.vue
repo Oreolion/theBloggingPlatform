@@ -431,6 +431,7 @@ small {
   .right__box {
     display: flex;
     padding: 2rem 0;
+    margin-left: -8rem;
   }
 
   .right__box form {
