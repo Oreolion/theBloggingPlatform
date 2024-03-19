@@ -3,6 +3,8 @@ import { render, screen, fireEvent } from "@testing-library/vue";
 import Login from "../pages/Login.vue";
 
 describe("Login test suite", () => {
+
+   
   it("should render correctly", () => {
     render(Login);
   });
