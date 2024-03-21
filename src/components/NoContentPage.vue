@@ -4,7 +4,7 @@
   <section>
     <article class="post">
       <h3>
-        Their is currently no content to Display, refresh or check back later...
+        There is currently no content to Display, refresh or check back later...
       </h3>
     </article>
   </section>

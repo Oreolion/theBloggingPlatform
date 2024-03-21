@@ -148,6 +148,7 @@
       </div>
     </div>
   </section>
+  <Footer></Footer>
 </template>
 
 <script setup lang="ts">
@@ -162,6 +163,7 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
 } from "firebase/auth";
+import Footer from "../components/Footer.vue";
 const user = reactive({
   email: "",
   password: "",
@@ -190,6 +192,9 @@ const handleLogin = async () => {
       localStorage.setItem("isLoggedIn", "true");
 
       router.push("/dashboard");
+      toast.success("You are Logged In", {
+        autoClose: 8000,
+      });
     }
   } catch (error: any) {
     console.log(error);
@@ -278,6 +283,10 @@ const handleSignupWithGoogle = async () => {
   justify-content: center;
   background: #000;
   color: #fff;
+  border-right: 2px solid #e67e22;
+  border-top: 10px solid #e67e22;
+  border-bottom: 10px solid #e67e22;
+  border-radius: 3rem;
 }
 
 .logo {
@@ -431,12 +440,11 @@ small {
   .right__box {
     display: flex;
     padding: 2rem 0;
-    margin-left: -8rem;
+    margin-left: -10rem;
   }
 
   .right__box form {
     padding: 2rem;
-
   }
 
   .right__box h1 {
@@ -485,6 +493,10 @@ small {
 }
 
 @media (max-width: 320px) {
+
+    .right__box {
+        margin-left: -15rem;
+    }
   .right__box h1 {
     font-size: 1.8rem;
   }

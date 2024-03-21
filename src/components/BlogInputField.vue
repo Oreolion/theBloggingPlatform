@@ -79,24 +79,17 @@
           @change="handleFileChange"
         />
       </div>
-      <div class="imgbox" v-else v-if="!upload">
+      <div class="imgbox" v-if="!upload">
         <img :src="photoImage" alt=".." />
       </div>
 
       <div class="inputbox" v-if="!upload">
+        <input type="text" placeholder="Title" class="blog__title" />
         <input
           type="text"
-          placeholder="Title"
-          v-model="post.postTitle"
-          class="blog__title"
-        />
-        <input
-          type="text"
-          placeholder="Write a Post....."
+          placeholder="click here to write..."
           class="blog__post"
           @click="handleInputcontent"
-          @change="handleInputcontent"
-          @mouseenter="handleInputcontent"
         />
       </div>
       <input
@@ -108,18 +101,17 @@
       />
       <input
         v-if="photoImage"
+        style="width: 100%;, font-size: 1.2rem;"
         type="text"
-        placeholder="Write a Post....."
+        placeholder="click here to write..."
         class="otherblog__post"
         @click="handleInputcontent"
-        @change="handleInputcontent"
-        @mouseenter="handleInputcontent"
       />
     </div>
 
     <div class="blog__content" v-if="inputContent">
       <VMarkdownEditor
-        style="background-color: transparent"
+       
         v-model="post.content"
         locale="en"
         :upload-action="handleUpload"
@@ -134,6 +126,8 @@ import { ref, reactive } from "vue";
 // @ts-ignore
 import { VMarkdownEditor } from "vue3-markdown";
 import "vue3-markdown/dist/style.css";
+import { toast } from "vue3-toastify";
+
 import { setDoc, doc } from "firebase/firestore";
 import { db } from "../utils/firebase";
 import useFileUpload from "../composables/fileUpload";
@@ -174,8 +168,8 @@ const handleInputcontent = () => {
 };
 
 const handlePostInput = () => {
-    emit("removeBlogInputField", closeInput);
-    !props.togglePostInput
+  emit("removeBlogInputField", closeInput);
+  !props.togglePostInput;
   return (closeInput.value = !closeInput.value);
 };
 
@@ -213,18 +207,22 @@ const createBlogPost = async (data: {
   }
 };
 
-const handleSubmit = () => {
+const handleSubmit = async () => {
   if (!post.postTitle || !post.photoImage || !post.content) {
     alert("please fill all the fields");
     return;
   }
   console.log("I am submitting...");
 
-  createBlogPost({
+  await createBlogPost({
     userId: post.postTitle,
     postTitle: post.postTitle,
     content: post.content,
     photoImage: post.photoImage,
+  });
+
+  toast.success("Post Added Successfully", {
+    autoClose: 8000,
   });
 
   post.postTitle = "";
@@ -338,6 +336,7 @@ const handleSubmit = () => {
 .bloginput__box .inputbox {
   display: flex;
   flex-direction: column;
+  z-index: 11;
 }
 
 .icons__box {

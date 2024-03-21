@@ -181,6 +181,7 @@
       </div>
     </div>
   </section>
+  <Footer></Footer>
 </template>
 
 <script setup lang="ts">
@@ -196,8 +197,13 @@ import { useVuelidate } from "@vuelidate/core";
 import { required, email, minLength, sameAs } from "@vuelidate/validators";
 import { reactive, computed } from "vue";
 import { useRouter } from "vue-router";
+import { setDoc, doc } from "firebase/firestore";
+import { db } from "../utils/firebase";
+import Footer from "../components/Footer.vue";
 
 const userRules = {
+  firstname: { required },
+  lastname: { required },
   email: { required, email },
   password: { required, minLength: minLength(8) },
   confirmPassword: {
@@ -234,14 +240,34 @@ const handleSignUp = async () => {
     console.log(response);
     if (response.user) {
       localStorage.setItem("isLoggedIn", "true");
-      localStorage.setItem("firstname", user.firstname);
-      localStorage.setItem("lastname", user.lastname);
+      await createUser({
+        userId: response.user.uid,
+        firstname: user.firstname,
+        lastname: user.lastname,
+        typeOfUser: user.typeOfUser,
+      });
 
       router.push("/dashboard");
+      toast.success("You are Logged In", {
+        autoClose: 8000,
+      });
     }
   } catch (error: any) {
     console.log(error);
     toast.error(error.message);
+  }
+};
+
+const createUser = async (data: {
+  userId: string;
+  firstname: string;
+  typeOfUser: string;
+  lastname: string;
+}) => {
+  try {
+    await setDoc(doc(db, "users", data.userId), { ...data });
+  } catch (error) {
+    console.log(error);
   }
 };
 
@@ -250,15 +276,17 @@ const handleSignupWithGoogle = async () => {
   try {
     await signInWithPopup(auth, provider);
     router.push("/dashboard");
+    toast.success("You are Logged In");
     // This gives you a Google Access Token. You can use it to access the Google API.
     // const credential = await GoogleAuthProvider.credentialFromResult(result);
     // const token = credential.accessToken;
     // The signed-in user info.
     // const user = result.user;
     // console.log(user)
-  } catch (error) {
+  } catch (error: any) {
     // Handle Errors here.
     console.log(error);
+    toast.error(error.message);
     // const errorCode = error.code;
     // const errorMessage = error.message;
     // The email of the user's account used.
@@ -297,7 +325,6 @@ const handleSignupWithX = async () => {
   display: flex;
   padding: 7rem 7%;
   background: #000;
-  gap: 4rem;
   /* padding: 4rem 10%; */
 }
 
@@ -356,6 +383,10 @@ img {
   align-items: center;
   justify-content: center;
   color: #fff;
+  border-right: 2px solid #e67e22;
+  border-top: 10px solid #e67e22;
+  border-bottom: 10px solid #e67e22;
+  border-radius: 3rem;
 }
 
 .logo {
@@ -521,19 +552,51 @@ small {
   }
   .right__box {
     display: flex;
-    padding: 2rem 2%;
-    margin-left: -6rem;
+    padding: 2rem 3%;
+    margin-left: -2rem;
+  }
+
+  .inner__form .name {
+    width: 85%;
+  }
+
+  .right__box .navigatepagebtn-box button {
+    width: 30%;
+  }
+
+  .right__box h1 {
+    margin-left: -13rem;
+  }
+
+  .right__box > div > svg {
+    margin-left: -9rem;
+  }
+
+  .logo {
+    margin-left: 13rem;
+  }
+
+  .right__box .navigatepagebtn-box {
+    margin-left: -11rem;
   }
 
   .inner__form label input {
     width: 100%;
     margin-right: 3rem;
   }
+
+  .btn-box button {
+    width: 78%;
+  }
 }
 
 @media (max-width: 320px) {
+  .right__box {
+    margin-left: -1rem;
+  }
   .right__box h1 {
     font-size: 1.8rem;
+    margin-left: -16rem;
   }
 
   .inner__form select,
@@ -541,8 +604,33 @@ small {
     font-size: 1.2rem;
   }
 
+  .inner__form .name {
+    width: 70%;
+  }
+
+  .right__box > div > svg {
+    margin-left: -14rem;
+  }
+
+  .logo {
+    margin-left: 8rem;
+  }
+
+  .right__box .navigatepagebtn-box {
+    margin-left: -19rem;
+  }
+
+  .inner__form label input {
+    width: 90%;
+    margin-right: 3rem;
+  }
+
+  .btn-box button {
+    width: 65%;
+  }
+
   .right__box .navigatepagebtn-box button {
-    width: 35%;
+    width: 20%;
     color: #e67e22;
     font-weight: bold;
     &:hover {

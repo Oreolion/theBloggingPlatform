@@ -32,8 +32,8 @@
           <input type="text" v-model="profile.firstname" />
           <label htmlFor="lastname">Lastname</label>
           <input type="text" v-model="profile.lastname" />
-          <label htmlFor="country">Country</label>
-          <input type="text" v-model="profile.country" />
+          <label htmlFor="country">Type Of User</label>
+          <input type="text" v-model="profile.typeOfUser" />
 
           <button type="button" @click="handleProfileUpdate">
             Update Info
@@ -68,12 +68,11 @@ const fileInput = ref<HTMLInputElement | null>();
 
 const profile = reactive({
   email: "",
-  username: "",
   displayName: "",
-  firstname: localStorage.getItem("firstname") || "",
-  lastname: localStorage.getItem("lastname") || "",
+  firstname: "",
+  lastname: "",
   photoUrl: "",
-  country: "",
+  typeOfUser: "",
 });
 
 const handleProfileUpdate = async () => {

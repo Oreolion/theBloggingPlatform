@@ -127,6 +127,7 @@
 // import { ref } from "vue";
 import { getAuth, signOut } from "firebase/auth";
 import { useRouter } from "vue-router";
+import { toast } from "vue3-toastify";
 
 const router = useRouter();
 
@@ -135,6 +136,9 @@ const handleLogout = async () => {
     await signOut(getAuth());
     localStorage.clear();
     router.push("/login");
+    toast.success("You are Logged Out", {
+      autoClose: 8000,
+    });
   } catch (error) {
     console.log(error);
   }
@@ -200,6 +204,11 @@ h3 span {
   flex-direction: column;
   align-items: center;
   z-index: 1111;
+}
+
+ nav ul li a.router-link-exact-active {
+ background: rgba(255, 255, 255, 0.2);
+ padding: .3rem;
 }
 
 .logo {
