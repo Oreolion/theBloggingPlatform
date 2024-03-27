@@ -28,6 +28,12 @@ const router = createRouter({
     //   ],
     },
     {
+        path: "/dashboardfeeds/:post.userId",
+        name: "blog-user-post",
+        component: () => import("/src/pages/BlogUserPost.vue"),
+        meta: { requiresAuth: true },
+      },
+    {
         path: "/dashboard/postanalytics",
         name: "post-analytics",
         component: PostAnalyticsVue,

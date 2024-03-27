@@ -13,7 +13,6 @@ import HeaderAndNav from "../components/HeaderAndNav.vue";
 </script>
 
 <style scoped>
-
 /* header */
 
 .header {
@@ -22,7 +21,6 @@ import HeaderAndNav from "../components/HeaderAndNav.vue";
   left: 0;
   right: 0;
   background: #bbb;
-  /* box-shadow: var(--box-shadow); */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -33,8 +31,6 @@ import HeaderAndNav from "../components/HeaderAndNav.vue";
 .innerdashboard__container .header .logo {
   display: none;
 }
-
-
 
 .right__nav {
   display: flex;

@@ -6,7 +6,7 @@
 
 <style scoped>
 .loader {
-  width: 500px;
+  width: 900px;
   height: 400px;
   display: block;
   margin: auto;
@@ -45,6 +45,13 @@
   }
   100% {
     background-position: 150% 0, 0 0, 70px 5px, 70px 38px, 0px 66px;
+  }
+}
+
+@media (max-width: 768px) {
+  .loader {
+    width: 500px;
+    height: 400px;
   }
 }
 

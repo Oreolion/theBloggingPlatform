@@ -24,6 +24,7 @@
         v-for="post in posts"
         :key="post.postTitle"
         v-if="!isLoading"
+        @click="handleBlogDetails(post)"
       >
         <div class="user__profile">
           <div class="user__image">
@@ -192,6 +193,9 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { ref, reactive, onMounted } from "vue";
 import axios from "axios";
+import { useRouter } from "vue-router";
+
+const router = useRouter()
 
 export interface IRandomUser {
   cell: string;
@@ -316,6 +320,17 @@ onAuthStateChanged(auth, (user) => {
     profile.email = user.email ?? "";
   }
 });
+
+function handleBlogDetails(post: any) {
+    // const userId = post.userId; 
+    // Access the userId from the post object
+    router.push({
+    name: "blog-user-post",
+    // params: { id: user.login.uuid },
+    params: { post: post.userId },
+  });
+
+}
 
 const handleUpdateBlogPosts = async () => {
   const postRef = collection(db, "blogpost");
