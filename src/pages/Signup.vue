@@ -248,7 +248,7 @@ const handleSignUp = async () => {
       });
 
       router.push("/dashboard");
-      toast.success("You are Logged In", {
+      toast.success("You created an Account", {
         autoClose: 8000,
       });
     }
