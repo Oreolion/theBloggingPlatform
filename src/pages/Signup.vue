@@ -88,11 +88,11 @@
             <div class="name">
               <label for="firstname">
                 First name: <br />
-                <input v-model="user.firstname" type="text" />
+                <input v-model="v$.firstname.$model" type="text" />
               </label>
               <label for="lastname">
                 Last name: <br />
-                <input v-model="user.lastname" type="text" />
+                <input v-model="v$.lastname.$model" type="text" />
               </label>
             </div>
             <label for="select">

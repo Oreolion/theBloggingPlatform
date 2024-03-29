@@ -21,10 +21,10 @@
     <div class="post__box" v-if="users.length || (posts && !togglePostInput)">
       <article
         class="post"
-        v-for="post in posts"
+        v-for="(post, index) in posts"
         :key="post.postTitle"
         v-if="!isLoading"
-        @click="handleBlogDetails(post)"
+        @click="handleBlogDetails(post, index)"
       >
         <div class="user__profile">
           <div class="user__image">
@@ -195,7 +195,7 @@ import { ref, reactive, onMounted } from "vue";
 import axios from "axios";
 import { useRouter } from "vue-router";
 
-const router = useRouter()
+const router = useRouter();
 
 export interface IRandomUser {
   cell: string;
@@ -297,6 +297,10 @@ let profile = reactive({
   email: "",
 });
 
+const emits = defineEmits(["selected"]);
+
+const selectedIndex = ref(0);
+
 const handleBlogInputField = () => {
   return (togglePostInput.value = false);
 };
@@ -321,15 +325,19 @@ onAuthStateChanged(auth, (user) => {
   }
 });
 
-function handleBlogDetails(post: any) {
-    // const userId = post.userId; 
-    // Access the userId from the post object
-    router.push({
+function handleBlogDetails(post: any, index: number) {
+  selectedIndex.value = index;
+  console.log(index);
+  const postDetails = posts.filter((post, i) => i === index);
+  console.log(postDetails);
+  localStorage.setItem("currentPost", JSON.stringify(postDetails));
+  // const userId = post.userId;
+  // Access the userId from the post object
+  router.push({
     name: "blog-user-post",
-    // params: { id: user.login.uuid },
     params: { post: post.userId },
+    state: { postDetails },
   });
-
 }
 
 const handleUpdateBlogPosts = async () => {
@@ -469,7 +477,7 @@ onMounted(async () => {
 }
 
 .user__image svg {
-    fill: #e67e22;
+  fill: #e67e22;
 }
 
 .user__image img {

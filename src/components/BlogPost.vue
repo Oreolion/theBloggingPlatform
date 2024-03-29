@@ -58,7 +58,9 @@
   </article>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+
+</script>
 
 <style scoped>
 .post .image {
