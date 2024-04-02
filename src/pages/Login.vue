@@ -236,6 +236,7 @@ const handleSignupWithGoogle = async () => {
 
 .left__box {
   flex: 1 1 50%;
+  min-width: 43rem;
   background: #000;
   margin-top: -1rem;
   padding: 3rem;
@@ -493,10 +494,9 @@ small {
 }
 
 @media (max-width: 320px) {
-
-    .right__box {
-        margin-left: -15rem;
-    }
+  .right__box {
+    margin-left: -15rem;
+  }
   .right__box h1 {
     font-size: 1.8rem;
   }

@@ -338,6 +338,7 @@ const handleSignupWithX = async () => {
   border-right: 10px solid #e67e22;
   box-shadow: 4px 8px 16px rgb(215, 215, 215, 0.6);
   border-radius: 3rem;
+  min-width: 43rem;
 }
 
 .imgbox {
