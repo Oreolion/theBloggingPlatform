@@ -275,7 +275,7 @@ const handleSignupWithGoogle = async () => {
   const provider = new GoogleAuthProvider();
   try {
     await signInWithPopup(auth, provider);
-    router.push("/dashboard");
+    await router.push("/dashboard");
     toast.success("You are Logged In");
     // This gives you a Google Access Token. You can use it to access the Google API.
     // const credential = await GoogleAuthProvider.credentialFromResult(result);
@@ -300,7 +300,9 @@ const handleSignupWithX = async () => {
   const provider = new TwitterAuthProvider();
   try {
     await signInWithPopup(auth, provider);
-    router.push("/dashboard");
+    await router.push("/dashboard");
+    toast.success("You are Logged In");
+
     // This gives you a Google Access Token. You can use it to access the Google API.
     // const credential = await TwitterAuthProvider.credentialFromResult(result);
     // const token = credential.accessToken;

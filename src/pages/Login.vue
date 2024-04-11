@@ -178,6 +178,7 @@ const v$ = useVuelidate(userRules, user);
 
 const router = useRouter();
 
+
 const handleLogin = async () => {
   const isValid = await v$.value.$validate();
   if (!isValid) return;
@@ -191,13 +192,11 @@ const handleLogin = async () => {
     if (response.user) {
       localStorage.setItem("isLoggedIn", "true");
 
-      router.push("/dashboard");
-      toast.success("You are Logged In", {
-        autoClose: 8000,
-      });
+      await router.push("/dashboard");
+      toast.success("You are Logged In");
+      
     }
   } catch (error: any) {
-    console.log(error);
     toast.error(error.message);
   }
 };

@@ -228,9 +228,9 @@ const handleLogout = async () => {
   try {
     await signOut(getAuth());
     localStorage.clear();
-    router.push("/login");
+    await router.push("/login");
     toast.success("You are Logged Out", {
-      autoClose: 8000,
+      autoClose: 5000,
     });
   } catch (error) {
     console.log(error);
