@@ -178,7 +178,6 @@ const v$ = useVuelidate(userRules, user);
 
 const router = useRouter();
 
-
 const handleLogin = async () => {
   const isValid = await v$.value.$validate();
   if (!isValid) return;
@@ -194,7 +193,6 @@ const handleLogin = async () => {
 
       await router.push("/dashboard");
       toast.success("You are Logged In");
-      
     }
   } catch (error: any) {
     toast.error(error.message);
@@ -237,22 +235,22 @@ const handleSignupWithGoogle = async () => {
   flex: 1 1 50%;
   min-width: 43rem;
   background: #000;
-  margin-top: -1rem;
-  padding: 3rem;
+  padding: 4rem;
   border-right: 10px solid #e67e22;
   box-shadow: 4px 8px 16px rgb(215, 215, 215, 0.6);
   border-radius: 3rem;
   display: flex;
-  gap: 3rem;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  min-width: 43rem;
 }
 
 .left__box h1 {
   font-size: 4.5rem;
   margin-bottom: 1rem;
   margin-top: -5rem;
+  min-width: 40rem;
   color: #ccc;
   font-weight: bold;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
@@ -262,6 +260,7 @@ const handleSignupWithGoogle = async () => {
 .left__box p {
   font-size: 3rem;
   font-weight: bold;
+  min-width: 40rem;
   margin-left: 2rem;
   color: #e67e22;
   align-self: flex-start;
@@ -273,10 +272,21 @@ const handleSignupWithGoogle = async () => {
   color: #e67e22;
   font-weight: bold;
 }
+
+.left__box .imgbox {
+  width: 40rem;
+}
+
+.left__box .imgbox img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
 .right__box {
   flex: 1 1 50%;
-  padding: 2rem;
+  padding: 2rem 0rem;
   padding-top: 10rem;
+  width: 45rem;
   display: flex;
   flex-direction: column;
   align-items: center;

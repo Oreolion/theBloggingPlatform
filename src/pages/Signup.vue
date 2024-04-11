@@ -344,7 +344,8 @@ const handleSignupWithX = async () => {
 }
 
 .imgbox {
-  height: 50rem;
+  height: 40rem;
+  width: 40rem;
   margin-top: 8rem;
 }
 
@@ -380,7 +381,8 @@ img {
 }
 .right__box {
   flex: 1 1 50%;
-  padding: 2rem;
+  padding: 2rem 0;
+  width: 45rem;
   display: flex;
   flex-direction: column;
   align-items: center;
