@@ -546,43 +546,58 @@ small {
 }
 
 @media (max-width: 640px) {
+  .section {
+    padding: 5rem 0%;
+  }
+
   .left__box {
     display: none;
   }
 }
 
 @media (max-width: 480px) {
-  .section {
-    padding: 3rem 0%;
-  }
   .right__box {
     display: flex;
-    padding: 2rem 3%;
-    margin-left: -2rem;
+    padding: 2rem 0;
+    width: 35rem;
+    margin-left: 0rem;
+  }
+
+  .right__box form {
+    padding: 2rem;
   }
 
   .inner__form .name {
-    width: 85%;
-  }
-
-  .right__box .navigatepagebtn-box button {
-    width: 30%;
-  }
-
-  .right__box h1 {
-    margin-left: -13rem;
-  }
-
-  .right__box > div > svg {
-    margin-left: -9rem;
-  }
-
-  .logo {
-    margin-left: 13rem;
+    width: 100%;
   }
 
   .right__box .navigatepagebtn-box {
-    margin-left: -11rem;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30rem;
+  }
+
+  .right__box .navigatepagebtn-box button {
+    margin-bottom: 2rem;
+    display: flex;
+    margin: 0 auto;
+    width: 12rem;
+    align-items: center;
+    justify-content: center;
+  }
+  .right__box h1 {
+    font-size: 2.2rem;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .right__box > div > svg {
+    width: 400px;
+    height: 100px;
   }
 
   .inner__form label input {
@@ -591,17 +606,21 @@ small {
   }
 
   .btn-box button {
-    width: 78%;
+    width: 100%;
   }
 }
 
 @media (max-width: 320px) {
   .right__box {
-    margin-left: -1rem;
+    margin-left: 0rem;
   }
+
   .right__box h1 {
     font-size: 1.8rem;
-    margin-left: -16rem;
+  }
+
+  .right__box form {
+    width: 100%;
   }
 
   .inner__form select,
@@ -610,7 +629,7 @@ small {
   }
 
   .inner__form .name {
-    width: 70%;
+    width: 100%;
   }
 
   .right__box > div > svg {
@@ -620,27 +639,42 @@ small {
   .logo {
     margin-left: 8rem;
   }
-
   .right__box .navigatepagebtn-box {
-    margin-left: -19rem;
+    margin-bottom: 2rem;
+    display: flex;
+    margin: 0 auto;
+    width: 30rem;
   }
 
-  .inner__form label input {
-    width: 90%;
-    margin-right: 3rem;
+  .inner__form select,
+  .inner__form label {
+    font-size: 1.2rem;
+  }
+
+  .btn-box {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 4rem;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .btn-box button {
-    width: 65%;
+    width: 100%;
   }
 
   .right__box .navigatepagebtn-box button {
-    width: 20%;
+    width: 35%;
     color: #e67e22;
     font-weight: bold;
     &:hover {
       color: #000;
     }
+  }
+
+  .right__box > div > svg {
+    margin: 0 auto;
   }
 }
 </style>

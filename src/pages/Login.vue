@@ -450,13 +450,18 @@ small {
   .right__box {
     display: flex;
     padding: 2rem 0;
-    margin-left: -10rem;
+    width: 35rem;
+    margin-left: 0rem;
   }
 
   .right__box form {
     padding: 2rem;
   }
 
+  .right__box > div > svg {
+    width: 400px;
+    height: 100px;
+  }
   .right__box h1 {
     font-size: 2.2rem;
     text-align: center;
@@ -467,6 +472,8 @@ small {
 
   .right__box .navigatepagebtn-box {
     margin-bottom: 2rem;
+    margin-left: 2rem;
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -482,18 +489,9 @@ small {
     justify-content: center;
   }
 
-  .btn-box {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    margin-top: 4rem;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
   .btn-box button {
     width: 100%;
-    margin: 0 auto;
+    height: 6rem;
   }
 
   .inner__form label input {
@@ -504,7 +502,7 @@ small {
 
 @media (max-width: 320px) {
   .right__box {
-    margin-left: -15rem;
+    margin-left: 0rem;
   }
   .right__box h1 {
     font-size: 1.8rem;
@@ -533,6 +531,10 @@ small {
     margin-top: 4rem;
     margin-left: auto;
     margin-right: auto;
+  }
+
+  .btn-box button {
+    width: 100%;
   }
 
   .right__box .navigatepagebtn-box button {

@@ -307,7 +307,7 @@ h3 span {
   height: 100vh;
   background: rgba(0, 0, 05, 0.8);
   color: #ccc;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -336,6 +336,7 @@ h3 span {
   cursor: pointer;
   color: #ddd;
   font-weight: bold;
+  font-size: 1.4rem;
   &:hover {
     letter-spacing: 2px;
   }
@@ -349,10 +350,10 @@ nav ul li a.router-link-exact-active {
 .dashboard__navlists .link svg {
   background-color: #fff;
   color: red;
-  height: 2.3rem;
+  height: 2.1rem;
   border-radius: 50%;
   padding: 0.2rem;
-  width: 2.3rem;
+  width: 2.1rem;
 }
 
 .dashboard__navlists li:last-child {
