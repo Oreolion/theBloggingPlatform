@@ -89,18 +89,34 @@
               <label for="firstname">
                 First name: <br />
                 <input v-model="v$.firstname.$model" type="text" />
+                <small v-if="v$.firstname.$errors.length">{{
+                  v$.firstname.$errors[0].$message
+                }}</small>
               </label>
               <label for="lastname">
                 Last name: <br />
                 <input v-model="v$.lastname.$model" type="text" />
+                <small v-if="v$.lastname.$errors.length">{{
+                  v$.lastname.$errors[0].$message
+                }}</small>
               </label>
             </div>
+            <label for="username">
+              Username: <br />
+              <input v-model="v$.username.$model" type="text" />
+              <small v-if="v$.username.$errors.length">{{
+                v$.username.$errors[0].$message
+              }}</small>
+            </label>
             <label for="select">
               You are joining as <br />
-              <select v-model="user.typeOfUser" name="select-user" id="">
+              <select v-model="v$.typeOfUser.$model" name="select-user" id="">
                 <option>Writer</option>
                 <option>Reader</option>
               </select>
+              <small v-if="v$.typeOfUser.$errors.length">{{
+                v$.typeOfUser.$errors[0].$message
+              }}</small>
             </label>
 
             <label for="email">
@@ -119,7 +135,7 @@
               }}</small>
             </label>
             <label for="password">
-              Password: <br />
+              Retype Password: <br />
               <input type="password" v-model="v$.confirmPassword.$model" />
               <small v-if="v$.confirmPassword.$errors.length">{{
                 v$.confirmPassword.$errors[0].$message
@@ -204,6 +220,8 @@ import Footer from "../components/Footer.vue";
 const userRules = {
   firstname: { required },
   lastname: { required },
+  username: { required },
+  typeOfUser: { required },
   email: { required, email },
   password: { required, minLength: minLength(8) },
   confirmPassword: {
@@ -221,6 +239,7 @@ const user = reactive({
   confirmPassword: "",
   firstname: "",
   lastname: "",
+  username: "",
   typeOfUser: "",
 });
 
@@ -244,13 +263,12 @@ const handleSignUp = async () => {
         userId: response.user.uid,
         firstname: user.firstname,
         lastname: user.lastname,
+        username: user.username,
         typeOfUser: user.typeOfUser,
       });
 
-      router.push("/dashboard");
-      toast.success("You created an Account", {
-        autoClose: 8000,
-      });
+      await router.push("/dashboard");
+      toast.success("You created an Account");
     }
   } catch (error: any) {
     console.log(error);
@@ -261,6 +279,7 @@ const handleSignUp = async () => {
 const createUser = async (data: {
   userId: string;
   firstname: string;
+  username: string;
   typeOfUser: string;
   lastname: string;
 }) => {

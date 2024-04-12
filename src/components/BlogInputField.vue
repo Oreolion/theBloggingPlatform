@@ -122,14 +122,15 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive } from "vue";
+import { ref, reactive } from 'vue';
 // @ts-ignore
 import { VMarkdownEditor } from "vue3-markdown";
 import "vue3-markdown/dist/style.css";
 import { toast } from "vue3-toastify";
-
-import { setDoc, doc } from "firebase/firestore";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../utils/firebase";
 import { db } from "../utils/firebase";
+import { setDoc, doc } from "firebase/firestore";
 import useFileUpload from "../composables/fileUpload";
 
 const emit = defineEmits(["addNewPost", "removeBlogInputField"]);
@@ -150,11 +151,28 @@ const inputContent = ref(false);
 let photoImage = ref("");
 // let togglePostInput = ref(false);
 
+const userProfile: any = reactive({})
+
+// const auth = getAuth();
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    userProfile.userId = user.uid
+    userProfile.displayName = user.displayName
+    userProfile.photoURL = user.photoURL
+    console.log(userProfile)
+  } else {
+    console.log("User is signed out");
+  }
+});
+
+
 const post = reactive({
   postTitle: "",
   content: "",
   photoImage: photoImage,
+  userId: userProfile.userId ,
 });
+
 
 const updatePost = () => {
   emit("addNewPost", post.postTitle);
@@ -197,15 +215,33 @@ const createBlogPost = async (data: {
   content: string;
   postTitle: string;
   photoImage: string;
+  postDate: string;
+  postFullName: string;
+  postUserName: string;
+  userPhotoURL: string;
 }) => {
   try {
-    await setDoc(doc(db, "blogpost", data.userId), data);
+    await setDoc(doc(db, "blogpost", data.userId), { ...data });
     console.log(db);
     console.log(data);
   } catch (error) {
     console.log(error);
   }
 };
+
+const setCurrentDate = () => {
+
+  const currentDate = new Date();
+  const formattedDate = currentDate.toISOString().slice(0, 10);
+
+  return formattedDate;
+};
+
+
+
+
+console.log(userProfile)
+
 
 const handleSubmit = async () => {
   if (!post.postTitle || !post.photoImage || !post.content) {
@@ -219,11 +255,13 @@ const handleSubmit = async () => {
     postTitle: post.postTitle,
     content: post.content,
     photoImage: post.photoImage,
+    postDate: setCurrentDate(),
+    userPhotoURL: userProfile.photoURL,
+    postUserName: userProfile.displayName,
+    postFullName: userProfile.displayName ,
   });
 
-  toast.success("Post Added Successfully", {
-    autoClose: 8000,
-  });
+  toast.success("Post Added Successfully");
 
   post.postTitle = "";
   post.content = "";
@@ -233,6 +271,7 @@ const handleSubmit = async () => {
 
   !props.togglePostInput;
 };
+
 </script>
 
 <style scoped>

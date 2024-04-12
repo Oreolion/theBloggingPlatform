@@ -29,11 +29,11 @@
           <label htmlFor="displayName">Display Name</label>
           <input type="text" v-model="profile.displayName" />
           <label htmlFor="firstname">Firstname</label>
-          <input type="text" v-model="profile.firstname" />
+          <input type="text" v-model="userProfile.firstname" />
           <label htmlFor="lastname">Lastname</label>
-          <input type="text" v-model="profile.lastname" />
+          <input type="text" v-model="userProfile.lastname" />
           <label htmlFor="country">Type Of User</label>
-          <input type="text" v-model="profile.typeOfUser" />
+          <input type="text" v-model="userProfile.typeOfUser" />
 
           <button type="button" @click="handleProfileUpdate">
             Update Info
@@ -55,7 +55,9 @@
 <script setup lang="ts">
 import DashboardNav from "../components/DashboardNav.vue";
 import HeaderAndNav from "../components/HeaderAndNav.vue";
-import { reactive, ref } from "vue";
+import { reactive, ref, onMounted } from "vue";
+import { getDocs, collection } from "firebase/firestore";
+import { db } from "../utils/firebase";
 import { onAuthStateChanged, updateProfile, type User } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import useFileUpload from "../composables/fileUpload";
@@ -73,6 +75,34 @@ const profile = reactive({
   lastname: "",
   photoUrl: "",
   typeOfUser: "",
+  userId: "",
+});
+
+const userProfile: any = reactive({})
+
+const handleUpdateProfile = async () => {
+  const postRef = collection(db, "users");
+  //   const postQuery = query(postRef, orderBy("createdAt", "asc"), limit(5));
+
+  // Get initial data
+  const querySnapshot = await getDocs(postRef);
+
+  if (querySnapshot) {
+    querySnapshot.docs.filter((doc) => {
+      if (doc.id === profile.userId) {
+        console.log(doc.id, " => ", doc.data());
+        userProfile.firstname = doc.data().firstname;
+        userProfile.lastname = doc.data().lastname;
+        userProfile.typeOfUser = doc.data().typeOfUser;
+      }
+    });
+  } else {
+    console.log("No such document!");
+  }
+};
+
+onMounted(async () => {
+  return await handleUpdateProfile();
 });
 
 const handleProfileUpdate = async () => {
@@ -105,6 +135,7 @@ onAuthStateChanged(auth, (user) => {
     profile.email = user?.email ?? "";
     profile.displayName = user?.displayName ?? "";
     profile.photoUrl = user?.photoURL ?? "";
+    profile.userId = user?.uid ?? "";
   }
 });
 </script>
