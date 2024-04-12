@@ -61,6 +61,7 @@ import { db } from "../utils/firebase";
 import { onAuthStateChanged, updateProfile, type User } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import useFileUpload from "../composables/fileUpload";
+import { toast } from 'vue3-toastify';
 
 const { uploadFile } = useFileUpload();
 
@@ -111,6 +112,7 @@ const handleProfileUpdate = async () => {
       displayName: profile.displayName,
       photoURL: profile.photoUrl,
     });
+    toast.success("Profile Updated Successfully")
   } catch (error) {
     console.log(error);
   }

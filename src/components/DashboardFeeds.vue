@@ -28,7 +28,7 @@
       >
         <div class="user__profile">
           <div class="user__image">
-            <span class="" v-if="!profile.photoURL">
+            <span class="" v-if="!post.userPhotoURL">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
                 <path
                   d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"
@@ -153,7 +153,7 @@
                   d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"
                 />
               </svg>
-              <span>2980 views</span>
+              <span>29 views</span>
             </div>
           </div>
           <div class="right">
@@ -163,7 +163,7 @@
                   d="M512 240c0 114.9-114.6 208-256 208c-37.1 0-72.3-6.4-104.1-17.9c-11.9 8.7-31.3 20.6-54.3 30.6C73.6 471.1 44.7 480 16 480c-6.5 0-12.3-3.9-14.8-9.9c-2.5-6-1.1-12.8 3.4-17.4l0 0 0 0 0 0 0 0 .3-.3c.3-.3 .7-.7 1.3-1.4c1.1-1.2 2.8-3.1 4.9-5.7c4.1-5 9.6-12.4 15.2-21.6c10-16.6 19.5-38.4 21.4-62.9C17.7 326.8 0 285.1 0 240C0 125.1 114.6 32 256 32s256 93.1 256 208z"
                 />
               </svg>
-              <span>(45) </span>
+              <span>45 </span>
             </button>
             <button href="#" class="icon">
               <svg fill="#ccc" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -326,7 +326,6 @@ console.log(profile)
 
 function handleBlogDetails(post: any, index: number) {
   selectedIndex.value = index;
-  console.log(index);
   const postDetails = posts.filter((post, i) => {
     console.log(post);
     return i === index;
@@ -352,7 +351,7 @@ const handleUpdateUser = async () => {
 
   if (querySnapshot) {
     querySnapshot.docs.map((doc) => {
-        console.log(doc.id, " => ", doc.data());
+        //  console.log(doc.id, " => ", doc.data());
 
             userProfile.push(doc.data() as any);
 
@@ -373,20 +372,20 @@ const handleUpdateBlogPosts = async () => {
 
   if (querySnapshot) {
     querySnapshot.docs.map((doc: any) => {
-      console.log(doc.id, " => ", doc.data());
+        // console.log(doc.id, " => ", doc.data());
       posts.push(doc.data() as NewPost);
     });
   } else {
     console.log("No such document!");
   }
 
-  console.log(posts);
+  // console.log(posts);
 
   onSnapshot(postQuery, (snapshot) => {
     snapshot.docs.map((doc) => {
       posts.push(doc.data() as NewPost);
     });
-    console.log(posts);
+    // console.log(posts);
     isLoading.value = false;
   }),
     (error: any) => {
@@ -530,7 +529,7 @@ const onLike = () => {
 }
 
 .post .image {
-  width: 90%;
+  width: 94%;
   height: 24rem;
   margin-bottom: 1rem;
 }
@@ -570,7 +569,7 @@ const onLike = () => {
   border-top: var(--border);
   display: flex;
   justify-content: space-between;
-  width: 94%;
+  width: 100%;
   padding-top: 1rem;
   margin-bottom: 0.2rem;
 }
@@ -666,7 +665,7 @@ svg {
     margin-right: 0.5rem;
     border: none;
     padding: 2rem 1rem;
-    width: 36rem;
+    width: 37rem;
   }
 
   .leftbox {
@@ -687,6 +686,10 @@ svg {
     width: 23rem;
   }
 
+  .reaction-box button {
+    width: 9rem;
+  }
+
   .user__profile {
     flex-direction: row;
   }
@@ -700,13 +703,13 @@ svg {
     padding-left: 0;
   }
   .post .image {
-    width: 24rem;
+    width: 30rem;
     height: 20rem;
     margin-bottom: 1rem;
   }
 
   .post .reaction-box .left {
-    margin-right: 3rem;
+    margin-right: 1rem;
   }
 
   .post .reaction-box svg {
@@ -714,7 +717,7 @@ svg {
   }
 
   .post .reaction-box .right .icon {
-    margin-right: 4rem;
+    margin-right: 1rem;
   }
 }
 
@@ -753,6 +756,10 @@ svg {
 
   .post p {
     font-size: 1.3rem;
+  }
+
+  .post .reaction-box button {
+    width: 9rem;
   }
 
   .post .reaction-box .right .icon {

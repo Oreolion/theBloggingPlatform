@@ -566,6 +566,7 @@ svg {
 
 .header .img__box svg {
   display: block;
+  margin-top: 2rem;
 }
 
 .header .img__box img {
@@ -594,6 +595,10 @@ svg {
   .logo p {
     white-space: nowrap;
   }
+
+  .header .img__box svg {
+  margin-top: 1rem;
+}
 
   .innerdashboard__container .header .logo {
     margin-bottom: 1rem;
