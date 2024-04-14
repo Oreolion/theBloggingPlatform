@@ -20,8 +20,7 @@
         </div>
         <div class="user__info">
           <h3 class="username">
-            Name: {{ mypost.postFullName.toUpperCase() }} || Email:
-            {{ profile.email }}
+            Name: {{ mypost.postFullName.toUpperCase() }}
           </h3>
           <div>
             <p class="userrole">
@@ -68,7 +67,7 @@
                 d="M512 240c0 114.9-114.6 208-256 208c-37.1 0-72.3-6.4-104.1-17.9c-11.9 8.7-31.3 20.6-54.3 30.6C73.6 471.1 44.7 480 16 480c-6.5 0-12.3-3.9-14.8-9.9c-2.5-6-1.1-12.8 3.4-17.4l0 0 0 0 0 0 0 0 .3-.3c.3-.3 .7-.7 1.3-1.4c1.1-1.2 2.8-3.1 4.9-5.7c4.1-5 9.6-12.4 15.2-21.6c10-16.6 19.5-38.4 21.4-62.9C17.7 326.8 0 285.1 0 240C0 125.1 114.6 32 256 32s256 93.1 256 208z"
               />
             </svg>
-            <span>0 </span>
+            <span>{{ commentLists.length }} </span>
           </button>
           <button class="icon" @click="onLike">
             <svg
@@ -86,6 +85,29 @@
       </div>
     </article>
     <div class="comment__box" v-if="toggleCommentBox">
+      <div class="comment__lists">
+        <div v-for="each in commentLists" :key="each.email" v-if="commentLists.length">
+          <div class="user">
+            <div class="user__profile">
+              <div class="user__image">
+                <span class="" v-if="!each.photoURL">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                    <path
+                      d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"
+                    /></svg
+                ></span>
+                <img :src="each.photoURL" alt="picture" v-else />
+              </div>
+              <h3 class="username">
+                {{ each.comment.displayName || each.comment.email }}
+              </h3>
+            </div>
+          </div>
+          <div class="comment__content">
+            {{ each.comment.comment }}
+          </div>
+        </div>
+      </div>
       <div class="user">
         <div class="user__profile">
           <div class="user__image">
@@ -103,24 +125,26 @@
         </div>
       </div>
       <label>
-        <textarea placeholder="add comment..."> </textarea>
+        <textarea placeholder="add comment..." v-model="comment.comment">
+        </textarea>
       </label>
       <br />
       <div class="btnbox">
         <button @click="toggleCommentBox = !toggleCommentBox">cancel</button>
-        <button>comment</button>
+        <button @click="createComment">comment</button>
       </div>
 
-      <div class="commentlist"></div>
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
-import { ref, reactive } from "vue";
+import { ref, reactive, onMounted } from "vue";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useRoute } from "vue-router";
+import { db } from "../utils/firebase";
+import { addDoc, collection, getDocs } from "firebase/firestore";
 
 const route = useRoute();
 let thePost;
@@ -147,6 +171,34 @@ let profile = reactive({
   displayName: "",
   email: "",
 });
+let comment = reactive({
+  photoURL: profile.photoURL,
+  displayName: profile.displayName,
+  email: profile.email,
+  comment: "",
+});
+let commentLists: any = reactive([]);
+
+console.log(comment.email);
+
+const createComment = async () => {
+  try {
+    comment.email = profile.email;
+    comment.photoURL = profile.photoURL;
+    comment.displayName = profile.displayName;
+
+    if (!profile.email) {
+      console.error("Email is missing from comment data.");
+      return;
+    }
+    await addDoc(collection(db, "comments"), { comment });
+    console.log(db);
+    console.log(comment);
+    comment.comment = "";
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 onAuthStateChanged(auth, (user) => {
   if (user) {
@@ -157,12 +209,33 @@ onAuthStateChanged(auth, (user) => {
   }
 });
 
+const handleUpdateComments = async () => {
+  const postRef = collection(db, "comments");
+  // isLoading.value = true;
+
+  // Get initial data
+  const querySnapshot = await getDocs(postRef);
+
+  if (querySnapshot) {
+    querySnapshot.docs.map((doc: any) => {
+      // console.log(doc.id, " => ", doc.data());
+      commentLists.push(doc.data());
+    });
+  } else {
+    console.log("No such document!");
+  }
+};
+
 const likeCount = ref(0);
 // const postComments = reactive([]);
 
 const onLike = () => {
   return likeCount.value++;
 };
+
+onMounted(async () => {
+  return await handleUpdateComments();
+});
 </script>
 
 <style scoped>
@@ -203,8 +276,8 @@ const onLike = () => {
 }
 
 .user__image {
-  width: 7rem;
-  height: 7rem;
+  width: 6rem;
+  height: 6rem;
   border-radius: 50%;
   background-color: #000;
   display: flex;
@@ -324,8 +397,11 @@ svg {
 
 .comment__box {
   position: relative;
+  background: rgba(222, 222, 220, 0.2);
+  padding: 1rem;
+  border-radius: 1rem;
   right: -60%;
-  top: -3%;
+  top: -2%;
   width: 35rem;
 }
 
@@ -342,12 +418,33 @@ svg {
   background-color: rgba(29, 19, 19, 0.5);
   color: #ccc;
   text-indent: 1rem;
-  width: 90%;
+  width: 94%;
 }
 
 .comment__box .btnbox {
   display: flex;
   gap: 1rem;
+}
+
+.comment__box .comment__content {
+    background-color: transparent;
+    margin-top: -2rem;
+    margin-left: 8rem;
+    border-radius: .5rem;
+    border: 1px solid #ccc;
+    padding: .5rem;
+    width: 70%;
+    height: 5rem;
+}
+
+.comment__lists {
+    margin-bottom: 2rem;
+}
+
+.comment__lists + user .user__image {
+    width: 5rem;
+    height: 5rem;
+
 }
 
 @media (max-width: 767px) {
@@ -385,7 +482,7 @@ svg {
   }
 
   .comment__box {
-    right: -40%;
+    right: -10%;
   }
 }
 
@@ -430,17 +527,16 @@ svg {
 }
 
 @media (max-width: 320px) {
-
-    .dashboard__feeds {
+  .dashboard__feeds {
     margin-left: -1rem;
     margin-right: 1rem;
     border: none;
     padding: 2rem 1rem;
     width: 30rem;
   }
-    .comment__box {
-        top: -5%;
-        right: -19%;
-    }
+  .comment__box {
+    top: -5%;
+    right: -19%;
+  }
 }
 </style>
