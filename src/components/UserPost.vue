@@ -79,14 +79,18 @@
                 d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z"
               />
             </svg>
-            <span>{{ likeCount }} </span>
+            <span>{{ like.likeCount }} </span>
           </button>
         </div>
       </div>
     </article>
     <div class="comment__box" v-if="toggleCommentBox">
       <div class="comment__lists">
-        <div v-for="each in commentLists" :key="each.email" v-if="commentLists.length">
+        <div
+          v-for="each in commentLists"
+          :key="each.email"
+          v-if="commentLists.length"
+        >
           <div class="user">
             <div class="user__profile">
               <div class="user__image">
@@ -133,7 +137,6 @@
         <button @click="toggleCommentBox = !toggleCommentBox">cancel</button>
         <button @click="createComment">comment</button>
       </div>
-
     </div>
   </section>
 </template>
@@ -144,7 +147,14 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useRoute } from "vue-router";
 import { db } from "../utils/firebase";
-import { addDoc, collection, getDocs } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  getDocs,
+  deleteDoc,
+  doc,
+  setDoc,
+} from "firebase/firestore";
 
 const route = useRoute();
 let thePost;
@@ -170,6 +180,7 @@ let profile = reactive({
   photoURL: "",
   displayName: "",
   email: "",
+  userId: "",
 });
 let comment = reactive({
   photoURL: profile.photoURL,
@@ -177,7 +188,10 @@ let comment = reactive({
   email: profile.email,
   comment: "",
 });
-let commentLists: any = reactive([]);
+
+let commentLists: any[] = reactive([]);
+let likeLists: any[] = reactive([]);
+let isLike = ref(false);
 
 console.log(comment.email);
 
@@ -192,12 +206,53 @@ const createComment = async () => {
       return;
     }
     await addDoc(collection(db, "comments"), { comment });
-    console.log(db);
     console.log(comment);
     comment.comment = "";
   } catch (error) {
     console.log(error);
   }
+};
+
+let like = reactive({
+  likeCount: 0,
+  likeBy: profile.displayName,
+  likeWithEmail: profile.email,
+});
+
+function toggleLike() {
+  return (isLike.value = !isLike.value);
+}
+
+const createLike = async () => {
+  try {
+    const likeRef = doc(db, "likes", profile?.userId);
+
+    //console.log(isLike.value)
+    toggleLike();
+
+    like.likeCount = isLike.value ? like.likeCount - 1 : like.likeCount + 1;
+    //console.log(like.likeCount)
+    //console.log(isLike.value)
+    if (!profile.email) {
+      console.error("Email is missing from user data.");
+      return;
+    }
+
+    if (isLike) {
+      await deleteDoc(likeRef);
+    } else {
+      await setDoc(likeRef, { userId: profile?.userId });
+    }
+    console.log(like);
+  } catch (error: any) {
+    console.log(error.message);
+  }
+};
+
+const onLike = async () => {
+  isLike.value = !isLike.value;
+  await createLike();
+  await handleUpdateLikes();
 };
 
 onAuthStateChanged(auth, (user) => {
@@ -206,6 +261,7 @@ onAuthStateChanged(auth, (user) => {
     profile.photoURL = user.photoURL ?? "";
     profile.displayName = user.displayName ?? "";
     profile.email = user.email ?? "";
+    profile.userId = user.uid ?? "";
   }
 });
 
@@ -225,16 +281,29 @@ const handleUpdateComments = async () => {
     console.log("No such document!");
   }
 };
+const handleUpdateLikes = async () => {
+  const postRef = collection(db, "likes");
+  // isLoading.value = true;
 
-const likeCount = ref(0);
-// const postComments = reactive([]);
+  // Get initial data
+  const querySnapshot = await getDocs(postRef);
 
-const onLike = () => {
-  return likeCount.value++;
+  if (querySnapshot) {
+    querySnapshot.docs.map((doc: any) => {
+      // console.log(doc.id, " => ", doc.data());
+      likeLists.push(doc.data());
+    });
+  } else {
+    console.log("No such document!");
+  }
 };
 
 onMounted(async () => {
   return await handleUpdateComments();
+});
+
+onMounted(async () => {
+  return await handleUpdateLikes();
 });
 </script>
 
@@ -400,9 +469,10 @@ svg {
   background: rgba(222, 222, 220, 0.2);
   padding: 1rem;
   border-radius: 1rem;
-  right: -60%;
+  right: 0%;
+  left: 0%;
   top: -2%;
-  width: 35rem;
+  min-width: 35rem;
 }
 
 .comment__box .user__profile {
@@ -412,7 +482,7 @@ svg {
 }
 
 .comment__box textarea {
-  height: 12rem;
+  height: 10rem;
   border-radius: 2rem;
   margin-bottom: 1rem;
   background-color: rgba(29, 19, 19, 0.5);
@@ -426,25 +496,28 @@ svg {
   gap: 1rem;
 }
 
+.comment__box h3 {
+  font-size: 1.5rem;
+}
+
 .comment__box .comment__content {
-    background-color: transparent;
-    margin-top: -2rem;
-    margin-left: 8rem;
-    border-radius: .5rem;
-    border: 1px solid #ccc;
-    padding: .5rem;
-    width: 70%;
-    height: 5rem;
+  background-color: transparent;
+  margin-top: -2rem;
+  margin-left: 8rem;
+  border-radius: 0.5rem;
+  border: 1px solid #ccc;
+  padding: 0.5rem;
+  width: 70%;
+  height: 5rem;
 }
 
 .comment__lists {
-    margin-bottom: 2rem;
+  margin-bottom: 2rem;
 }
 
 .comment__lists + user .user__image {
-    width: 5rem;
-    height: 5rem;
-
+  width: 4rem;
+  height: 4rem;
 }
 
 @media (max-width: 767px) {
@@ -521,7 +594,7 @@ svg {
   }
 
   .comment__box textarea {
-    width: 70%;
+    width: 90%;
     height: 10rem;
   }
 }
@@ -537,6 +610,7 @@ svg {
   .comment__box {
     top: -5%;
     right: -19%;
+    min-width: 32rem;
   }
 }
 </style>
