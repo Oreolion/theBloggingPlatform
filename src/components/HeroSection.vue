@@ -89,9 +89,9 @@ h1 {
 }
 
 .right__herosection .imgbox {
-  width: 100%;
-  height: 100%;
-  padding-top: 9rem;
+  width: 90%;
+  height: 90%;
+  padding-top: 13rem;
 }
 
 .right__herosection .imgbox img {
