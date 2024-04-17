@@ -161,7 +161,6 @@ let thePost;
 const post = localStorage.getItem("currentPost");
 if (post !== null) {
   thePost = JSON.parse(post);
-  console.log(thePost);
 } else {
   console.log("No current Post");
 }
@@ -214,7 +213,7 @@ const createComment = async () => {
 };
 
 let like = reactive({
-  likeCount: 0,
+  likeCount: likeLists.length,
   likeBy: profile.displayName,
   likeWithEmail: profile.email,
 });
@@ -225,32 +224,27 @@ function toggleLike() {
 
 const createLike = async () => {
   try {
+    like.likeWithEmail = profile.email;
+    like.likeBy = profile.displayName;
+    like.likeCount = isLike.value ? like.likeCount - 1 : like.likeCount + 1;
     const likeRef = doc(db, "likes", profile?.userId);
 
-    //console.log(isLike.value)
     toggleLike();
 
-    like.likeCount = isLike.value ? like.likeCount - 1 : like.likeCount + 1;
     //console.log(like.likeCount)
-    //console.log(isLike.value)
-    if (!profile.email) {
-      console.error("Email is missing from user data.");
-      return;
-    }
-
-    if (isLike) {
-      await deleteDoc(likeRef);
+    //console.log(isLike.value);
+  
+    if (isLike.value) {
+      return await deleteDoc(likeRef);
     } else {
-      await setDoc(likeRef, { userId: profile?.userId });
+      return await setDoc(likeRef, { userId: profile?.userId });
     }
-    console.log(like);
   } catch (error: any) {
     console.log(error.message);
   }
 };
 
 const onLike = async () => {
-  isLike.value = !isLike.value;
   await createLike();
   await handleUpdateLikes();
 };
@@ -281,6 +275,7 @@ const handleUpdateComments = async () => {
     console.log("No such document!");
   }
 };
+
 const handleUpdateLikes = async () => {
   const postRef = collection(db, "likes");
   // isLoading.value = true;
@@ -293,6 +288,7 @@ const handleUpdateLikes = async () => {
       // console.log(doc.id, " => ", doc.data());
       likeLists.push(doc.data());
     });
+    //console.log(likeLists)
   } else {
     console.log("No such document!");
   }
