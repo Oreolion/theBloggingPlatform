@@ -155,8 +155,11 @@ import {
   doc,
   setDoc,
 } from "firebase/firestore";
+import {toast} from "vue3-toastify"
+import { useRouter } from "vue-router";
 
 const route = useRoute();
+const router = useRouter();
 let thePost;
 const post = localStorage.getItem("currentPost");
 if (post !== null) {
@@ -205,6 +208,8 @@ const createComment = async () => {
       return;
     }
     await addDoc(collection(db, "comments"), { comment });
+    toast.success("You added a new comment")
+    router.push("/blog-user-post")
     console.log(comment);
     comment.comment = "";
   } catch (error) {
